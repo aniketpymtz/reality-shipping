@@ -1,11 +1,12 @@
 "use client";
 
 import { useState } from "react";
-import { Menu, X, Anchor } from "lucide-react";
+import { Menu, X } from "lucide-react";
+import Image from "next/image";
 
 const navLinks = [
-  { label: "Home", href: "#home" },
-  { label: "About", href: "#about" },
+  { label: "Home", href: "/" },
+  { label: "About", href: "/about" },
   { label: "Services", href: "#services" },
   { label: "Global Reach", href: "#global" },
   { label: "Why Us", href: "#why-us" },
@@ -20,14 +21,20 @@ export default function Navbar() {
       <div className="max-w-7xl mx-auto flex items-center justify-between px-6 py-4">
         {/* Logo */}
         <a href="#home" className="flex items-center gap-2.5 group">
-          <div className="w-10 h-10 rounded-lg bg-blue-900 flex items-center justify-center group-hover:bg-blue-800 transition-colors">
-            <Anchor className="w-5 h-5 text-white" />
+          <div className="w-10 h-10 rounded-lg overflow-hidden flex items-center justify-center group-hover:scale-105 transition-transform">
+            <Image
+              src="/rslsLogo.png"
+              alt="Reality Shipping & Logistics Logo"
+              width={40}
+              height={40}
+              className="object-contain"
+            />
           </div>
-          <div className="flex flex-col leading-tight">
-            <span className="text-lg font-bold tracking-tight text-blue-900">
+          <div className="flex flex-col leading-snug">
+            <span className="text-lg font-bold tracking-tight text-blue-900 -mb-2">
               Reality
             </span>
-            <span className="text-[10px] font-semibold uppercase tracking-[0.2em] text-slate-500">
+            <span className="text-lg font-bold tracking-tight text-blue-900">
               Shipping & Logistics
             </span>
           </div>

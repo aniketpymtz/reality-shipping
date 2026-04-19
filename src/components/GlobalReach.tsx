@@ -1,4 +1,9 @@
+"use client";
+
 import { MapPin } from "lucide-react";
+import dynamic from "next/dynamic";
+
+const RotatingGlobe = dynamic(() => import("./RotatingGlobe"), { ssr: false });
 
 const regions = [
   {
@@ -46,52 +51,36 @@ export default function GlobalReach() {
           </p>
         </div>
 
-        {/* World map visualization */}
-        <div className="relative bg-gradient-to-br from-blue-950 via-blue-900 to-blue-800 rounded-2xl p-10 md:p-16 overflow-hidden mb-12">
-          {/* Decorative grid */}
-          <div
-            className="absolute inset-0 opacity-5"
-            style={{
-              backgroundImage:
-                "linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)",
-              backgroundSize: "40px 40px",
-            }}
-          />
-          {/* Glowing dots representing port locations */}
-          <div className="absolute top-[25%] left-[45%] w-2 h-2 bg-blue-400 rounded-full shadow-lg shadow-blue-400/50" />
-          <div className="absolute top-[30%] left-[48%] w-2 h-2 bg-blue-400 rounded-full shadow-lg shadow-blue-400/50" />
-          <div className="absolute top-[28%] left-[42%] w-2 h-2 bg-blue-400 rounded-full shadow-lg shadow-blue-400/50" />
-          <div className="absolute top-[45%] left-[70%] w-2 h-2 bg-blue-300 rounded-full shadow-lg shadow-blue-300/50" />
-          <div className="absolute top-[40%] left-[75%] w-2 h-2 bg-blue-300 rounded-full shadow-lg shadow-blue-300/50" />
-          <div className="absolute top-[50%] left-[72%] w-2 h-2 bg-blue-300 rounded-full shadow-lg shadow-blue-300/50" />
-          <div className="absolute top-[42%] left-[55%] w-2 h-2 bg-blue-200 rounded-full shadow-lg shadow-blue-200/50" />
-          <div className="absolute top-[48%] left-[58%] w-2 h-2 bg-blue-200 rounded-full shadow-lg shadow-blue-200/50" />
-          <div className="absolute top-[35%] left-[20%] w-2 h-2 bg-blue-400 rounded-full shadow-lg shadow-blue-400/50" />
-          <div className="absolute top-[55%] left-[25%] w-2 h-2 bg-blue-400 rounded-full shadow-lg shadow-blue-400/50" />
-          <div className="absolute top-[65%] left-[30%] w-2 h-2 bg-blue-400 rounded-full shadow-lg shadow-blue-400/50" />
-
-          {/* Center content */}
-          <div className="relative z-10 text-center">
-            <h3 className="text-5xl sm:text-6xl font-bold text-white mb-2">
-              50+
-            </h3>
-            <p className="text-blue-300 text-lg font-medium mb-8">
-              Ports of Operation
-            </p>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-              {[
-                { number: "4", label: "Continents" },
-                { number: "20+", label: "Countries" },
-                { number: "300+", label: "Team Members" },
-                { number: "40+", label: "Partners" },
-              ].map((stat) => (
-                <div key={stat.label}>
-                  <div className="text-2xl font-bold text-white">
-                    {stat.number}
+        {/* Rotating Globe */}
+        <div className="relative bg-linear-to-br from-blue-900 via-blue-850 to-blue-700 rounded-2xl overflow-hidden mb-12">
+          <div className="grid lg:grid-cols-2 gap-0 items-center">
+            {/* Globe */}
+            <div className="relative h-100 md:h-125">
+              <RotatingGlobe />
+            </div>
+            {/* Stats overlay */}
+            <div className="relative z-10 p-10 md:p-16">
+              <h3 className="text-5xl sm:text-6xl font-bold text-white mb-2">
+                50+
+              </h3>
+              <p className="text-blue-300 text-lg font-medium mb-8">
+                Ports of Operation
+              </p>
+              <div className="grid grid-cols-2 gap-8">
+                {[
+                  { number: "4", label: "Continents" },
+                  { number: "20+", label: "Countries" },
+                  { number: "300+", label: "Team Members" },
+                  { number: "40+", label: "Partners" },
+                ].map((stat) => (
+                  <div key={stat.label}>
+                    <div className="text-2xl font-bold text-white">
+                      {stat.number}
+                    </div>
+                    <div className="text-sm text-blue-300/70">{stat.label}</div>
                   </div>
-                  <div className="text-sm text-blue-300/70">{stat.label}</div>
-                </div>
-              ))}
+                ))}
+              </div>
             </div>
           </div>
         </div>
