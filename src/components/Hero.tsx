@@ -1,21 +1,21 @@
-import Image from "next/image";
 import { ChevronRight } from "lucide-react";
 import Link from "next/link";
 
 export default function Hero() {
   return (
     <section id="home" className="relative min-h-screen flex items-center overflow-hidden">
-      {/* Full-bleed background image */}
+      {/* Full-bleed background video */}
       <div className="absolute inset-0">
-        <Image
-          src="https://images.unsplash.com/photo-1494412574643-ff11b0a5eb19?w=1920&q=80"
-          alt="Container ship at sea"
-          fill
-          className="object-cover"
-          priority
-        />
-        <div className="absolute inset-0 bg-gradient-to-r from-blue-950/90 via-blue-900/75 to-blue-950/50" />
-        <div className="absolute inset-0 bg-gradient-to-t from-blue-950/60 to-transparent" />
+        <video
+          autoPlay
+          muted
+          loop
+          className="absolute inset-0 w-full h-full object-cover"
+        >
+          <source src="https://videos.pexels.com/video-files/27950175/12271664_2560_1440_60fps.mp4" type="video/mp4" />
+        </video>
+        <div className="absolute inset-0 bg-linear-to-r from-blue-900/90 via-blue-900/75 to-blue-950/50" />
+        <div className="absolute inset-0 bg-linear-to-t from-blue-900/60 to-transparent" />
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-6 pt-32 pb-24 w-full">
@@ -27,12 +27,8 @@ export default function Hero() {
             </span>
           </div>
 
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold leading-[1.08] tracking-tight mb-6">
-            <span className="text-white">Delivering </span>
-            <span className="gradient-text">First-Class</span>
-            <br />
-            <span className="text-white">Logistics </span>
-            <span className="text-blue-300">Worldwide</span>
+          <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-6xl font-bold leading-[1.08] tracking-tight mb-6">
+            <span className="text-white">Your Maritime Reality, Our Passion and Priority</span>
           </h1>
 
           <p className="text-lg sm:text-xl text-blue-100/80 max-w-2xl mb-10 leading-relaxed">
