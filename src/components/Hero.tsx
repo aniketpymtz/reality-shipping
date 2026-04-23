@@ -3,7 +3,7 @@ import Link from "next/link";
 
 export default function Hero() {
   return (
-    <section id="home" className="relative min-h-screen flex items-center overflow-hidden">
+    <section id="home" className="relative min-h-screen flex items-center">
       {/* Full-bleed background video */}
       <div className="absolute inset-0">
         <video
@@ -20,34 +20,34 @@ export default function Hero() {
 
       <div className="relative z-10 max-w-7xl mx-auto px-6 pt-32 pb-24 w-full">
         <div className="max-w-3xl">
-          <div className="flex items-center gap-3 mb-8">
+          <div className="flex items-center gap-3 mb-8" data-scroll data-scroll-speed="1">
             <div className="divider-gold" />
             <span className="text-gold-400 text-sm font-semibold uppercase tracking-[0.2em]">
               Global Shipping Excellence
             </span>
           </div>
 
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-6xl font-bold leading-[1.08] tracking-tight mb-6">
+          <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-6xl font-bold leading-[1.08] tracking-tight mb-6" data-scroll data-scroll-speed="1">
             <span className="text-white">Your Maritime Reality, Our Passion and Priority</span>
           </h1>
 
-          <p className="text-lg sm:text-xl text-blue-100/80 max-w-2xl mb-10 leading-relaxed">
+          {/* <p className="text-lg sm:text-xl text-blue-100/80 max-w-2xl mb-10 leading-relaxed">
             A modern global shipping agency providing end-to-end service across
             all ports where we operate — sea freight, air freight, and land
             transportation with innovative solutions.
-          </p>
+          </p> */}
 
-          <div className="flex flex-col sm:flex-row gap-4">
+          <div className="flex flex-col sm:flex-row gap-4 text-sm" data-scroll data-scroll-speed="0.6">
             <Link
               href="/port-services"
-              className="group inline-flex items-center justify-center gap-2 px-8 py-4 bg-white text-blue-900 font-semibold rounded-lg hover:bg-blue-50 transition-all shadow-xl shadow-black/10"
+              className="group inline-flex items-center justify-center gap-2 px-8 py-2 bg-white text-blue-900 font-semibold rounded-lg hover:bg-blue-50 transition-all shadow-xl shadow-black/10"
             >
               Our Services
               <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
             </Link>
             <a
               href="#contact"
-              className="inline-flex items-center justify-center gap-2 px-8 py-4 border border-white/25 text-white font-semibold rounded-lg hover:bg-white/10 transition-all backdrop-blur-sm"
+              className="inline-flex items-center justify-center gap-2 px-8 py-2 border border-white/25 text-white font-semibold rounded-lg hover:bg-white/10 transition-all backdrop-blur-sm"
             >
               Request a Quote
             </a>
@@ -55,7 +55,7 @@ export default function Hero() {
         </div>
 
         {/* Floating stats bar */}
-        <div className="mt-20 grid grid-cols-2 md:grid-cols-4 gap-6 bg-white/10 backdrop-blur-md rounded-2xl p-8 border border-white/10">
+        <div className="mt-20 grid grid-cols-2 md:grid-cols-4 gap-6 bg-white/10 backdrop-blur-md rounded-2xl p-8 border border-white/10" data-scroll data-scroll-speed="0.3">
           {[
             { number: "50+", label: "Global Ports" },
             { number: "25+", label: "Years Experience" },

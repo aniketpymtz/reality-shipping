@@ -65,6 +65,14 @@ function rotateY(x: number, y: number, z: number, angle: number): [number, numbe
   return [x * cos + z * sin, y, -x * sin + z * cos];
 }
 
+function rotateX(x: number, y: number, z: number, angle: number): [number, number, number] {
+  const cos = Math.cos(angle);
+  const sin = Math.sin(angle);
+  return [x, y * cos - z * sin, y * sin + z * cos];
+}
+
+const TILT = 35 * (Math.PI / 180);
+
 function project(x: number, y: number, z: number, cx: number, cy: number, scale: number): [number, number] {
   const perspective = 800;
   const factor = perspective / (perspective + z);
@@ -127,7 +135,8 @@ export default function RotatingGlobe() {
         let started = false;
         for (let lng = 0; lng <= 360; lng += 3) {
           const [x, y, z] = latLngToXYZ(lat, lng, 1);
-          const [rx, ry, rz] = rotateY(x, y, z, angle);
+          const [ry0, ry1, ry2] = rotateY(x, y, z, angle);
+          const [rx, ry, rz] = rotateX(ry0, ry1, ry2, TILT);
           if (rz < -0.1) { started = false; continue; }
           const [px, py] = project(rx, ry, rz, cx, cy, scale);
           if (!started) { ctx.moveTo(px, py); started = true; }
@@ -144,7 +153,8 @@ export default function RotatingGlobe() {
         let started = false;
         for (let lat = -90; lat <= 90; lat += 3) {
           const [x, y, z] = latLngToXYZ(lat, lng, 1);
-          const [rx, ry, rz] = rotateY(x, y, z, angle);
+          const [ry0, ry1, ry2] = rotateY(x, y, z, angle);
+          const [rx, ry, rz] = rotateX(ry0, ry1, ry2, TILT);
           if (rz < -0.1) { started = false; continue; }
           const [px, py] = project(rx, ry, rz, cx, cy, scale);
           if (!started) { ctx.moveTo(px, py); started = true; }
@@ -158,7 +168,8 @@ export default function RotatingGlobe() {
       // Compute rotated port positions
       const portPositions = ports.map(([lat, lng]) => {
         const [x, y, z] = latLngToXYZ(lat, lng, 1);
-        const [rx, ry, rz] = rotateY(x, y, z, angle);
+        const [ry0, ry1, ry2] = rotateY(x, y, z, angle);
+        const [rx, ry, rz] = rotateX(ry0, ry1, ry2, TILT);
         const [px, py] = project(rx, ry, rz, cx, cy, scale);
         return { px, py, rz, visible: rz > -0.15 };
       });

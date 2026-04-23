@@ -9,7 +9,7 @@ const regions = [
   {
     name: "Europe",
     ports: ["Hamburg", "Rotterdam", "Antwerp", "Piraeus", "Felixstowe"],
-    color: "bg-blue-600",
+    color: "bg-blue-700",
   },
   {
     name: "Asia Pacific",
@@ -19,12 +19,12 @@ const regions = [
   {
     name: "Middle East & Africa",
     ports: ["Dubai", "Jeddah", "Durban", "Lagos", "Djibouti"],
-    color: "bg-blue-800",
+    color: "bg-blue-700",
   },
   {
     name: "Americas",
     ports: ["New York", "Houston", "Santos", "Cartagena", "Vancouver"],
-    color: "bg-blue-900",
+    color: "bg-blue-700",
   },
 ];
 
@@ -42,17 +42,18 @@ export default function GlobalReach() {
             <div className="divider-gold" />
           </div>
           <h2 className="text-3xl sm:text-4xl font-bold text-slate-900 mb-4">
-            Operating Across Continents
+            A Truly Global Presence
           </h2>
           <p className="text-slate-600 max-w-2xl mx-auto leading-relaxed">
-            With a presence in major ports worldwide, we ensure seamless
-            connectivity and efficient cargo movement across international trade
-            routes.
+            From the ports of Hamburg to the harbours of Singapore, Reality
+            Shipping & Logistics operates across major trade lanes on every
+            inhabited continent — delivering reliability wherever your cargo
+            needs to go.
           </p>
         </div>
 
         {/* Rotating Globe */}
-        <div className="relative bg-linear-to-br from-blue-900 via-blue-850 to-blue-700 rounded-2xl overflow-hidden mb-12">
+        <div className="relative bg-blue-50 border border-blue-100 rounded-2xl overflow-hidden mb-12">
           <div className="grid lg:grid-cols-2 gap-0 items-center">
             {/* Globe */}
             <div className="relative h-100 md:h-125">
@@ -60,24 +61,27 @@ export default function GlobalReach() {
             </div>
             {/* Stats overlay */}
             <div className="relative z-10 p-10 md:p-16">
-              <h3 className="text-5xl sm:text-6xl font-bold text-white mb-2">
+              <p className="text-blue-600 text-xs font-semibold uppercase tracking-widest mb-2">
+                Our Reach, By the Numbers
+              </p>
+              <h3 className="text-5xl sm:text-6xl font-bold text-blue-900 mb-1">
                 50+
               </h3>
-              <p className="text-blue-300 text-lg font-medium mb-8">
-                Ports of Operation
+              <p className="text-slate-500 text-base mb-10">
+                Active ports across global trade routes
               </p>
-              <div className="grid grid-cols-2 gap-8">
+              <div className="grid grid-cols-2 gap-x-8 gap-y-7">
                 {[
-                  { number: "4", label: "Continents" },
-                  { number: "20+", label: "Countries" },
+                  { number: "4", label: "Continents Covered" },
+                  { number: "20+", label: "Countries Served" },
                   { number: "300+", label: "Team Members" },
-                  { number: "40+", label: "Partners" },
+                  { number: "40+", label: "Trusted Partners" },
                 ].map((stat) => (
                   <div key={stat.label}>
-                    <div className="text-2xl font-bold text-white">
+                    <div className="text-3xl font-bold text-blue-900">
                       {stat.number}
                     </div>
-                    <div className="text-sm text-blue-300/70">{stat.label}</div>
+                    <div className="text-sm text-slate-500 mt-0.5">{stat.label}</div>
                   </div>
                 ))}
               </div>

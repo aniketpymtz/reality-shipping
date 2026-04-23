@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Menu, X } from "lucide-react";
 import Image from "next/image";
 
@@ -15,9 +15,22 @@ const navLinks = [
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 60);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-md border-b border-slate-200 shadow-sm">
+    <nav
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        scrolled
+          ? "bg-white/95 backdrop-blur-md border-b border-slate-200 shadow-sm py-0"
+          : "bg-transparent border-b border-white/10 py-2"
+      }`}
+    >
       <div className="max-w-7xl mx-auto flex items-center justify-between px-6 py-4">
         {/* Logo */}
         <a href="#home" className="flex items-center gap-2.5 group">
@@ -31,10 +44,10 @@ export default function Navbar() {
             />
           </div>
           <div className="flex flex-col leading-snug">
-            <span className="text-lg font-bold tracking-tight text-blue-900 -mb-2">
+            <span className={`text-lg font-bold tracking-tight -mb-2 transition-colors duration-300 ${scrolled ? "text-blue-900" : "text-white"}`}>
               Reality
             </span>
-            <span className="text-lg font-bold tracking-tight text-blue-900">
+            <span className={`text-lg font-bold tracking-tight transition-colors duration-300 ${scrolled ? "text-blue-900" : "text-white"}`}>
               Shipping & Logistics
             </span>
           </div>
@@ -46,14 +59,22 @@ export default function Navbar() {
             <a
               key={link.href}
               href={link.href}
-              className="text-sm font-medium text-slate-600 hover:text-blue-700 transition-colors relative after:absolute after:bottom-[-4px] after:left-0 after:w-0 after:h-[2px] after:bg-blue-600 hover:after:w-full after:transition-all"
+              className={`text-sm font-medium transition-colors duration-300 relative after:absolute after:bottom-[-4px] after:left-0 after:w-0 after:h-[2px] hover:after:w-full after:transition-all ${
+                scrolled
+                  ? "text-slate-600 hover:text-blue-700 after:bg-blue-600"
+                  : "text-white/80 hover:text-white after:bg-white"
+              }`}
             >
               {link.label}
             </a>
           ))}
           <a
             href="#contact"
-            className="ml-2 px-5 py-2.5 bg-blue-700 text-white text-sm font-semibold rounded-lg hover:bg-blue-800 transition-colors shadow-md shadow-blue-700/20"
+            className={`ml-2 px-5 py-2.5 text-sm font-semibold rounded-lg transition-all duration-300 ${
+              scrolled
+                ? "bg-blue-700 text-white hover:bg-blue-800 shadow-md shadow-blue-700/20"
+                : "bg-white/15 text-white border border-white/25 hover:bg-white/25 backdrop-blur-sm"
+            }`}
           >
             Get a Quote
           </a>
@@ -61,7 +82,7 @@ export default function Navbar() {
 
         {/* Mobile toggle */}
         <button
-          className="lg:hidden p-2 text-slate-700"
+          className={`lg:hidden p-2 transition-colors duration-300 ${scrolled ? "text-slate-700" : "text-white"}`}
           onClick={() => setOpen(!open)}
           aria-label="Toggle menu"
         >
