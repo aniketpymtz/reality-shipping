@@ -4,12 +4,13 @@ import { ArrowRight } from "lucide-react";
 import Link from "next/link";
 import CountUp from "react-countup";
 import dynamic from "next/dynamic";
+import { useInView } from "react-intersection-observer";
 
 const Globe3D = dynamic(() => import("./Globe3D"), { ssr: false });
 
-// const IMAGE_URL =
-//   "https://images.pexels.com/photos/1427107/pexels-photo-1427107.jpeg?auto=compress&cs=tinysrgb&w=1920";
-const IMAGE_URL='https://images.pexels.com/photos/4570838/pexels-photo-4570838.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'
+const IMAGE_URL =
+  "https://images.pexels.com/photos/4570838/pexels-photo-4570838.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1";
+
 const panels = [
   {
     end: 25,
@@ -36,18 +37,22 @@ const panels = [
     bgPos: "100% center",
     statPlacement: "flex-col justify-start items-end",
     statPadding: "pt-10 pr-8",
-    clipPath: "polygon(0% 0%, 100% 0%, 100% calc(100% - 50px), calc(100% - 50px) 100%, 0% 100%)",
+    clipPath:
+      "polygon(0% 0%, 100% 0%, 100% calc(100% - 50px), calc(100% - 50px) 100%, 0% 100%)",
   },
 ];
 
 export default function About() {
-  return (
-    <section id="about" className="py-28 bg-white">
-      <div className="max-w-7xl mx-auto px-6">
+  const { ref, inView } = useInView({
+    triggerOnce: true, // run only once
+    threshold: 0.3, // 30% visible
+  });
 
-        {/* ── Top: two-column header ── */}
+  return (
+    <section id="about" ref={ref} className="py-28 bg-white">
+      <div className="max-w-7xl mx-auto px-6">
+        {/* Top Section */}
         <div className="grid lg:grid-cols-[1fr_2fr] gap-12 xl:gap-20 mb-16 lg:mb-20 items-start">
-          {/* Left: eyebrow + globe */}
           <div className="flex flex-col gap-6 pt-2">
             <div className="flex items-center gap-3">
               <div className="divider-gold" />
@@ -58,7 +63,6 @@ export default function About() {
             <Globe3D />
           </div>
 
-          {/* Right: headline + body + link */}
           <div>
             <h2 className="text-4xl sm:text-5xl lg:text-[3.25rem] xl:text-[3.75rem] font-bold text-slate-900 leading-none mb-8">
               At Reality Shipping, we move the world with{" "}
@@ -66,13 +70,13 @@ export default function About() {
                 trusted, seamless logistics.
               </span>
             </h2>
-            
+
             <p className="text-slate-500 leading-relaxed text-base max-w-2xl mb-8">
-              Reality Shipping is a cornerstone of the maritime industry, 
-              connecting ship owners, charterers and operators with port 
-              authorities and the entire network of stakeholders that 
-              keep vessels moving globally.
+              Reality Shipping is a cornerstone of the maritime industry,
+              connecting ship owners, charterers and operators with port
+              authorities and stakeholders worldwide.
             </p>
+
             <Link
               href="/about"
               className="inline-flex items-center gap-2 text-blue-700 font-semibold text-sm hover:gap-3 transition-all"
@@ -83,7 +87,7 @@ export default function About() {
           </div>
         </div>
 
-        {/* ── Bottom: 3-panel image with stats ── */}
+        {/* Bottom Stats */}
         <div className="grid grid-cols-3 gap-3 h-120 sm:h-135 lg:h-150">
           {panels.map((panel) => (
             <div
@@ -96,20 +100,21 @@ export default function About() {
                 clipPath: panel.clipPath,
               }}
             >
-              {/* Dark overlay */}
               <div className="absolute inset-0 bg-blue-900/50" />
 
-              {/* Stat */}
               <div className={`absolute inset-0 flex ${panel.statPlacement}`}>
                 <div className={`${panel.statPadding} text-white`}>
                   <div className="text-5xl sm:text-6xl lg:text-8xl font-semibold leading-none">
-                    <CountUp
-                      end={panel.end}
-                      suffix={panel.suffix}
-                      duration={2.5}
-                      separator=","
-                    />
+                    {inView && (
+                      <CountUp
+                        end={panel.end}
+                        suffix={panel.suffix}
+                        duration={3}
+                        separator=","
+                      />
+                    )}
                   </div>
+
                   <div className="text-[14px] sm:text-base text-white mt-1 font-medium">
                     {panel.label}
                   </div>
@@ -118,7 +123,6 @@ export default function About() {
             </div>
           ))}
         </div>
-
       </div>
     </section>
   );
