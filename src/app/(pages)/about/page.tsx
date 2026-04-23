@@ -21,21 +21,69 @@ export const metadata: Metadata = {
 };
 
 const values = [
-  { icon: Heart, title: "Empathy", desc: "We understand our clients' needs and act with genuine care for every shipment." },
-  { icon: Zap, title: "Passion", desc: "Our love for logistics drives us to deliver exceptional service every day." },
-  { icon: Award, title: "Performance", desc: "We measure ourselves by results — on-time, on-budget, every time." },
-  { icon: Shield, title: "Reliability", desc: "Consistent, dependable service our clients can count on worldwide." },
-  { icon: Users, title: "Unity", desc: "Our global team works as one, bridging cultures and continents seamlessly." },
-  { icon: Handshake, title: "Respect", desc: "We treat every partner, crew member, and client with equal dignity." },
+  {
+    icon: Heart,
+    title: "Empathy",
+    desc: "We understand our clients' needs and act with genuine care for every shipment.",
+  },
+  {
+    icon: Zap,
+    title: "Passion",
+    desc: "Our love for logistics drives us to deliver exceptional service every day.",
+  },
+  {
+    icon: Award,
+    title: "Performance",
+    desc: "We measure ourselves by results — on-time, on-budget, every time.",
+  },
+  {
+    icon: Shield,
+    title: "Reliability",
+    desc: "Consistent, dependable service our clients can count on worldwide.",
+  },
+  {
+    icon: Users,
+    title: "Unity",
+    desc: "Our global team works as one, bridging cultures and continents seamlessly.",
+  },
+  {
+    icon: Handshake,
+    title: "Respect",
+    desc: "We treat every partner, crew member, and client with equal dignity.",
+  },
 ];
 
 const milestones = [
-  { year: "2000", title: "Company Founded", desc: "Established as a port agency in our first home port." },
-  { year: "2005", title: "Regional Expansion", desc: "Expanded operations to cover 10 ports across the region." },
-  { year: "2010", title: "Logistics Division", desc: "Launched sea freight, air freight, and land transportation services." },
-  { year: "2015", title: "Global Network", desc: "Partnered with agents worldwide to cover 30+ ports across 3 continents." },
-  { year: "2020", title: "Digital Transformation", desc: "Introduced real-time tracking and digital documentation systems." },
-  { year: "2025", title: "50+ Ports Worldwide", desc: "Now operating across 50+ ports in 20+ countries on 4 continents." },
+  {
+    year: "2000",
+    title: "Company Founded",
+    desc: "Established as a port agency in our first home port.",
+  },
+  {
+    year: "2005",
+    title: "Regional Expansion",
+    desc: "Expanded operations to cover 10 ports across the region.",
+  },
+  {
+    year: "2010",
+    title: "Logistics Division",
+    desc: "Launched sea freight, air freight, and land transportation services.",
+  },
+  {
+    year: "2015",
+    title: "Global Network",
+    desc: "Partnered with agents worldwide to cover 30+ ports across 3 continents.",
+  },
+  {
+    year: "2020",
+    title: "Digital Transformation",
+    desc: "Introduced real-time tracking and digital documentation systems.",
+  },
+  {
+    year: "2025",
+    title: "50+ Ports Worldwide",
+    desc: "Now operating across 50+ ports in 20+ countries on 4 continents.",
+  },
 ];
 
 export default function AboutPage() {
@@ -110,9 +158,16 @@ export default function AboutPage() {
                   { number: "300+", label: "Team Members" },
                   { number: "25+", label: "Years Experience" },
                 ].map((stat) => (
-                  <div key={stat.label} className="text-center p-4 bg-blue-50 rounded-xl">
-                    <div className="text-2xl font-bold text-blue-700">{stat.number}</div>
-                    <div className="text-xs text-slate-500 mt-1">{stat.label}</div>
+                  <div
+                    key={stat.label}
+                    className="text-center p-4 bg-blue-50 rounded-xl"
+                  >
+                    <div className="text-2xl font-bold text-blue-700">
+                      {stat.number}
+                    </div>
+                    <div className="text-xs text-slate-500 mt-1">
+                      {stat.label}
+                    </div>
                   </div>
                 ))}
               </div>
@@ -155,21 +210,16 @@ export default function AboutPage() {
         <div className="relative z-10 max-w-7xl mx-auto px-6 text-center">
           <div className="flex items-center justify-center gap-3 mb-4">
             <div className="divider-gold" />
-            <span className="text-gold-400 text-sm font-semibold uppercase tracking-[0.2em]">
+            <span className="text-gold-400 text-base font-semibold uppercase tracking-[0.2em]">
               Our Vision
             </span>
             <div className="divider-gold" />
           </div>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-6 leading-tight">
-            Linking Continents with<br />Hearts & Minds
+          <h2 className="text-lg text-blue-200/80 max-w-3xl mx-auto leading-relaxed">
+            To be the customer’s preferred shipping agency offering a firstclass
+            end-to-end quality service at international standards throughout our
+            geographical coverage.
           </h2>
-          <p className="text-lg text-blue-200/80 max-w-3xl mx-auto leading-relaxed">
-            We want to pro-actively create connections. We think and act across
-            borders and continents. Our people are cosmopolitan and dynamic — in
-            constant interaction with different generations, cultures, and
-            competencies to succeed together. We have a passion for shipping,
-            for logistics, for the team, and for your needs.
-          </p>
         </div>
       </section>
 
@@ -188,8 +238,9 @@ export default function AboutPage() {
               What Drives Us
             </h2>
             <p className="text-slate-600 max-w-2xl mx-auto leading-relaxed">
-              Our corporate culture is built on values that form the foundation
-              for a great team spirit and productive working atmosphere.
+              Providing a unique international first-class service driven by our
+              vast experience, continuous training of our people, and commitment
+              to innovation.
             </p>
           </div>
 
@@ -236,9 +287,15 @@ export default function AboutPage() {
                 key={m.year}
                 className="bg-white rounded-xl p-8 border border-slate-200 hover:shadow-lg transition-all"
               >
-                <span className="text-3xl font-bold text-blue-700">{m.year}</span>
-                <h3 className="text-lg font-bold text-slate-900 mt-3 mb-2">{m.title}</h3>
-                <p className="text-sm text-slate-500 leading-relaxed">{m.desc}</p>
+                <span className="text-3xl font-bold text-blue-700">
+                  {m.year}
+                </span>
+                <h3 className="text-lg font-bold text-slate-900 mt-3 mb-2">
+                  {m.title}
+                </h3>
+                <p className="text-sm text-slate-500 leading-relaxed">
+                  {m.desc}
+                </p>
               </div>
             ))}
           </div>
@@ -265,7 +322,8 @@ export default function AboutPage() {
                 </span>
               </div>
               <h2 className="text-3xl sm:text-4xl font-bold text-slate-900 mb-6 leading-tight">
-                Our Commitment to<br />
+                Our Commitment to
+                <br />
                 <span className="text-blue-700">Excellence</span>
               </h2>
               <div className="space-y-4 mb-10">
@@ -277,7 +335,10 @@ export default function AboutPage() {
                   "Dedicated account managers for personalized service",
                   "Sustainable practices reducing environmental impact",
                 ].map((item) => (
-                  <div key={item} className="flex items-start gap-3 text-sm text-slate-600">
+                  <div
+                    key={item}
+                    className="flex items-start gap-3 text-sm text-slate-600"
+                  >
                     <CheckCircle2 className="w-5 h-5 text-blue-600 flex-shrink-0 mt-0.5" />
                     <span>{item}</span>
                   </div>

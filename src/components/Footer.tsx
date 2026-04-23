@@ -1,4 +1,5 @@
-import { Anchor, Mail, Phone } from "lucide-react";
+import { Mail, Phone } from "lucide-react";
+import Image from "next/image";
 
 export default function Footer() {
   return (
@@ -7,9 +8,15 @@ export default function Footer() {
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-10">
           {/* Brand */}
           <div className="lg:col-span-1">
-            <a href="#home" className="flex items-center gap-2.5 mb-5">
-              <div className="w-10 h-10 rounded-lg bg-white/10 flex items-center justify-center">
-                <Anchor className="w-5 h-5 text-blue-300" />
+            <a href="#home" className="flex items-center gap-2.5 mb-3">
+              <div className="w-10 h-10 rounded-lg overflow-hidden flex items-center justify-center">
+                <Image
+                  src="/rslsLogo.png"
+                  alt="Reality Shipping & Logistics Logo"
+                  width={40}
+                  height={40}
+                  className="object-contain"
+                />
               </div>
               <div className="flex flex-col leading-tight">
                 <span className="text-lg font-bold tracking-tight text-white">
@@ -20,6 +27,9 @@ export default function Footer() {
                 </span>
               </div>
             </a>
+            <p className="text-gold-400 text-sm font-semibold italic mb-5">
+              We commit. We Deliver.
+            </p>
             <p className="text-blue-300/70 text-sm leading-relaxed mb-6">
               A modern global shipping agency delivering first-class end-to-end
               logistics solutions across all major ports worldwide.
@@ -105,10 +115,10 @@ export default function Footer() {
               Contact
             </h4>
             <div className="space-y-3 text-sm text-blue-300/70">
-              <p>123 Maritime Boulevard</p>
-              <p>Port District, NY 10001</p>
+              <p>7th floor, Maithili Signet, Near Inorbit mall</p>
+              <p>Sector 30A, Vashi, Navi Mumbai</p>
               <p className="pt-2">info@realityshipping.com</p>
-              <p>+1 (555) 123-4567</p>
+              <p>+91 829 157 3141</p>
             </div>
           </div>
         </div>

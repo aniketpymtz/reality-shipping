@@ -14,8 +14,8 @@ export default function Hero() {
         >
           <source src="https://videos.pexels.com/video-files/27950175/12271664_2560_1440_60fps.mp4" type="video/mp4" />
         </video>
-        <div className="absolute inset-0 bg-linear-to-r from-blue-900/90 via-blue-900/75 to-blue-950/50" />
-        <div className="absolute inset-0 bg-linear-to-t from-blue-900/60 to-transparent" />
+        <div className="absolute inset-0 bg-linear-to-r from-blue-900/60 via-blue-900/75 to-blue-950/50" />
+        <div className="absolute inset-0 bg-linear-to-t from-blue-900/40 to-transparent" />
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-6 pt-32 pb-24 w-full">
@@ -55,7 +55,7 @@ export default function Hero() {
         </div>
 
         {/* Floating stats bar */}
-        <div className="mt-20 grid grid-cols-2 md:grid-cols-4 gap-6 bg-white/10 backdrop-blur-md rounded-2xl p-8 border border-white/10" data-scroll data-scroll-speed="0.3">
+        {/* <div className="mt-20 grid grid-cols-2 md:grid-cols-4 gap-6 bg-white/10 backdrop-blur-md rounded-2xl p-8 border border-white/10" data-scroll data-scroll-speed="0.3">
           {[
             { number: "50+", label: "Global Ports" },
             { number: "25+", label: "Years Experience" },
@@ -71,7 +71,7 @@ export default function Hero() {
               </div>
             </div>
           ))}
-        </div>
+        </div> */}
       </div>
 
       {/* Bottom wave */}

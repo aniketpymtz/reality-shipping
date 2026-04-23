@@ -4,20 +4,22 @@ import GlobalReach from "@/components/GlobalReach";
 import WhyUs from "@/components/WhyUs";
 import Contact from "@/components/Contact";
 import HomeBanner from "@/components/HomeBanner";
-import HomeAboutPreview from "@/components/HomeAboutPreview";
+// import HomeAboutPreview from "@/components/HomeAboutPreview";
 import HomePortPreview from "@/components/HomePortPreview";
 import HomeNewsPreview from "@/components/HomeNewsPreview";
+import About from "@/components/About";
 
 export default function Home() {
   return (
     <>
       <Hero />
-      <HomeAboutPreview />
+      <About/>
+      {/* <HomeAboutPreview /> */}
       <Services />
       <HomePortPreview />
       <GlobalReach />
       <WhyUs />
-      <HomeBanner />
+      {/* <HomeBanner /> */}
       <HomeNewsPreview />
       <Contact />
     </>
