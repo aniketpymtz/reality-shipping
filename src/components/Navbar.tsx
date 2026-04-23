@@ -72,7 +72,7 @@ export default function Navbar() {
             href="#contact"
             className={`ml-2 px-5 py-2.5 text-sm font-semibold rounded-lg transition-all duration-300 ${
               scrolled
-                ? "bg-blue-700 text-white hover:bg-blue-800 shadow-md shadow-blue-700/20"
+                ? "bg-[#2F70C2] text-white hover:bg-blue-800 "
                 : "bg-white/15 text-white border border-white/25 hover:bg-white/25 backdrop-blur-sm"
             }`}
           >

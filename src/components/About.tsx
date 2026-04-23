@@ -66,7 +66,7 @@ export default function About() {
           <div>
             <h2 className="text-4xl sm:text-5xl lg:text-[3.25rem] xl:text-[3.75rem] font-bold text-slate-900 leading-none mb-8">
               At Reality Shipping, we move the world with{" "}
-              <span className="text-blue-700">
+              <span className="text-[#2F70C2]">
                 trusted, seamless logistics.
               </span>
             </h2>

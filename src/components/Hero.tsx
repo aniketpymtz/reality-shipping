@@ -14,8 +14,8 @@ export default function Hero() {
         >
           <source src="https://videos.pexels.com/video-files/27950175/12271664_2560_1440_60fps.mp4" type="video/mp4" />
         </video>
-        <div className="absolute inset-0 bg-linear-to-r from-blue-900/60 via-blue-900/75 to-blue-950/50" />
-        <div className="absolute inset-0 bg-linear-to-t from-blue-900/40 to-transparent" />
+        <div className="absolute inset-0 bg-gray-800/50" />
+        {/* <div className="absolute inset-0 bg-linear-to-t from-blue-900/40 to-transparent" /> */}
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-6 pt-32 pb-24 w-full">
@@ -75,14 +75,14 @@ export default function Hero() {
       </div>
 
       {/* Bottom wave */}
-      <div className="absolute bottom-0 left-0 right-0">
+      {/* <div className="absolute bottom-0 left-0 right-0">
         <svg viewBox="0 0 1440 80" fill="none" className="w-full">
           <path
             d="M0,40 C360,80 720,0 1440,40 L1440,80 L0,80 Z"
             fill="white"
           />
         </svg>
-      </div>
+      </div> */}
     </section>
   );
 }
