@@ -93,7 +93,7 @@ export default function NewService() {
     }, [selected]);
 
     return (
-        <div ref={container} className="relative text-white mt-[25vh] px-[8%] pb-[10%]">
+        <div ref={container} className="relative text-white mt-[5vh] md:mt-[25vh] px-[8%] pb-[10%]">
 
             {/* Section header */}
             <div className="mb-16">
@@ -106,15 +106,15 @@ export default function NewService() {
             </div>
 
             {/* Main layout */}
-            <div className="flex gap-16">
+            <div className="flex flex-col-reverse md:flex-row gap-5 md:gap-16">
 
                 {/* Left — service list */}
-                <div className="w-1/2 flex flex-col">
+                <div className="w-full md:w-1/2 flex flex-col">
                     {services.map((service, index) => (
                         <div
                             key={index}
                             onMouseOver={() => setSelected(index)}
-                            className="border-b border-black/20 py-8 cursor-default"
+                            className="border-b border-black/20 py-1 md:py-8 cursor-default"
                         >
                             <p
                                 className="text-[0.75vw] uppercase tracking-widest mb-2"
@@ -149,7 +149,7 @@ export default function NewService() {
                 </div>
 
                 {/* Right — pinned image + description */}
-                <div ref={imageContainer} className="w-1/2 flex flex-col gap-3">
+                <div ref={imageContainer} className="w-full md:w-1/2 flex flex-col gap-3">
                     <div className="relative h-62.5 w-full overflow-hidden">
                         {services.map((service, i) => (
                             <div
