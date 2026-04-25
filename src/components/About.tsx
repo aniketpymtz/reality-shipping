@@ -141,7 +141,7 @@ export default function About() {
         </div>
 
         {/* Bottom Stats */}
-        <div className="grid grid-cols-3 gap-3 h-120 sm:h-135 lg:h-150">
+        <div className="grid sm:grid-rows-3 md:grid-rows-1 md:grid-cols-3 gap-3 h-120 sm:h-135 lg:h-150">
           {panels.map((panel) => (
             <div
               key={panel.label}

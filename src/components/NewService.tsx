@@ -131,7 +131,7 @@ export default function NewService() {
                                 {String(index + 1).padStart(2, '0')}
                             </p>
                             <h2
-                                className="text-[3vw] font-bold uppercase m-0"
+                                className="text-[7vw] md:text-[3vw] font-bold uppercase m-0"
                                 style={{
                                     backgroundImage: 'linear-gradient(to right, #c9a84c 50%, rgba(0,0,0,0.5) 50%)',
                                     backgroundSize: '200% 100%',
@@ -173,19 +173,19 @@ export default function NewService() {
                     </div>
                     <div ref={descRef} className="flex flex-col gap-4">
                         <div>
-                            <h3 className="text-[1.6vw] font-bold uppercase tracking-wide text-black m-0">
+                            <h3 className="text-[5vw] md:text-[1.6vw] font-bold uppercase tracking-wide text-black m-0">
                                 {services[selected].title}
                             </h3>
-                            <p className="text-[1vw] text-[#c9a84c] italic mt-1">
+                            <p className="text-[3vw] md:text-[1.2vw] text-[#c9a84c] italic mt-1">
                                 {services[selected].subtitle}
                             </p>
                         </div>
-                        <p className="text-[0.95vw] text-black/60 leading-relaxed">
+                        <p className="tet-[1.8vw] md:text-[1vw] text-black/60 leading-relaxed">
                             {services[selected].description}
                         </p>
                         <ul className="flex flex-col gap-2 mt-1">
                             {services[selected].features.slice(0, 5).map((feat, i) => (
-                                <li key={i} className="flex items-start gap-2 text-[1.1vw] text-black/80">
+                                <li key={i} className="flex items-start gap-2 text-[2vw] md:text-[1.1vw] text-black/80">
                                     <span className="text-[#c9a84c] mt-[0.15em] shrink-0">✓</span>
                                     {feat}
                                 </li>
