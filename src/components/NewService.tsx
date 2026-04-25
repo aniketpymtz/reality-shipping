@@ -1,5 +1,5 @@
 "use client"
-import React, { useState, useLayoutEffect, useRef } from 'react'
+import React, { useState, useLayoutEffect, useEffect, useRef } from 'react'
 import Image from 'next/image';
 import Link from 'next/link';
 import gsap from 'gsap';
@@ -41,7 +41,7 @@ const services = [
             "Feedering Arrangements",
             "Equipment Control",
         ],
-        src: "https://images.pexels.com/photos/3964736/pexels-photo-3964736.jpeg",
+        src: "/assets/Liner.jpg",
     },
     {
         title: "Logistics",
@@ -58,7 +58,7 @@ const services = [
             "Offshore Oil & Gas Project Services",
             "End to End Logistics",
         ],
-        src: "https://images.pexels.com/photos/1267338/pexels-photo-1267338.jpeg",
+        src: "/assets/container2.jpg",
     },
 ]
 
@@ -67,6 +67,7 @@ export default function NewService() {
     const [selected, setSelected] = useState(0);
     const container = useRef<HTMLDivElement>(null);
     const imageContainer = useRef<HTMLDivElement>(null);
+    const descRef = useRef<HTMLDivElement>(null);
 
     useLayoutEffect(() => {
         gsap.registerPlugin(ScrollTrigger);
@@ -80,6 +81,16 @@ export default function NewService() {
         }, container);
         return () => ctx.revert();
     }, [])
+
+    useEffect(() => {
+        if (descRef.current) {
+            gsap.fromTo(
+                descRef.current,
+                { opacity: 0, y: 22 },
+                { opacity: 1, y: 0, duration: 0.45, ease: 'power2.out' }
+            );
+        }
+    }, [selected]);
 
     return (
         <div ref={container} className="relative text-white mt-[25vh] px-[8%] pb-[10%]">
@@ -103,14 +114,34 @@ export default function NewService() {
                         <div
                             key={index}
                             onMouseOver={() => setSelected(index)}
-                            className={`border-b border-black/20 py-8 cursor-default transition-colors duration-300 ${
-                                selected === index ? 'text-[#c9a84c]' : 'text-black/50 hover:text-black/70'
-                            }`}
+                            className="border-b border-black/20 py-8 cursor-default"
                         >
-                            <p className="text-[0.75vw] uppercase tracking-widest text-black/40 mb-2">
+                            <p
+                                className="text-[0.75vw] uppercase tracking-widest mb-2"
+                                style={{
+                                    backgroundImage: 'linear-gradient(to right, #c9a84c 50%, rgba(0,0,0,0.35) 50%)',
+                                    backgroundSize: '200% 100%',
+                                    backgroundPosition: selected === index ? '0%' : '100%',
+                                    WebkitBackgroundClip: 'text',
+                                    WebkitTextFillColor: 'transparent',
+                                    backgroundClip: 'text',
+                                    transition: 'background-position 0.55s ease',
+                                }}
+                            >
                                 {String(index + 1).padStart(2, '0')}
                             </p>
-                            <h2 className="text-[3vw] font-bold uppercase m-0">
+                            <h2
+                                className="text-[3vw] font-bold uppercase m-0"
+                                style={{
+                                    backgroundImage: 'linear-gradient(to right, #c9a84c 50%, rgba(0,0,0,0.5) 50%)',
+                                    backgroundSize: '200% 100%',
+                                    backgroundPosition: selected === index ? '0%' : '100%',
+                                    WebkitBackgroundClip: 'text',
+                                    WebkitTextFillColor: 'transparent',
+                                    backgroundClip: 'text',
+                                    transition: 'background-position 0.55s ease',
+                                }}
+                            >
                                 {service.title}
                             </h2>
                         </div>
@@ -120,15 +151,27 @@ export default function NewService() {
                 {/* Right — pinned image + description */}
                 <div ref={imageContainer} className="w-1/2 flex flex-col gap-3">
                     <div className="relative h-62.5 w-full overflow-hidden">
-                        <Image
-                            src={services[selected].src}
-                            fill
-                            alt={services[selected].title}
-                            className="object-cover transition-opacity duration-500"
-                            priority
-                        />
+                        {services.map((service, i) => (
+                            <div
+                                key={i}
+                                className="absolute inset-0"
+                                style={{
+                                    opacity: selected === i ? 1 : 0,
+                                    transform: selected === i ? 'scale(1)' : 'scale(1.04)',
+                                    transition: 'opacity 0.65s ease, transform 0.65s ease',
+                                }}
+                            >
+                                <Image
+                                    src={service.src}
+                                    fill
+                                    alt={service.title}
+                                    className="object-cover"
+                                    priority={i === 0}
+                                />
+                            </div>
+                        ))}
                     </div>
-                    <div className="flex flex-col gap-4">
+                    <div ref={descRef} className="flex flex-col gap-4">
                         <div>
                             <h3 className="text-[1.6vw] font-bold uppercase tracking-wide text-black m-0">
                                 {services[selected].title}

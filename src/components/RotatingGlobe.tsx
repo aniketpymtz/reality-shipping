@@ -116,17 +116,14 @@ export default function RotatingGlobe() {
       // Draw globe outline
       ctx.beginPath();
       ctx.arc(cx, cy, R, 0, Math.PI * 2);
-      ctx.strokeStyle = "rgba(96, 165, 250, 0.15)";
+      ctx.strokeStyle = "rgba(59, 130, 246, 0.7)";
       ctx.lineWidth = 1.5;
       ctx.stroke();
 
-      // Fill globe
-      const grad = ctx.createRadialGradient(cx - R * 0.3, cy - R * 0.3, R * 0.1, cx, cy, R);
-      grad.addColorStop(0, "rgba(30, 58, 95, 0.6)");
-      grad.addColorStop(1, "rgba(10, 22, 40, 0.8)");
+      // Fill globe (transparent)
       ctx.beginPath();
       ctx.arc(cx, cy, R, 0, Math.PI * 2);
-      ctx.fillStyle = grad;
+      ctx.fillStyle = "rgba(0, 0, 0, 0)";
       ctx.fill();
 
       // Draw latitude lines
@@ -142,7 +139,7 @@ export default function RotatingGlobe() {
           if (!started) { ctx.moveTo(px, py); started = true; }
           else ctx.lineTo(px, py);
         }
-        ctx.strokeStyle = "rgba(96, 165, 250, 0.08)";
+        ctx.strokeStyle = "rgba(59, 130, 246, 0.35)";
         ctx.lineWidth = 0.8;
         ctx.stroke();
       }
@@ -160,7 +157,7 @@ export default function RotatingGlobe() {
           if (!started) { ctx.moveTo(px, py); started = true; }
           else ctx.lineTo(px, py);
         }
-        ctx.strokeStyle = "rgba(96, 165, 250, 0.08)";
+        ctx.strokeStyle = "rgba(59, 130, 246, 0.35)";
         ctx.lineWidth = 0.8;
         ctx.stroke();
       }
@@ -195,7 +192,7 @@ export default function RotatingGlobe() {
         ctx.beginPath();
         ctx.moveTo(pa.px, pa.py);
         ctx.quadraticCurveTo(midX + nx * bulge, midY + ny * bulge, pb.px, pb.py);
-        ctx.strokeStyle = `rgba(147, 197, 253, ${alpha})`;
+        ctx.strokeStyle = `rgba(99, 179, 237, ${alpha})`;
         ctx.lineWidth = 1;
         ctx.stroke();
       });
@@ -207,8 +204,8 @@ export default function RotatingGlobe() {
 
         // Glow
         const glow = ctx.createRadialGradient(p.px, p.py, 0, p.px, p.py, 8);
-        glow.addColorStop(0, `rgba(96, 165, 250, ${alpha * 0.6})`);
-        glow.addColorStop(1, `rgba(96, 165, 250, 0)`);
+        glow.addColorStop(0, `rgba(59, 130, 246, ${alpha * 0.8})`);
+        glow.addColorStop(1, `rgba(59, 130, 246, 0)`);
         ctx.beginPath();
         ctx.arc(p.px, p.py, 8, 0, Math.PI * 2);
         ctx.fillStyle = glow;
@@ -217,26 +214,19 @@ export default function RotatingGlobe() {
         // Dot
         ctx.beginPath();
         ctx.arc(p.px, p.py, 2.5, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(191, 219, 254, ${alpha})`;
+        ctx.fillStyle = `rgba(147, 197, 253, ${alpha})`;
         ctx.fill();
 
         // Label (only for front-facing ports)
         if (p.rz > 0.3 && alpha > 0.7) {
           ctx.font = "10px Inter, system-ui, sans-serif";
-          ctx.fillStyle = `rgba(191, 219, 254, ${alpha * 0.7})`;
+          ctx.fillStyle = `rgba(147, 197, 253, ${alpha * 0.9})`;
           ctx.textAlign = "left";
           ctx.fillText(ports[i][2], p.px + 7, p.py + 3);
         }
       });
 
-      // Specular highlight
-      const spec = ctx.createRadialGradient(cx - R * 0.35, cy - R * 0.35, 0, cx - R * 0.35, cy - R * 0.35, R * 0.6);
-      spec.addColorStop(0, "rgba(255, 255, 255, 0.04)");
-      spec.addColorStop(1, "rgba(255, 255, 255, 0)");
-      ctx.beginPath();
-      ctx.arc(cx, cy, R, 0, Math.PI * 2);
-      ctx.fillStyle = spec;
-      ctx.fill();
+      // Specular highlight — skip (globe is transparent)
 
       animRef.current = requestAnimationFrame(draw);
     };

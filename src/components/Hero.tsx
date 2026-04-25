@@ -12,7 +12,7 @@ export default function Hero() {
           loop
           className="absolute inset-0 w-full h-full object-cover"
         >
-          <source src="https://videos.pexels.com/video-files/27950175/12271664_2560_1440_60fps.mp4" type="video/mp4" />
+          <source src="./assets/hero-vid.mp4" />
         </video>
         <div className="absolute inset-0 bg-gray-800/50" />
         {/* <div className="absolute inset-0 bg-linear-to-t from-blue-900/40 to-transparent" /> */}
