@@ -140,7 +140,7 @@ ${message.trim()}
     `.trim();
 
     try {
-        const info = await transporter.sendMail({
+        await transporter.sendMail({
             from: `"Reality Shipping Website" <${gmailUser}>`,
             to: ADMIN_EMAIL,
             replyTo: email.trim(),
@@ -148,8 +148,6 @@ ${message.trim()}
             text: textBody,
             html: htmlBody,
         });
-
-        console.log("[contact/route] Email sent successfully. MessageId:", info.messageId);
         return NextResponse.json({ success: true });
     } catch (err) {
         console.error("Failed to send contact form email:", err);

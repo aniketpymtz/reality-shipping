@@ -9,22 +9,22 @@ const regions = [
   {
     name: "Europe",
     ports: ["Hamburg", "Rotterdam", "Antwerp", "Piraeus", "Felixstowe"],
-    color: "bg-blue-700",
+    color: "bg-brand-blue",
   },
   {
     name: "Asia Pacific",
     ports: ["Singapore", "Shanghai", "Busan", "Tokyo", "Mumbai"],
-    color: "bg-blue-700",
+    color: "bg-brand-blue",
   },
   {
     name: "Middle East & Africa",
     ports: ["Dubai", "Jeddah", "Durban", "Lagos", "Djibouti"],
-    color: "bg-blue-700",
+    color: "bg-brand-blue",
   },
   {
     name: "Americas",
     ports: ["New York", "Houston", "Santos", "Cartagena", "Vancouver"],
-    color: "bg-blue-700",
+    color: "bg-brand-blue",
   },
 ];
 
@@ -61,10 +61,10 @@ export default function GlobalReach() {
             </div>
             {/* Stats overlay */}
             <div className="relative z-10 p-10 md:p-16">
-              <p className="text-blue-600 text-xs font-semibold uppercase tracking-widest mb-2">
+              <p className="text-brand-blue text-xs font-semibold uppercase tracking-widest mb-2">
                 Our Reach, By the Numbers
               </p>
-              <h3 className="text-5xl sm:text-6xl font-bold text-blue-900 mb-1">
+              <h3 className="text-5xl sm:text-6xl font-bold text-brand-blue mb-1">
                 50+
               </h3>
               <p className="text-slate-500 text-base mb-10">
@@ -78,7 +78,7 @@ export default function GlobalReach() {
                   { number: "40+", label: "Trusted Partners" },
                 ].map((stat) => (
                   <div key={stat.label}>
-                    <div className="text-3xl font-bold text-blue-900">
+                    <div className="text-3xl font-bold text-brand-blue">
                       {stat.number}
                     </div>
                     <div className="text-sm text-slate-500 mt-0.5">{stat.label}</div>

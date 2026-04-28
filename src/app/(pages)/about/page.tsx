@@ -132,7 +132,7 @@ export default function AboutPage() {
               <h2 className="text-3xl sm:text-4xl font-bold text-slate-900 mb-6 leading-tight">
                 Linking Continents with
                 <br />
-                <span className="text-blue-700">Expertise & Heart</span>
+                <span className="text-brand-blue">Expertise & Heart</span>
               </h2>
               <p className="text-slate-600 leading-relaxed mb-6">
                 Reality Shipping & Logistics is one of the leading independent
@@ -162,7 +162,7 @@ export default function AboutPage() {
                     key={stat.label}
                     className="text-center p-4 bg-blue-50 rounded-xl"
                   >
-                    <div className="text-2xl font-bold text-blue-700">
+                    <div className="text-2xl font-bold text-brand-blue">
                       {stat.number}
                     </div>
                     <div className="text-xs text-slate-500 mt-1">
@@ -238,9 +238,9 @@ export default function AboutPage() {
               What Drives Us
             </h2>
             <p className="text-slate-600 max-w-2xl mx-auto leading-relaxed">
-              Providing a unique international first-class service driven by our
-              vast experience, continuous training of our people, and commitment
-              to innovation.
+              Every commitment we make is one we stand behind. We act with
+              clarity and ownership at every step, ensuring our clients always
+              know where things stand.
             </p>
           </div>
 
@@ -248,10 +248,10 @@ export default function AboutPage() {
             {values.map((value) => (
               <div
                 key={value.title}
-                className="group bg-slate-50 rounded-xl p-8 hover:bg-blue-700 transition-all duration-300 border border-slate-100 hover:border-blue-700"
+                className="group bg-slate-50 rounded-xl p-8 hover:bg-brand-blue transition-all duration-300 border border-slate-100 hover:border-brand-blue"
               >
                 <div className="w-14 h-14 rounded-xl bg-blue-100 group-hover:bg-white/20 flex items-center justify-center mb-6 transition-colors">
-                  <value.icon className="w-7 h-7 text-blue-700 group-hover:text-white transition-colors" />
+                  <value.icon className="w-7 h-7 text-brand-blue group-hover:text-white transition-colors" />
                 </div>
                 <h3 className="text-xl font-bold text-slate-900 group-hover:text-white mb-3 transition-colors">
                   {value.title}
@@ -287,7 +287,7 @@ export default function AboutPage() {
                 key={m.year}
                 className="bg-white rounded-xl p-8 border border-slate-200 hover:shadow-lg transition-all"
               >
-                <span className="text-3xl font-bold text-blue-700">
+                <span className="text-3xl font-bold text-brand-blue">
                   {m.year}
                 </span>
                 <h3 className="text-lg font-bold text-slate-900 mt-3 mb-2">
@@ -324,7 +324,7 @@ export default function AboutPage() {
               <h2 className="text-3xl sm:text-4xl font-bold text-slate-900 mb-6 leading-tight">
                 Our Commitment to
                 <br />
-                <span className="text-blue-700">Excellence</span>
+                <span className="text-brand-blue">Excellence</span>
               </h2>
               <div className="space-y-4 mb-10">
                 {[
@@ -339,14 +339,14 @@ export default function AboutPage() {
                     key={item}
                     className="flex items-start gap-3 text-sm text-slate-600"
                   >
-                    <CheckCircle2 className="w-5 h-5 text-blue-600 flex-shrink-0 mt-0.5" />
+                    <CheckCircle2 className="w-5 h-5 text-brand-blue flex-shrink-0 mt-0.5" />
                     <span>{item}</span>
                   </div>
                 ))}
               </div>
               <Link
                 href="/port-services"
-                className="group inline-flex items-center gap-2 px-8 py-4 bg-blue-700 text-white font-semibold rounded-lg hover:bg-blue-800 transition-colors shadow-lg shadow-blue-700/20"
+                className="group inline-flex items-center gap-2 px-8 py-4 bg-brand-blue text-white font-semibold rounded-lg hover:bg-brand-blue/90 transition-colors shadow-lg shadow-brand-blue/20"
               >
                 Explore Our Services
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />

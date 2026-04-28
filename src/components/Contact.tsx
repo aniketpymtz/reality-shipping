@@ -60,19 +60,18 @@ export default function Contact() {
             <div className="max-w-7xl mx-auto px-6">
                 {/* Header */}
                 <div className="text-center mb-16">
-                    <div className="flex items-center justify-center gap-3 mb-4">
+                    <div className="flex items-center justify-center gap-3 mb-2">
                         <div className="divider-gold" />
                         <span className="text-gold-500 text-sm font-semibold uppercase tracking-[0.2em]">
                             Contact Us
                         </span>
                         <div className="divider-gold" />
                     </div>
-                    <h2 className="text-3xl sm:text-4xl font-bold text-slate-900 mb-4">
-                        Get In Touch
+                    <h2 className="text-3xl sm:text-4xl font-bold text-slate-900">
+                        Let&apos;s Talk
                     </h2>
                     <p className="text-slate-600 max-w-2xl mx-auto leading-relaxed">
-                        Ready to streamline your shipping operations? Reach out to our team
-                        for a personalized consultation and competitive quote.
+                        Turn every port call into an advantage.
                     </p>
                 </div>
 
@@ -146,7 +145,7 @@ export default function Contact() {
                                         placeholder="John Smith"
                                         required
                                         disabled={isLoading}
-                                        className="w-full px-4 py-3 rounded-lg border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all placeholder:text-slate-400 disabled:opacity-60"
+                                        className="w-full px-4 py-3 rounded-lg border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-brand-blue focus:border-transparent transition-all placeholder:text-slate-400 disabled:opacity-60"
                                     />
                                 </div>
                                 <div>
@@ -161,7 +160,7 @@ export default function Contact() {
                                         placeholder="john@company.com"
                                         required
                                         disabled={isLoading}
-                                        className="w-full px-4 py-3 rounded-lg border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all placeholder:text-slate-400 disabled:opacity-60"
+                                        className="w-full px-4 py-3 rounded-lg border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-brand-blue focus:border-transparent transition-all placeholder:text-slate-400 disabled:opacity-60"
                                     />
                                 </div>
                             </div>
@@ -177,7 +176,7 @@ export default function Contact() {
                                         onChange={handleChange}
                                         placeholder="Your Company"
                                         disabled={isLoading}
-                                        className="w-full px-4 py-3 rounded-lg border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all placeholder:text-slate-400 disabled:opacity-60"
+                                        className="w-full px-4 py-3 rounded-lg border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-brand-blue focus:border-transparent transition-all placeholder:text-slate-400 disabled:opacity-60"
                                     />
                                 </div>
                                 <div>
@@ -189,7 +188,7 @@ export default function Contact() {
                                         value={fields.service}
                                         onChange={handleChange}
                                         disabled={isLoading}
-                                        className="w-full px-4 py-3 rounded-lg border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all text-slate-600 disabled:opacity-60"
+                                        className="w-full px-4 py-3 rounded-lg border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-brand-blue focus:border-transparent transition-all text-slate-600 disabled:opacity-60"
                                     >
                                         <option value="">Select a service</option>
                                         <option value="sea">Sea Freight</option>
@@ -214,7 +213,7 @@ export default function Contact() {
                                     placeholder="Tell us about your shipping requirements..."
                                     required
                                     disabled={isLoading}
-                                    className="w-full px-4 py-3 rounded-lg border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all resize-none placeholder:text-slate-400 disabled:opacity-60"
+                                    className="w-full px-4 py-3 rounded-lg border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-brand-blue focus:border-transparent transition-all resize-none placeholder:text-slate-400 disabled:opacity-60"
                                 />
                             </div>
 
@@ -237,7 +236,7 @@ export default function Contact() {
                             <button
                                 type="submit"
                                 disabled={isLoading}
-                                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 bg-blue-700 text-white font-semibold rounded-lg hover:bg-blue-800 transition-colors shadow-lg shadow-blue-700/20 disabled:opacity-70 disabled:cursor-not-allowed"
+                                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 bg-brand-blue text-white font-semibold rounded-lg hover:bg-brand-blue/90 transition-colors shadow-lg shadow-brand-blue/20 disabled:opacity-70 disabled:cursor-not-allowed"
                             >
                                 {isLoading ? (
                                     <>

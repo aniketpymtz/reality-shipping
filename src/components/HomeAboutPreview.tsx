@@ -48,7 +48,7 @@ export default function HomeAboutPreview() {
               </div>
             </div>
             {/* Floating accent */}
-            <div className="absolute -bottom-6 left-1/2 -translate-x-1/2 bg-blue-700 text-white rounded-xl shadow-xl px-8 py-4 flex items-center gap-4">
+            <div className="absolute -bottom-6 left-1/2 -translate-x-1/2 bg-brand-blue text-white rounded-xl shadow-xl px-8 py-4 flex items-center gap-4">
               <span className="text-3xl font-bold">25+</span>
               <span className="text-sm text-blue-200 leading-tight">Years of<br />Excellence</span>
             </div>
@@ -66,7 +66,7 @@ export default function HomeAboutPreview() {
             <h2 className="text-3xl sm:text-4xl font-bold text-slate-900 mb-6 leading-tight">
               A Modern Global Shipping
               <br />
-              <span className="text-blue-700">Agency & Logistics Company</span>
+              <span className="text-brand-blue">Agency & Logistics Company</span>
             </h2>
 
             <p className="text-slate-600 leading-relaxed mb-6">
@@ -92,7 +92,7 @@ export default function HomeAboutPreview() {
               ].map((item) => (
                 <div key={item.title} className="flex gap-3">
                   <div className="w-10 h-10 rounded-lg bg-blue-50 flex items-center justify-center flex-shrink-0">
-                    <item.icon className="w-5 h-5 text-blue-700" />
+                    <item.icon className="w-5 h-5 text-brand-blue" />
                   </div>
                   <div>
                     <h4 className="text-sm font-semibold text-slate-900">{item.title}</h4>
@@ -104,7 +104,7 @@ export default function HomeAboutPreview() {
 
             <Link
               href="/about"
-              className="group inline-flex items-center gap-2 text-blue-700 font-semibold hover:text-blue-800 transition-colors"
+              className="group inline-flex items-center gap-2 text-brand-blue font-semibold hover:text-brand-blue/80 transition-colors"
             >
               Learn More About Us
               <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />

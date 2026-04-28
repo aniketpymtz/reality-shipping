@@ -50,7 +50,7 @@ export default function WhyUs() {
             <h2 className="text-3xl sm:text-4xl font-bold text-slate-900 mb-6 leading-tight">
               Your Reliable Partner in
               <br />
-              <span className="text-blue-700">Global Logistics</span>
+              <span className="text-brand-blue">Global Logistics</span>
             </h2>
 
             <p className="text-slate-600 leading-relaxed mb-10">
@@ -64,7 +64,7 @@ export default function WhyUs() {
               {reasons.map((reason) => (
                 <div key={reason.title} className="flex gap-4">
                   <div className="w-12 h-12 rounded-xl bg-blue-50 flex items-center justify-center flex-shrink-0">
-                    <reason.icon className="w-6 h-6 text-blue-700" />
+                    <reason.icon className="w-6 h-6 text-brand-blue" />
                   </div>
                   <div>
                     <h4 className="font-semibold text-slate-900 mb-1">
@@ -103,7 +103,7 @@ export default function WhyUs() {
                   key={item}
                   className="flex items-start gap-3 text-sm text-slate-600"
                 >
-                  <CheckCircle2 className="w-5 h-5 text-blue-600 flex-shrink-0 mt-0.5" />
+                  <CheckCircle2 className="w-5 h-5 text-brand-blue flex-shrink-0 mt-0.5" />
                   <span>{item}</span>
                 </div>
               ))}
@@ -112,7 +112,7 @@ export default function WhyUs() {
             <div className="mt-10 pt-8 border-t border-slate-100">
               <a
                 href="#contact"
-                className="w-full inline-flex items-center justify-center px-8 py-4 bg-blue-700 text-white font-semibold rounded-lg hover:bg-blue-800 transition-colors shadow-lg shadow-blue-700/20"
+                className="w-full inline-flex items-center justify-center px-8 py-4 bg-brand-blue text-white font-semibold rounded-lg hover:bg-brand-blue/90 transition-colors shadow-lg shadow-brand-blue/20"
               >
                 Start Working With Us
               </a>

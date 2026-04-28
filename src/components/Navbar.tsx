@@ -44,10 +44,10 @@ export default function Navbar() {
             />
           </div>
           <div className="flex flex-col leading-snug">
-            <span className={`text-lg font-bold tracking-tight -mb-2 transition-colors duration-300 ${scrolled ? "text-blue-900" : "text-white"}`}>
+            <span className={`text-lg font-bold tracking-tight -mb-2 transition-colors duration-300 ${scrolled ? "text-brand-blue" : "text-white"}`}>
               Reality
             </span>
-            <span className={`text-lg font-bold tracking-tight transition-colors duration-300 ${scrolled ? "text-blue-900" : "text-white"}`}>
+            <span className={`text-lg font-bold tracking-tight transition-colors duration-300 ${scrolled ? "text-brand-blue" : "text-white"}`}>
               Shipping & Logistics
             </span>
           </div>
@@ -59,9 +59,9 @@ export default function Navbar() {
             <a
               key={link.href}
               href={link.href}
-              className={`text-sm font-medium transition-colors duration-300 relative after:absolute after:bottom-[-4px] after:left-0 after:w-0 after:h-[2px] hover:after:w-full after:transition-all ${
+              className={`text-sm font-medium transition-colors duration-300 relative after:absolute after:-bottom-1 after:left-0 after:w-0 after:h-0.5 hover:after:w-full after:transition-all ${
                 scrolled
-                  ? "text-slate-600 hover:text-blue-700 after:bg-blue-600"
+                  ? "text-slate-600 hover:text-brand-blue after:bg-brand-blue"
                   : "text-white/80 hover:text-white after:bg-white"
               }`}
             >
@@ -72,7 +72,7 @@ export default function Navbar() {
             href="#contact"
             className={`ml-2 px-5 py-2.5 text-sm font-semibold rounded-lg transition-all duration-300 ${
               scrolled
-                ? "bg-[#2F70C2] text-white hover:bg-blue-800 "
+                ? "bg-brand-blue text-white hover:bg-brand-blue/90 "
                 : "bg-white/15 text-white border border-white/25 hover:bg-white/25 backdrop-blur-sm"
             }`}
           >
@@ -99,7 +99,7 @@ export default function Navbar() {
                 key={link.href}
                 href={link.href}
                 onClick={() => setOpen(false)}
-                className="py-3 text-sm font-medium text-slate-600 hover:text-blue-700 border-b border-slate-100 last:border-b-0 transition-colors"
+                className="py-3 text-sm font-medium text-slate-600 hover:text-brand-blue border-b border-slate-100 last:border-b-0 transition-colors"
               >
                 {link.label}
               </a>
@@ -107,7 +107,7 @@ export default function Navbar() {
             <a
               href="#contact"
               onClick={() => setOpen(false)}
-              className="mt-3 py-3 bg-blue-700 text-white text-sm font-semibold rounded-lg text-center hover:bg-blue-800 transition-colors"
+              className="mt-3 py-3 bg-brand-blue text-white text-sm font-semibold rounded-lg text-center hover:bg-brand-blue/90 transition-colors"
             >
               Get a Quote
             </a>

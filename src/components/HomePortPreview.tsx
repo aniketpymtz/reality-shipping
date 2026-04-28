@@ -7,25 +7,25 @@ const portServices = [
     icon: Ship,
     title: "Vessel Husbandry",
     desc: "Complete vessel care including provisions, spare parts, and technical supplies.",
-    image: "https://images.unsplash.com/photo-1524522173746-f628b8c85dba?w=600&q=80",
+    image: "https://images.pexels.com/photos/17869435/pexels-photo-17869435.jpeg",
   },
   {
     icon: Users,
     title: "Crew Management",
     desc: "Crew changes, visa arrangements, accommodation, and medical support.",
-    image: "https://images.unsplash.com/photo-1611273426858-450d8e3c9fce?w=600&q=80",
+    image: "https://images.pexels.com/photos/28247165/pexels-photo-28247165.jpeg",
   },
   {
     icon: Anchor,
     title: "Port Coordination",
     desc: "Berth planning, cargo operations coordination, and authority liaison.",
-    image: "https://images.unsplash.com/photo-1562281302-809108fd4652?w=600&q=80",
+    image: "https://images.pexels.com/photos/32281093/pexels-photo-32281093.jpeg",
   },
   {
     icon: Wrench,
     title: "Technical Support",
     desc: "Emergency repairs, dry-docking assistance, and vessel inspections.",
-    image: "https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?w=600&q=80",
+    image: "https://images.pexels.com/photos/30807110/pexels-photo-30807110.jpeg",
   },
 ];
 
@@ -67,7 +67,7 @@ export default function HomePortPreview() {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-blue-950/60 to-transparent" />
                 <div className="absolute bottom-4 left-4 w-10 h-10 rounded-lg bg-white/90 flex items-center justify-center">
-                  <service.icon className="w-5 h-5 text-blue-700" />
+                  <service.icon className="w-5 h-5 text-brand-blue" />
                 </div>
               </div>
               <div className="p-5">
@@ -81,7 +81,7 @@ export default function HomePortPreview() {
         <div className="text-center">
           <Link
             href="/port-services"
-            className="group inline-flex items-center gap-2 px-8 py-4 bg-blue-700 text-white font-semibold rounded-lg hover:bg-blue-800 transition-colors shadow-lg shadow-blue-700/20"
+            className="group inline-flex items-center gap-2 px-8 py-4 bg-brand-blue text-white font-semibold rounded-lg hover:bg-brand-blue/90 transition-colors shadow-lg shadow-brand-blue/20"
           >
             View All Port Services
             <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />

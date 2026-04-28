@@ -100,15 +100,15 @@ export default function About() {
               </p>
               <h2 className="text-4xl sm:text-5xl lg:text-[3.25rem] xl:text-[3.75rem] font-bold text-slate-900 leading-none">
                 How can we elevate your{" "}
-                <span className="text-[#2F70C2]">voyage today?</span>
+                <span className="text-brand-blue">voyage today?</span>
               </h2>
             </div>
 
             {/* Promise callout */}
             <div data-reveal className="flex gap-4 items-stretch">
-              <div className="w-1 rounded-full bg-[#2F70C2] shrink-0" />
+              <div className="w-1 rounded-full bg-brand-blue shrink-0" />
               <div className="flex flex-col gap-1">
-                <p className="text-[0.7rem] font-bold uppercase tracking-[0.22em] text-[#2F70C2]">
+                <p className="text-[0.7rem] font-bold uppercase tracking-[0.22em] text-brand-blue">
                   Our Promise
                 </p>
                 <p className="text-slate-700 font-medium text-base leading-snug">
@@ -131,7 +131,7 @@ export default function About() {
             <Link
               data-reveal
               href="/about"
-              className="inline-flex items-center gap-2 text-blue-700 font-semibold text-sm hover:gap-3 transition-all w-fit"
+              className="inline-flex items-center gap-2 text-brand-blue font-semibold text-sm hover:gap-3 transition-all w-fit"
             >
               Learn more about us
               <ArrowRight className="w-4 h-4" />

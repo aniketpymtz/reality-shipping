@@ -82,8 +82,8 @@ export default function Services() {
               key={service.title}
               className="group bg-white rounded-xl p-8 border border-slate-200/80 hover:border-blue-200 hover:shadow-xl hover:shadow-blue-100/50 transition-all duration-300"
             >
-              <div className="w-14 h-14 rounded-xl bg-blue-50 group-hover:bg-blue-700 flex items-center justify-center mb-6 transition-colors duration-300">
-                <service.icon className="w-7 h-7 text-blue-700 group-hover:text-white transition-colors duration-300" />
+              <div className="w-14 h-14 rounded-xl bg-blue-50 group-hover:bg-brand-blue flex items-center justify-center mb-6 transition-colors duration-300">
+                <service.icon className="w-7 h-7 text-brand-blue group-hover:text-white transition-colors duration-300" />
               </div>
 
               <h3 className="text-xl font-bold text-slate-900 mb-3">
@@ -98,7 +98,7 @@ export default function Services() {
                 {service.features.map((feature) => (
                   <span
                     key={feature}
-                    className="text-xs font-medium px-3 py-1 rounded-full bg-blue-50 text-blue-700"
+                    className="text-xs font-medium px-3 py-1 rounded-full bg-blue-50 text-brand-blue"
                   >
                     {feature}
                   </span>
@@ -107,7 +107,7 @@ export default function Services() {
 
               <a
                 href="#contact"
-                className="inline-flex items-center gap-1.5 text-sm font-semibold text-blue-700 hover:text-blue-800 group/link"
+                className="inline-flex items-center gap-1.5 text-sm font-semibold text-brand-blue hover:text-brand-blue/80 group/link"
               >
                 Learn More
                 <ArrowRight className="w-4 h-4 group-hover/link:translate-x-1 transition-transform" />

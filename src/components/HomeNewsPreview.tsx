@@ -45,7 +45,7 @@ export default function HomeNewsPreview() {
           </div>
           <Link
             href="/news"
-            className="hidden sm:inline-flex items-center gap-2 text-blue-700 font-semibold hover:text-blue-800 transition-colors"
+            className="hidden sm:inline-flex items-center gap-2 text-brand-blue font-semibold hover:text-brand-blue/80 transition-colors"
           >
             View All
             <ArrowRight className="w-4 h-4" />
@@ -68,7 +68,7 @@ export default function HomeNewsPreview() {
                   className="object-cover group-hover:scale-105 transition-transform duration-500"
                 />
                 <div className="absolute top-4 left-4">
-                  <span className="text-xs font-semibold px-3 py-1 rounded-full bg-blue-700 text-white">
+                  <span className="text-xs font-semibold px-3 py-1 rounded-full bg-brand-blue text-white">
                     {item.category}
                   </span>
                 </div>
@@ -78,7 +78,7 @@ export default function HomeNewsPreview() {
                   <Calendar className="w-3.5 h-3.5" />
                   {item.date}
                 </div>
-                <h3 className="font-bold text-slate-900 mb-2 group-hover:text-blue-700 transition-colors leading-snug">
+                <h3 className="font-bold text-slate-900 mb-2 group-hover:text-brand-blue transition-colors leading-snug">
                   {item.title}
                 </h3>
                 <p className="text-sm text-slate-500 leading-relaxed">
@@ -93,7 +93,7 @@ export default function HomeNewsPreview() {
         <div className="mt-8 text-center sm:hidden">
           <Link
             href="/news"
-            className="inline-flex items-center gap-2 text-blue-700 font-semibold"
+            className="inline-flex items-center gap-2 text-brand-blue font-semibold"
           >
             View All News & Events
             <ArrowRight className="w-4 h-4" />
