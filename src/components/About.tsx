@@ -77,7 +77,7 @@ export default function About() {
   }, []);
 
   return (
-    <section id="about" ref={ref} className="py-5 md:py-28 bg-white">
+    <section id="about" ref={ref} className="py-18 bg-white">
       <div className="max-w-7xl mx-auto px-6">
         {/* Top Section */}
         <div className="grid lg:grid-cols-[1fr_2fr] gap-12 xl:gap-20 mb-16 lg:mb-20 items-start">

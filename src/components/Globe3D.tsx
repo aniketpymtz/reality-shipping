@@ -58,7 +58,7 @@ export default function Globe3D() {
       // ── Sphere outline ──
       ctx.beginPath();
       ctx.arc(cx, cy, R, 0, Math.PI * 2);
-      ctx.strokeStyle = "rgba(37, 99, 235, 0.6)";
+      ctx.strokeStyle = "#005A9C";
       ctx.lineWidth = 1.5;
       ctx.stroke();
 
@@ -86,7 +86,7 @@ export default function Globe3D() {
           else ctx.lineTo(px, py);
         }
         const opacity = lat === 0 ? 0.7 : 0.35;
-        ctx.strokeStyle = `rgba(37,99,235,${opacity})`;
+        ctx.strokeStyle = `#005A9C${Math.floor(opacity * 255).toString(16).padStart(2, "0")}`;
         ctx.lineWidth = lat === 0 ? 1.2 : 0.7;
         ctx.stroke();
       }
@@ -103,8 +103,8 @@ export default function Globe3D() {
           if (!started) { ctx.moveTo(px, py); started = true; }
           else ctx.lineTo(px, py);
         }
-        ctx.strokeStyle = "rgba(37,99,235,0.35)";
-        ctx.lineWidth = 0.7;
+        ctx.strokeStyle = "#005A9C";
+        ctx.lineWidth = 1;
         ctx.stroke();
       }
 

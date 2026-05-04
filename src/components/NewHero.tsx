@@ -1,44 +1,22 @@
 "use client";
 
 import { ChevronRight } from "lucide-react";
-import { motion, useMotionValueEvent, useScroll } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useRef, useState } from "react";
+import { useRef } from "react";
 
 export default function NewHero() {
   const sectionRef = useRef<HTMLElement>(null);
-  const [shipVisible, setShipVisible] = useState(false);
 
   const { scrollYProgress } = useScroll({
     target: sectionRef,
     offset: ["start start", "end start"],
   });
 
-  // Trigger entrance after mount
-  useEffect(() => {
-    const t = setTimeout(() => setShipVisible(true), 400);
-    return () => clearTimeout(t);
-  }, []);
-
-  // Exit on scroll, re-enter when scrolled back up
-  useMotionValueEvent(scrollYProgress, "change", (v) => {
-    if (v > 0.2) setShipVisible(false);
-    else if (v < 0.08) setShipVisible(true);
-  });
-
-  const shipVariants = {
-    hidden: {
-      x: "130%",
-      y: "60%",
-      transition: { duration: 0.85, ease: [0.55, 0, 1, 0.45] as const },
-    },
-    visible: {
-      x: "0%",
-      y: "0%",
-      transition: { duration: 2.6, ease: [0.16, 1, 0.3, 1] as const },
-    },
-  };
+  // Scroll down: ship exits downward and fades; reverses on scroll up
+  const shipY = useTransform(scrollYProgress, [0, 0.6], ["0%", "80%"]);
+  const shipOpacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
 
   return (
     <section
@@ -55,36 +33,30 @@ export default function NewHero() {
         <div className="absolute bottom-0 right-0 w-125 h-100 rounded-full bg-blue-100/40 blur-[100px]" />
       </div>
 
-      {/* Ship — diagonal, coming from bottom-right corner */}
+      {/* Ship: outer controls scroll-driven drag+fade, inner controls entrance pop */}
       <motion.div
-        className="absolute bottom-30 right-60 w-[80%] md:w-[70%] lg:w-[64%] pointer-events-none select-none"
-        style={{
-          translateY: "-100%",
-          rotate: -140,
-          transformOrigin: "bottom right",
-        }}
-        variants={shipVariants}
-        initial="hidden"
-        animate={shipVisible ? "visible" : "hidden"}
+        className="absolute bottom-0 right-0 z-0 w-[120%] max-w-225 min-w-80 pointer-events-none select-none"
+        style={{ y: shipY, opacity: shipOpacity }}
       >
-        {/* Left-edge fade to white so it blends with content area */}
-        <div
-          className="absolute inset-0 pointer-events-none z-10"
-          style={{ background: "linear-gradient(to right, white 0%, transparent 30%)" }}
-        />
-        <Image
-          src="/top-view-ship.png"
-          alt="Container Ship"
-          width={1200}
-          height={320}
-          className="w-full h-auto object-contain drop-shadow-lg"
-          priority
-        />
+        <motion.div
+          initial={{ x: "60%", y: "60%", scale: 0.7, opacity: 0 }}
+          animate={{ x: "0%", y: "0%", scale: 1, opacity: 1 }}
+          transition={{ duration: 1, delay: 0.4, ease: [0.22, 1.2, 0.36, 1] }}
+        >
+          <Image
+            src="/assets/container-top-view.png"
+            alt="Container Ship"
+            width={1200}
+            height={320}
+            className="w-full h-auto object-contain drop-shadow-xl rotate-45"
+            priority
+          />
+        </motion.div>
       </motion.div>
 
       {/* Hero content */}
       <div className="relative z-10 max-w-7xl mx-auto px-6 pt-32 pb-24 w-full">
-        <div className="max-w-2xl">
+        <div className="max-w-2xl lg:max-w-xl">
           <motion.div
             className="flex items-center gap-3 mb-8"
             initial={{ opacity: 0, y: 20 }}
