@@ -24,7 +24,7 @@ const services = [
             "Surveyors",
             "Spare Parts Delivery & Clearance",
         ],
-        src: "https://images.pexels.com/photos/1554646/pexels-photo-1554646.jpeg",
+        src: "/assets/port-agency.jpeg",
     },
     {
         title: "Liner Agency",
@@ -93,14 +93,36 @@ export default function NewService() {
     }, [selected]);
 
     return (
-        <div ref={container} className="relative text-white mt-[5vh] md:mt-[25vh] px-[8%] pb-[10%]">
+        <div ref={container} className="relative text-white mt-[5vh] md:mt-[25vh] px-[8%] py-[5%]">
+
+            {/* Background image layer */}
+            <div className="absolute inset-0 overflow-hidden -z-10 pointer-events-none">
+                {services.map((service, i) => (
+                    <div
+                        key={i}
+                        className="absolute inset-0"
+                        style={{
+                            opacity: selected === i ? 1 : 0,
+                            transition: 'opacity 0.75s ease',
+                        }}
+                    >
+                        <Image
+                            src={service.src}
+                            fill
+                            alt=""
+                            aria-hidden
+                            className="object-cover blur-md brightness-[0.3] scale-[1.05]"
+                        />
+                    </div>
+                ))}
+            </div>
 
             {/* Section header */}
             <div className="mb-16">
                 <p className="text-[0.85vw] uppercase tracking-[0.25em] text-[#c9a84c] mb-3">
                     What We Offer
                 </p>
-                <h2 className="text-[4.5vw] text-black font-bold uppercase leading-tight">
+                <h2 className="text-[4.5vw] text-white font-bold uppercase leading-tight">
                     Our Services
                 </h2>
             </div>
@@ -114,12 +136,12 @@ export default function NewService() {
                         <div
                             key={index}
                             onMouseOver={() => setSelected(index)}
-                            className="border-b border-black/20 py-1 md:py-8 cursor-default"
+                            className="border-b border-white/20 py-1 md:py-8 cursor-default"
                         >
                             <p
                                 className="text-[0.75vw] uppercase tracking-widest mb-2"
                                 style={{
-                                    backgroundImage: 'linear-gradient(to right, #c9a84c 50%, rgba(0,0,0,0.35) 50%)',
+                                    backgroundImage: 'linear-gradient(to right, #c9a84c 50%, rgba(255,255,255,0.45) 50%)',
                                     backgroundSize: '200% 100%',
                                     backgroundPosition: selected === index ? '0%' : '100%',
                                     WebkitBackgroundClip: 'text',
@@ -131,9 +153,9 @@ export default function NewService() {
                                 {String(index + 1).padStart(2, '0')}
                             </p>
                             <h2
-                                className="text-[7vw] md:text-[3vw] font-bold uppercase m-0"
+                                className="text-[7vw] md:text-[4vw] font-bold uppercase m-0"
                                 style={{
-                                    backgroundImage: 'linear-gradient(to right, #c9a84c 50%, rgba(0,0,0,0.5) 50%)',
+                                    backgroundImage: 'linear-gradient(to right, #c9a84c 50%, #ffffff 50%)',
                                     backgroundSize: '200% 100%',
                                     backgroundPosition: selected === index ? '0%' : '100%',
                                     WebkitBackgroundClip: 'text',
@@ -173,19 +195,19 @@ export default function NewService() {
                     </div>
                     <div ref={descRef} className="flex flex-col gap-4">
                         <div>
-                            <h3 className="text-[5vw] md:text-[1.6vw] font-bold uppercase tracking-wide text-black m-0">
+                            <h3 className="text-[5vw] md:text-[1.6vw] font-bold uppercase tracking-wide text-white m-0">
                                 {services[selected].title}
                             </h3>
                             <p className="text-[3vw] md:text-[1.2vw] text-[#c9a84c] italic mt-1">
                                 {services[selected].subtitle}
                             </p>
                         </div>
-                        <p className="tet-[1.8vw] md:text-[1vw] text-black/60 leading-relaxed">
+                        <p className="tet-[1.8vw] md:text-[1vw] text-white/60 leading-relaxed">
                             {services[selected].description}
                         </p>
                         <ul className="flex flex-col gap-2 mt-1">
                             {services[selected].features.slice(0, 5).map((feat, i) => (
-                                <li key={i} className="flex items-start gap-2 text-[2vw] md:text-[1.1vw] text-black/80">
+                                <li key={i} className="flex items-start gap-2 text-[2vw] md:text-[1.1vw] text-white/80">
                                     <span className="text-[#c9a84c] mt-[0.15em] shrink-0">✓</span>
                                     {feat}
                                 </li>

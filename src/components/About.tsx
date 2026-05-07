@@ -16,27 +16,27 @@ const IMAGE_URL =
 
 const panels = [
   {
-    end: 25,
-    suffix: "+",
-    label: "Years of Experience",
+    end: 3,
+    suffix: " hours",
+    label: "Average Inquiry Response Time",
     bgPos: "0% center",
     statPlacement: "flex-col justify-end items-start",
     statPadding: "pb-8 pl-8",
     clipPath: "polygon(50px 0%, 100% 0%, 100% 100%, 0% 100%, 0% 50px)",
   },
   {
-    end: 50,
-    suffix: "+",
-    label: "Ports of Operation",
+    end: 27,
+    suffix: " days",
+    label: "Average Time between Vessel Departure and FDA",
     bgPos: "50% center",
     statPlacement: "flex-col justify-center items-center",
     statPadding: "",
     clipPath: undefined,
   },
   {
-    end: 5000,
-    suffix: "+",
-    label: "Shipments Yearly",
+    end: 4,
+    suffix: "%",
+    label: "Discrepancy between PDA and FDA amount",
     bgPos: "100% center",
     statPlacement: "flex-col justify-start items-end",
     statPadding: "pt-10 pr-8",
@@ -157,7 +157,7 @@ export default function About() {
 
               <div className={`absolute inset-0 flex ${panel.statPlacement}`}>
                 <div className={`${panel.statPadding} text-white`}>
-                  <div className="text-5xl sm:text-6xl lg:text-8xl font-semibold leading-none">
+                  <div className="text-5xl sm:text-6xl lg:text-7xl font-semibold leading-none">
                     {inView && (
                       <CountUp
                         end={panel.end}

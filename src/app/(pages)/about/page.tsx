@@ -175,15 +175,15 @@ export default function AboutPage() {
 
             {/* Image stack */}
             <div className="relative">
-              <div className="relative aspect-[4/5] rounded-2xl overflow-hidden">
+              <div className="relative aspect-4/5 rounded-2xl overflow-hidden">
                 <Image
-                  src="https://images.unsplash.com/photo-1605745341112-85968b19335b?w=800&q=80"
+                  src="/assets/ship2.jpg"
                   alt="Cargo ship at dock"
                   fill
                   className="object-cover"
                 />
               </div>
-              <div className="absolute -bottom-8 -left-8 w-64 aspect-[4/3] rounded-2xl overflow-hidden border-4 border-white shadow-xl hidden lg:block">
+              <div className="absolute -bottom-8 -left-8 w-64 aspect-4/3 rounded-2xl overflow-hidden border-4 border-white shadow-xl hidden lg:block">
                 <Image
                   src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=400&q=80"
                   alt="Logistics operations"
