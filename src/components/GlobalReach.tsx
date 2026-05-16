@@ -1,7 +1,10 @@
 "use client";
 
-import { MapPin } from "lucide-react";
 import dynamic from "next/dynamic";
+import EuropeSvg from "./SVGs/Europe";
+import AsiaSvg from "./SVGs/Asia";
+import MiddleEastSvg from "./SVGs/MiddleEast";
+import AmericasSvg from "./SVGs/Americas";
 
 const RotatingGlobe = dynamic(() => import("./RotatingGlobe"), { ssr: false });
 
@@ -10,21 +13,25 @@ const regions = [
     name: "Europe",
     ports: ["Hamburg", "Rotterdam", "Antwerp", "Piraeus", "Felixstowe"],
     color: "bg-brand-blue",
+    Icon: EuropeSvg,
   },
   {
     name: "Asia Pacific",
     ports: ["Singapore", "Shanghai", "Busan", "Tokyo", "Mumbai"],
     color: "bg-brand-blue",
+    Icon: AsiaSvg,
   },
   {
     name: "Middle East & Africa",
     ports: ["Dubai", "Jeddah", "Durban", "Lagos", "Djibouti"],
     color: "bg-brand-blue",
+    Icon: MiddleEastSvg,
   },
   {
     name: "Americas",
     ports: ["New York", "Houston", "Santos", "Cartagena", "Vancouver"],
     color: "bg-brand-blue",
+    Icon: AmericasSvg,
   },
 ];
 
@@ -94,13 +101,17 @@ export default function GlobalReach() {
           {regions.map((region) => (
             <div
               key={region.name}
-              className="bg-slate-100/80 rounded-xl p-6 hover:bg-white hover:shadow-lg hover:shadow-slate-200/50 transition-all border border-transparent hover:border-slate-200"
+              className="relative bg-white rounded-xl p-6 border border-slate-200 hover:border-brand-blue/20 hover:shadow-xl hover:shadow-blue-100/40 transition-all overflow-hidden group"
             >
-              <div
-                className={`w-10 h-10 ${region.color} rounded-lg flex items-center justify-center mb-4`}
-              >
-                <MapPin className="w-5 h-5 text-white" />
-              </div>
+              {/* Watermark */}
+              <region.Icon
+                className="absolute -right-6 -bottom-6 w-36 h-36 opacity-5 group-hover:opacity-[0.08] transition-opacity text-brand-blue"
+                fill="currentColor"
+              />
+              <region.Icon
+                className="w-16 h-16 mb-5 text-brand-blue"
+                fill="currentColor"
+              />
               <h4 className="font-bold text-slate-900 mb-3">{region.name}</h4>
               <ul className="space-y-1.5">
                 {region.ports.map((port) => (
