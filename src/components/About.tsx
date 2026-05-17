@@ -158,18 +158,19 @@ export default function About() {
 
               <div className={`absolute inset-0 flex ${panel.statPlacement}`}>
                 <div className={`${panel.statPadding} text-white`}>
-                  <div className="text-5xl sm:text-6xl lg:text-7xl font-semibold leading-none">
+                  <div className="text-5xl sm:text-6xl lg:text-7xl font-bold">
                     {inView && (
                       <CountUp
                         end={panel.end}
                         suffix={panel.suffix}
                         duration={3}
                         separator=","
+                        className="tracking-tight gap-1.5"
                       />
                     )}
                   </div>
 
-                  <div className="text-[14px] sm:text-base text-white mt-1 font-medium">
+                  <div className="text-[14px] max-w-65 sm:text-base text-white mt-2 font-medium">
                     {panel.label}
                   </div>
                 </div>
