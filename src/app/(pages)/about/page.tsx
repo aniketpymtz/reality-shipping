@@ -244,7 +244,7 @@ export default function AboutPage() {
             </p>
           </div>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+          {/* <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
             {values.map((value) => (
               <div
                 key={value.title}
@@ -261,7 +261,7 @@ export default function AboutPage() {
                 </p>
               </div>
             ))}
-          </div>
+          </div> */}
         </div>
       </section>
 

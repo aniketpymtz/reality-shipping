@@ -103,7 +103,7 @@ export default function NewService() {
                         className="absolute inset-0"
                         style={{
                             opacity: selected === i ? 1 : 0,
-                            transition: 'opacity 0.75s ease',
+                            transition: 'opacity 0.75s ease, transform 0.75s ease',
                         }}
                     >
                         <Image
@@ -122,7 +122,7 @@ export default function NewService() {
                 <p className="text-[0.85vw] uppercase tracking-[0.25em] text-[#c9a84c] mb-3">
                     What We Offer
                 </p>
-                <h2 className="text-[4.5vw] text-white font-bold uppercase leading-tight">
+                <h2 className="text-[4.5vw] text-white font-bold leading-tight">
                     Our Services
                 </h2>
             </div>
@@ -153,7 +153,7 @@ export default function NewService() {
                                 {String(index + 1).padStart(2, '0')}
                             </p>
                             <h2
-                                className="text-[7vw] md:text-[4vw] font-bold uppercase m-0"
+                                className="text-[7vw] md:text-[4.5vw] font-bold m-0"
                                 style={{
                                     backgroundImage: 'linear-gradient(to right, #c9a84c 50%, #ffffff 50%)',
                                     backgroundSize: '200% 100%',

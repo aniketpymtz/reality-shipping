@@ -39,7 +39,7 @@ export default function Hero() {
 
           <div className="flex flex-col sm:flex-row gap-4 text-sm" data-scroll data-scroll-speed="0.6">
             <Link
-              href="/port-services"
+              href="/services"
               className="group inline-flex items-center justify-center gap-2 px-8 py-2 bg-white text-blue-900 font-semibold rounded-lg hover:bg-blue-50 transition-all shadow-xl shadow-black/10"
             >
               Our Services

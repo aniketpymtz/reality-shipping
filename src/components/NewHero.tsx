@@ -87,7 +87,7 @@ export default function NewHero() {
             transition={{ duration: 0.7, delay: 0.75 }}
           >
             <Link
-              href="/port-services"
+              href="/services"
               className="group inline-flex items-center justify-center gap-2 px-8 py-4 bg-blue-900 text-white font-semibold rounded-lg hover:bg-blue-800 transition-all shadow-xl shadow-blue-900/20"
             >
               Our Services

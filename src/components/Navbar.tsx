@@ -138,7 +138,7 @@ export default function Navbar() {
 
           <a
             href="#contact"
-            className={`ml-2 px-5 py-2.5 text-sm font-semibold rounded-lg transition-all duration-300 ${
+            className={`ml-2 px-5 py-2.5 text-sm font-semibold rounded-md transition-all duration-300 ${
               scrolled
                 ? "bg-brand-blue text-white hover:bg-brand-blue/90"
                 : "bg-white/15 text-white border border-white/25 hover:bg-white/25 backdrop-blur-sm"

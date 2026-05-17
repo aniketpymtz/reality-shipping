@@ -11,15 +11,12 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 const Globe3D = dynamic(() => import("./Globe3D"), { ssr: false });
 
-const IMAGE_URL =
-  "https://images.pexels.com/photos/4570838/pexels-photo-4570838.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1";
-
 const panels = [
   {
     end: 3,
     suffix: " hours",
     label: "Average Inquiry Response Time",
-    bgPos: "0% center",
+    videoPos: "0% center",
     statPlacement: "flex-col justify-end items-start",
     statPadding: "pb-8 pl-8",
     clipPath: "polygon(50px 0%, 100% 0%, 100% 100%, 0% 100%, 0% 50px)",
@@ -28,7 +25,7 @@ const panels = [
     end: 27,
     suffix: " days",
     label: "Average Time between Vessel Departure and FDA",
-    bgPos: "50% center",
+    videoPos: "50% center",
     statPlacement: "flex-col justify-center items-center",
     statPadding: "",
     clipPath: undefined,
@@ -37,7 +34,7 @@ const panels = [
     end: 4,
     suffix: "%",
     label: "Discrepancy between PDA and FDA amount",
-    bgPos: "100% center",
+    videoPos: "100% center",
     statPlacement: "flex-col justify-start items-end",
     statPadding: "pt-10 pr-8",
     clipPath:
@@ -146,13 +143,17 @@ export default function About() {
             <div
               key={panel.label}
               className="relative overflow-hidden"
-              style={{
-                backgroundImage: `url(${IMAGE_URL})`,
-                backgroundSize: "300% auto",
-                backgroundPosition: panel.bgPos,
-                clipPath: panel.clipPath,
-              }}
+              style={{ clipPath: panel.clipPath }}
             >
+              <video
+                src="/assets/ship_1.mp4"
+                autoPlay
+                muted
+                loop
+                playsInline
+                className="absolute inset-0 w-full h-full object-cover"
+                style={{ objectPosition: panel.videoPos }}
+              />
               <div className="absolute inset-0 bg-blue-900/50" />
 
               <div className={`absolute inset-0 flex ${panel.statPlacement}`}>
