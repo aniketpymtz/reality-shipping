@@ -90,7 +90,7 @@ export default function AboutPage() {
   return (
     <>
       {/* Hero banner */}
-      <section className="relative h-[60vh] min-h-[400px] flex items-center overflow-hidden">
+      <section className="relative h-[65vh] min-h-100 flex items-center overflow-hidden">
         <div className="absolute inset-0">
           <Image
             src="https://images.unsplash.com/photo-1578575437130-527eed3abbec?w=1920&q=80"
@@ -99,7 +99,7 @@ export default function AboutPage() {
             className="object-cover"
             priority
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-blue-950/90 to-blue-900/70" />
+          <div className="absolute inset-0 bg-linear-to-r from-blue-950/90 to-blue-900/70" />
         </div>
         <div className="relative z-10 max-w-7xl mx-auto px-6 w-full">
           <div className="flex items-center gap-3 mb-4">

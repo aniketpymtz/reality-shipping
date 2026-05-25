@@ -8,6 +8,7 @@ import { useInView } from "react-intersection-observer";
 import { useLayoutEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import HeroShipCarousel from "./StatCard";
 
 const Globe3D = dynamic(() => import("./Globe3D"), { ssr: false });
 
@@ -67,7 +68,7 @@ export default function About() {
             start: "top 80%",
             once: true,
           },
-        }
+        },
       );
     }, textColRef);
     return () => ctx.revert();
@@ -78,7 +79,11 @@ export default function About() {
       <div className="max-w-7xl mx-auto px-6">
         {/* Top Section */}
         <div className="grid lg:grid-cols-[1fr_2fr] gap-12 xl:gap-20 mb-16 lg:mb-20 items-start">
-          <div className="flex flex-col gap-6 pt-2" data-scroll data-scroll-speed="0.2">
+          <div
+            className="flex flex-col gap-6 pt-2"
+            data-scroll
+            data-scroll-speed="0.2"
+          >
             <div className="flex items-center gap-3">
               <div className="divider-gold" />
               <span className="text-gold-500 text-sm font-semibold uppercase tracking-[0.2em]">
@@ -88,8 +93,12 @@ export default function About() {
             <Globe3D />
           </div>
 
-          <div ref={textColRef} className="flex flex-col gap-8" data-scroll data-scroll-speed="0.2">
-
+          <div
+            ref={textColRef}
+            className="flex flex-col gap-8"
+            data-scroll
+            data-scroll-speed="0.2"
+          >
             {/* Main headline */}
             <div data-reveal className="flex flex-col gap-3">
               <p className="text-slate-400 text-sm font-medium uppercase tracking-[0.18em]">
@@ -118,7 +127,10 @@ export default function About() {
             </div>
 
             {/* Description */}
-            <p data-reveal className="text-slate-500 leading-relaxed text-base max-w-2xl">
+            <p
+              data-reveal
+              className="text-slate-500 leading-relaxed text-base max-w-2xl"
+            >
               Reality Shipping is a cornerstone of the maritime industry,
               connecting ship owners, charterers and operators with port
               authorities and stakeholders worldwide.
@@ -133,50 +145,98 @@ export default function About() {
               Learn more about us
               <ArrowRight className="w-4 h-4" />
             </Link>
-
           </div>
         </div>
 
         {/* Bottom Stats */}
-        <div className="grid sm:grid-rows-3 md:grid-rows-1 md:grid-cols-3 gap-3 h-120 sm:h-135 lg:h-150">
-          {panels.map((panel) => (
-            <div
-              key={panel.label}
-              className="relative overflow-hidden"
-              style={{ clipPath: panel.clipPath }}
-            >
-              <video
-                src="/assets/ship_1.mp4"
-                autoPlay
-                muted
-                loop
-                playsInline
-                className="absolute inset-0 w-full h-full object-cover"
-                style={{ objectPosition: panel.videoPos }}
-              />
-              <div className="absolute inset-0 bg-blue-900/50" />
+        {/* Bottom Stats */}
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 h-auto lg:h-120">
+          {/* Featured Large Card */}
+          <div className="lg:col-span-2 relative overflow-hidden rounded-4xl border border-white/10 bg-slate-950 min-h-[28rem]">
+            <HeroShipCarousel/>
 
-              <div className={`absolute inset-0 flex ${panel.statPlacement}`}>
-                <div className={`${panel.statPadding} text-white`}>
-                  <div className="text-5xl sm:text-6xl lg:text-7xl font-bold">
-                    {inView && (
-                      <CountUp
-                        end={panel.end}
-                        suffix={panel.suffix}
-                        duration={3}
-                        separator=","
-                        className="tracking-tight gap-1.5"
-                      />
-                    )}
+            {/* overlays */}
+            {/* <div className="absolute inset-0 bg-linear-to-br from-blue-950/40 via-slate-950/20 to-black/10" /> */}
+
+            {/* <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:40px_40px]" /> */}
+
+            <div className="relative z-10 flex h-full flex-col justify-between p-8 lg:p-12 text-white">
+              <div className="flex items-center gap-3">
+                <div className="h-2 w-2 rounded-full bg-emerald-400 animate-pulse" />
+                <span className="uppercase tracking-[0.25em] text-xs text-slate-300">
+                  Operational Efficiency
+                </span>
+              </div>
+
+              <div className="max-w-2xl">
+                <div className="text-6xl sm:text-7xl lg:text-8xl font-bold tracking-tight">
+                  {inView && <CountUp end={3} suffix=" hours" duration={3} />}
+                </div>
+
+                <p className="mt-4 text-xl text-slate-200 font-medium">
+                  Average inquiry response time across global port operations.
+                </p>
+
+              </div>
+            </div>
+          </div>
+
+          {/* Side Column */}
+          <div className="flex flex-col gap-4">
+            {/* Card 2 */}
+            <div className="relative flex-1 overflow-hidden rounded-4xl border border-slate-200 bg-white p-8">
+              <div className="absolute top-0 right-0 h-32 w-32 rounded-full bg-brand-blue/10 blur-3xl" />
+
+              <div className="relative z-10 flex h-full flex-col justify-between">
+                <div>
+                  <p className="text-xs uppercase tracking-[0.22em] text-slate-400">
+                    Vessel Operations
+                  </p>
+
+                  <div className="mt-4 text-5xl font-bold text-slate-900">
+                    {inView && <CountUp end={27} suffix=" days" duration={3} />}
                   </div>
 
-                  <div className="text-[14px] max-w-65 sm:text-base text-white mt-2 font-medium">
-                    {panel.label}
+                  <p className="mt-3 text-slate-500 leading-relaxed">
+                    Average duration between vessel departure and FDA
+                    completion.
+                  </p>
+                </div>
+
+              </div>
+            </div>
+
+            {/* Card 3 */}
+            <div className="relative flex-1 overflow-hidden rounded-4xl bg-linear-to-br from-brand-blue to-blue-950 p-8 text-white">
+              <div className="absolute inset-0 opacity-20">
+                <div className="absolute -top-10 -right-10 h-40 w-40 rounded-full border border-white/20" />
+                <div className="absolute bottom-0 left-0 h-56 w-56 rounded-full border border-white/10" />
+              </div>
+
+              <div className="relative z-10 flex h-full flex-col justify-between">
+                <div>
+                  <p className="text-xs uppercase tracking-[0.22em] text-blue-100">
+                    Financial Accuracy
+                  </p>
+
+                  <div className="mt-4 text-5xl font-bold">
+                    {inView && <CountUp end={4} suffix="%" duration={3} />}
                   </div>
+
+                  <p className="mt-3 text-blue-100/80 leading-relaxed">
+                    PDA and FDA discrepancy maintained at minimal levels.
+                  </p>
+                </div>
+
+                <div className="mt-6 flex items-center gap-2">
+                  <div className="h-2 w-2 rounded-full bg-emerald-300" />
+                  <span className="text-sm text-blue-100">
+                    High reporting precision
+                  </span>
                 </div>
               </div>
             </div>
-          ))}
+          </div>
         </div>
       </div>
     </section>

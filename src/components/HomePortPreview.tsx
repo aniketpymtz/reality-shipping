@@ -46,7 +46,7 @@ export default function HomePortPreview() {
             Comprehensive Port Services
           </h2>
           <p className="text-slate-600 max-w-2xl mx-auto leading-relaxed">
-            Full-service port agency operations available around the clock at all
+            Integrated port agency operations available around the clock at all
             operating ports, ensuring efficient vessel turnaround and crew welfare.
           </p>
         </div>
@@ -80,7 +80,7 @@ export default function HomePortPreview() {
 
         <div className="text-center">
           <Link
-            href="/port-services"
+            href="/services"
             className="group inline-flex items-center gap-2 px-8 py-4 bg-brand-blue text-white font-semibold rounded-lg hover:bg-brand-blue/90 transition-colors shadow-lg shadow-brand-blue/20"
           >
             View All Port Services
