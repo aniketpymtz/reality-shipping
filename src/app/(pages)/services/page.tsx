@@ -61,16 +61,89 @@ const services = [
     ],
     src: "/assets/container2.jpg",
   },
+  {
+    title: "Vessel Husbandry",
+    slug: "vessel-husbandry",
+    subtitle: "24/7 vessel support & coordination",
+    description:
+      "24/7 vessel husbandry support designed to ensure smooth port operations, crew comfort, regulatory compliance, and timely coordination with all local authorities and service providers. We act as a single point of contact for all vessel-related requirements during port stay, minimizing delays and operational stress for owners and operators.",
+    features: [
+      "Port & Customs Coordination",
+      "Immigration & Documentation Assistance",
+      "Fresh Water Supply",
+      "Medical Assistance & Crew Support",
+      "Hotel & Transportation Arrangements",
+      "Launch Boat Services",
+      "Ship Chandling Coordination",
+      "Technical Attendance Coordination",
+      "Emergency Response Support",
+      "Visa Assistance",
+      "Waste & Sludge Handling Coordination",
+      "Local Authority Liaison",
+    ],
+    src: "/assets/ship-1.jpg",
+  },
+  {
+    title: "Crew Management",
+    slug: "crew-management",
+    subtitle: "Professional crew solutions",
+    description:
+      "Professional crew management solutions focused on safe operations, efficient manpower planning, crew welfare, and full compliance with international maritime standards. Our team ensures reliable staffing and seamless crew handling to support uninterrupted vessel operations.",
+    features: [
+      "Crew Recruitment & Placement",
+      "Crew Change Coordination",
+      "Travel & Flight Arrangements",
+      "Visa & Immigration Processing",
+      "Medical Checkups & Certification",
+      "STCW & Compliance Documentation",
+      "Crew Welfare Support",
+      "Sign On / Sign Off Formalities",
+      "Hotel & Transit Arrangements",
+      "24/7 Crew Assistance",
+    ],
+    src: "/assets/ship-2.jpg",
+  },
+  {
+    title: "Port Coordination",
+    slug: "port-coordination",
+    subtitle: "Efficient port operations management",
+    description:
+      "Efficient coordination with port authorities, terminals, pilots, tugs, and local service providers to ensure smooth vessel operations, timely clearances, and minimal port delays.",
+    features: [
+      "Berth Planning & Coordination",
+      "Port Authority Liaison",
+      "Terminal Coordination",
+      "Vessel Scheduling Support",
+      "Real-Time Operational Updates",
+    ],
+    src: "/assets/topview.jpg",
+  },
+  {
+    title: "Technical Support",
+    slug: "technical-support",
+    subtitle: "Vessel maintenance & repair coordination",
+    description:
+      "Reliable technical assistance and coordination services to support vessel maintenance, repairs, and operational requirements during port stay.",
+    features: [
+      "Repair & Maintenance Coordination",
+      "Technical Spare Parts Handling",
+      "Emergency Technical Assistance",
+      "Dry Dock Support Coordination",
+      "Marine Engineers & Technicians Arrangement",
+      "Equipment Inspection Support",
+    ],
+    src: "/assets/ship-3.jpg",
+  },
 ];
 
 export default function ServicesPage() {
   return (
     <div className="bg-white">
       {/* ── Hero ───────────────────────────────────────────── */}
-      <section className="relative h-[65vh] min-h-90 flex items-end overflow-hidden">
+      <section className="relative h-[75vh] min-h-90 flex items-end overflow-hidden">
         <div className="absolute inset-0">
           <Image
-            src="https://images.pexels.com/photos/1554646/pexels-photo-1554646.jpeg"
+            src="/assets/service-hero.jpeg"
             fill
             alt="Services hero"
             className="object-cover"
@@ -215,7 +288,7 @@ export default function ServicesPage() {
           care.
         </p>
         <Link
-          href="#contact"
+          href="/#contact"
           className="inline-flex items-center gap-2.5 px-8 py-3.5 rounded-full bg-[#c9a84c] text-blue-950 text-sm font-bold uppercase tracking-widest hover:bg-white transition-colors duration-300"
         >
           Contact Us

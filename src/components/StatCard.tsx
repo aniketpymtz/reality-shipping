@@ -3,9 +3,9 @@ import { useEffect, useState } from "react";
 
 export default function HeroShipCarousel() {
   const images = [
-    "/assets/container2.jpg",
-    "/assets/container2.jpg",
-    "/assets/ship2.jpg",
+    "/assets/ship-1.jpg",
+    "/assets/ship-2.jpg",
+    "/assets/ship-3.jpg",
   ];
 
   const [activeIndex, setActiveIndex] = useState(0);
@@ -35,7 +35,7 @@ export default function HeroShipCarousel() {
             transition-all duration-1000 ease-in-out
             ${
               activeIndex === index
-                ? "opacity-80 scale-100"
+                ? "opacity-90 scale-100"
                 : "opacity-0 scale-110"
             }
           `}
