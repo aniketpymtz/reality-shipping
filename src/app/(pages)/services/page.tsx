@@ -1,7 +1,8 @@
-import React from "react";
-import Image from "next/image";
+"use client";
+
+import React, { useState, useCallback, useEffect, useRef } from "react";import Image from "next/image";
 import Link from "next/link";
-import ServicesNav from "@/components/ServicesNav";
+import { motion, AnimatePresence } from "framer-motion";
 
 const services = [
   {
@@ -136,7 +137,71 @@ const services = [
   },
 ];
 
+// ── Slide variants ─────────────────────────────────────────────────────────
+const slideVariants = {
+  enter: (dir: number) => ({
+    y: dir > 0 ? "100%" : "-100%",
+    opacity: 0,
+  }),
+  center: { y: 0, opacity: 1 },
+  exit: (dir: number) => ({
+    y: dir > 0 ? "-100%" : "100%",
+    opacity: 0,
+  }),
+};
+
 export default function ServicesPage() {
+  const [activeIndex, setActiveIndex] = useState(0);
+  const [direction, setDirection] = useState(1);
+  const sectionRef = useRef<HTMLDivElement>(null);
+  const prevIndexRef = useRef(0);
+
+  // Scroll to the correct offset for slide i
+  const goTo = useCallback(
+    (i: number) => {
+      if (i < 0 || i >= services.length) return;
+      if (!sectionRef.current) return;
+      const sectionTop =
+        sectionRef.current.getBoundingClientRect().top + window.scrollY;
+      window.scrollTo({ top: sectionTop + i * window.innerHeight, behavior: "smooth" });
+    },
+    []
+  );
+
+  // Derive activeIndex from native scroll position
+  useEffect(() => {
+    const onScroll = () => {
+      if (!sectionRef.current) return;
+      const sectionTop =
+        sectionRef.current.getBoundingClientRect().top + window.scrollY;
+      const scrolled = window.scrollY - sectionTop;
+      const idx = Math.min(
+        services.length - 1,
+        Math.max(0, Math.round(scrolled / window.innerHeight))
+      );
+      if (idx !== prevIndexRef.current) {
+        setDirection(idx > prevIndexRef.current ? 1 : -1);
+        prevIndexRef.current = idx;
+        setActiveIndex(idx);
+      }
+    };
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  // Keyboard navigation
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "ArrowDown") goTo(activeIndex + 1);
+      else if (e.key === "ArrowUp") goTo(activeIndex - 1);
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [activeIndex, goTo]);
+
+  const service = services[activeIndex];
+  const isEven = activeIndex % 2 === 0;
+
   return (
     <div className="bg-white">
       {/* ── Hero ───────────────────────────────────────────── */}
@@ -189,90 +254,168 @@ export default function ServicesPage() {
         </div>
       </section>
 
-      {/* ── Quick-nav tabs ─────────────────────────────────── */}
-      {/* <ServicesNav services={services.map(s => ({ slug: s.slug, title: s.title }))} /> */}
-
-      {/* ── Service sections ───────────────────────────────── */}
-      {services.map((service, idx) => {
-        const isEven = idx % 2 === 0;
-        return (
-          <section
-            key={service.slug}
-            id={service.slug}
-            className={`scroll-mt-28 py-20 md:py-28 px-[8%] ${isEven ? "bg-white" : "bg-slate-50"}`}
+      {/* ── Services Carousel (sticky scroll) ─────────────── */}
+      {/*  Outer wrapper is tall enough for all slides.        */}
+      {/*  Inner div is sticky so it stays pinned in viewport. */}
+      <div
+        ref={sectionRef}
+        style={{ height: `${services.length * 100}vh` }}
+        className="relative"
+      >
+        <div className="sticky top-0 h-screen overflow-hidden select-none">
+          {/* ── Left dot navigation ──────────────────────────── */}
+          <nav
+            aria-label="Service navigation"
+            className="absolute left-5 top-1/2 -translate-y-1/2 z-30 flex flex-col gap-3.5"
           >
-            {/* Index label */}
-            <p
-              className="text-[0.75rem] uppercase tracking-[0.28em] font-semibold mb-6"
-              style={{ color: "#c9a84c" }}
+            {services.map((s, i) => (
+              <button
+                key={s.slug}
+                onClick={() => goTo(i)}
+                aria-label={`Go to ${s.title}`}
+                className="group relative flex items-center"
+              >
+                {/* dot */}
+                <span
+                  className={`block rounded-full transition-all duration-300 ${
+                    i === activeIndex
+                      ? "w-3 h-3 bg-[#c9a84c] shadow-[0_0_0_3px_rgba(201,168,76,0.25)]"
+                      : "w-2 h-2 bg-slate-300 group-hover:bg-slate-500"
+                  }`}
+                />
+                {/* tooltip */}
+                <span className="absolute left-5 whitespace-nowrap text-[10px] font-bold uppercase tracking-widest text-slate-700 bg-white/95 border border-slate-100 shadow-md px-2.5 py-1.25 rounded pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-150">
+                  {s.title}
+                </span>
+              </button>
+            ))}
+          </nav>
+
+          {/* ── Slides ───────────────────────────────────────── */}
+          <AnimatePresence custom={direction} initial={false}>
+            <motion.div
+              key={activeIndex}
+              custom={direction}
+              variants={slideVariants}
+              initial="enter"
+              animate="center"
+              exit="exit"
+              transition={{ duration: 0.6, ease: [0.43, 0.13, 0.23, 0.96] }}
+              onAnimationComplete={() => {}}
+              className="absolute inset-0 overflow-y-auto"
+              style={{ background: isEven ? "#ffffff" : "#f8fafc" }}
             >
-              {String(idx + 1).padStart(2, "0")} — {service.subtitle}
-            </p>
+              <div className="min-h-full flex items-center px-[8%] py-14">
+                <div className="w-full">
+                  {/* index label */}
+                  <p
+                    className="text-[0.75rem] uppercase tracking-[0.28em] font-semibold mb-6"
+                    style={{ color: "#c9a84c" }}
+                  >
+                    {String(activeIndex + 1).padStart(2, "0")} — {service.subtitle}
+                  </p>
 
-            <div
-              className={`flex flex-col ${isEven ? "lg:flex-row" : "lg:flex-row-reverse"} gap-12 lg:gap-20 items-start`}
-            >
-              {/* Image */}
-              <div className="w-full lg:w-1/2 shrink-0">
-                <div className="relative w-full aspect-4/3 overflow-hidden rounded-2xl shadow-xl">
-                  <Image
-                    src={service.src}
-                    fill
-                    alt={service.title}
-                    className="object-cover"
-                  />
-                  {/* gold accent bar */}
-                  <div className="absolute bottom-0 left-0 h-1 w-24 bg-[#c9a84c]" />
-                </div>
-              </div>
-
-              {/* Content */}
-              <div className="flex flex-col justify-start w-full lg:w-1/2">
-                <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold uppercase text-black leading-tight mb-4">
-                  {service.title}
-                </h2>
-                <p className="text-[#c9a84c] italic text-base sm:text-lg mb-6">
-                  {service.subtitle}
-                </p>
-                <p className="text-slate-600 leading-relaxed text-sm sm:text-base mb-8">
-                  {service.description}
-                </p>
-
-                {/* Feature grid */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-y-3 gap-x-6 mb-10">
-                  {service.features.map((feat) => (
-                    <div key={feat} className="flex items-start gap-2.5">
-                      <span className="mt-0.5 w-4 h-4 shrink-0 rounded-full bg-[#c9a84c]/15 flex items-center justify-center">
-                        <svg width="9" height="9" viewBox="0 0 9 9" fill="none">
-                          <path
-                            d="M1.5 4.5L3.5 6.5L7.5 2.5"
-                            stroke="#c9a84c"
-                            strokeWidth="1.5"
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                          />
-                        </svg>
-                      </span>
-                      <span className="text-slate-700 text-sm leading-snug">
-                        {feat}
-                      </span>
+                  <div
+                    className={`flex flex-col ${
+                      isEven ? "lg:flex-row" : "lg:flex-row-reverse"
+                    } gap-12 lg:gap-20 items-start`}
+                  >
+                    {/* Image */}
+                    <div className="w-full lg:w-1/2 shrink-0">
+                      <div className="relative w-full aspect-4/3 overflow-hidden rounded-2xl shadow-xl">
+                        <Image
+                          src={service.src}
+                          fill
+                          alt={service.title}
+                          className="object-cover"
+                        />
+                        <div className="absolute bottom-0 left-0 h-1 w-24 bg-[#c9a84c]" />
+                      </div>
                     </div>
-                  ))}
-                </div>
 
-                {/* CTA */}
-                {/* <Link
-                                    href="#contact"
-                                    className="inline-flex items-center gap-2.5 px-7 py-3 rounded-full bg-brand-blue text-white text-sm font-semibold uppercase tracking-widest w-fit hover:bg-[#c9a84c] transition-colors duration-300"
-                                >
-                                    Get a Quote
-                                    <span>→</span>
-                                </Link> */}
+                    {/* Content */}
+                    <div className="flex flex-col justify-start w-full lg:w-1/2">
+                      <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold uppercase text-black leading-tight mb-4">
+                        {service.title}
+                      </h2>
+                      <p className="text-[#c9a84c] italic text-base sm:text-lg mb-6">
+                        {service.subtitle}
+                      </p>
+                      <p className="text-slate-600 leading-relaxed text-sm sm:text-base mb-8">
+                        {service.description}
+                      </p>
+
+                      {/* Feature grid */}
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-y-3 gap-x-6">
+                        {service.features.map((feat) => (
+                          <div key={feat} className="flex items-start gap-2.5">
+                            <span className="mt-0.5 w-4 h-4 shrink-0 rounded-full bg-[#c9a84c]/15 flex items-center justify-center">
+                              <svg width="9" height="9" viewBox="0 0 9 9" fill="none">
+                                <path
+                                  d="M1.5 4.5L3.5 6.5L7.5 2.5"
+                                  stroke="#c9a84c"
+                                  strokeWidth="1.5"
+                                  strokeLinecap="round"
+                                  strokeLinejoin="round"
+                                />
+                              </svg>
+                            </span>
+                            <span className="text-slate-700 text-sm leading-snug">
+                              {feat}
+                            </span>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
-            </div>
-          </section>
-        );
-      })}
+            </motion.div>
+          </AnimatePresence>
+
+          {/* ── Prev / Next controls ─────────────────────────── */}
+          <div className="absolute bottom-6 left-1/2 -translate-x-1/2 z-30 flex items-center gap-4">
+            <button
+              onClick={() => goTo(activeIndex - 1)}
+              disabled={activeIndex === 0}
+              aria-label="Previous service"
+              className="w-9 h-9 rounded-full border border-slate-200 flex items-center justify-center text-slate-400 hover:border-[#c9a84c] hover:text-[#c9a84c] disabled:opacity-25 disabled:cursor-not-allowed transition-all duration-200"
+            >
+              <svg width="13" height="13" viewBox="0 0 13 13" fill="none">
+                <path
+                  d="M6.5 10.5V2.5M2.5 6.5L6.5 2.5L10.5 6.5"
+                  stroke="currentColor"
+                  strokeWidth="1.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
+            </button>
+
+            <span className="text-xs text-slate-400 font-mono tabular-nums">
+              {String(activeIndex + 1).padStart(2, "0")} /{" "}
+              {String(services.length).padStart(2, "0")}
+            </span>
+
+            <button
+              onClick={() => goTo(activeIndex + 1)}
+              disabled={activeIndex === services.length - 1}
+              aria-label="Next service"
+              className="w-9 h-9 rounded-full border border-slate-200 flex items-center justify-center text-slate-400 hover:border-[#c9a84c] hover:text-[#c9a84c] disabled:opacity-25 disabled:cursor-not-allowed transition-all duration-200"
+            >
+              <svg width="13" height="13" viewBox="0 0 13 13" fill="none">
+                <path
+                  d="M6.5 2.5V10.5M10.5 6.5L6.5 10.5L2.5 6.5"
+                  stroke="currentColor"
+                  strokeWidth="1.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
 
       {/* ── Bottom CTA banner ──────────────────────────────── */}
       <section className="bg-blue-950 py-20 px-[8%] text-center">
