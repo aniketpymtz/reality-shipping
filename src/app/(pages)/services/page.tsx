@@ -102,7 +102,7 @@ const services = [
       "Hotel & Transit Arrangements",
       "24/7 Crew Assistance",
     ],
-    src: "/assets/ship-2.jpg",
+    src: "/assets/crew-1.jpg",
   },
   {
     title: "Port Coordination",

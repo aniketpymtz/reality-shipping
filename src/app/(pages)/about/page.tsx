@@ -183,9 +183,9 @@ export default function AboutPage() {
                   className="object-cover"
                 />
               </div>
-              <div className="absolute -bottom-8 -left-8 w-64 aspect-4/3 rounded-2xl overflow-hidden border-4 border-white shadow-xl hidden lg:block">
+              <div className="absolute -bottom-8 -left-8 w-80 aspect-4/3 rounded-2xl overflow-hidden border-4 border-white shadow-xl hidden lg:block">
                 <Image
-                  src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=400&q=80"
+                  src="/assets/ship-4.jpg"
                   alt="Logistics operations"
                   fill
                   className="object-cover"
@@ -200,10 +200,10 @@ export default function AboutPage() {
       <section className="relative py-32 overflow-hidden">
         <div className="absolute inset-0">
           <Image
-            src="https://images.unsplash.com/photo-1511578194003-00c80e42dc9b?w=1920&q=80"
+            src="/assets/sky.jpg"
             alt="Port at golden hour"
             fill
-            className="object-cover"
+            className="object-cover object-center"
           />
           <div className="absolute inset-0 bg-blue-950/85" />
         </div>
