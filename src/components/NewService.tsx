@@ -118,13 +118,13 @@ export default function NewService() {
             </div>
 
             {/* Section header */}
-            <div className="mb-16">
-                <p className="text-[0.85vw] uppercase tracking-[0.25em] text-[#c9a84c] mb-3">
-                    What We Offer
-                </p>
+            <div className="w-full justify-between flex flex-row mb-16">
                 <h2 className="text-[4.5vw] text-white font-bold leading-tight">
                     Our Services
                 </h2>
+                <p className="text-[0.85vw] uppercase tracking-[0.25em] text-[#c9a84c] mb-3">
+                   [ What We Offer ]
+                </p>
             </div>
 
             {/* Main layout */}
@@ -141,13 +141,9 @@ export default function NewService() {
                             <p
                                 className="text-[0.75vw] uppercase tracking-widest mb-2"
                                 style={{
-                                    backgroundImage: 'linear-gradient(to right, #c9a84c 50%, rgba(255,255,255,0.45) 50%)',
-                                    backgroundSize: '200% 100%',
-                                    backgroundPosition: selected === index ? '0%' : '100%',
-                                    WebkitBackgroundClip: 'text',
-                                    WebkitTextFillColor: 'transparent',
-                                    backgroundClip: 'text',
-                                    transition: 'background-position 0.55s ease',
+                                    color: selected === index ? '#ffffff' : '#9ca3af',
+                                    filter: selected === index ? 'none' : 'blur(1.5px)',
+                                    transition: 'color 0.5s ease, filter 0.5s ease',
                                 }}
                             >
                                 {String(index + 1).padStart(2, '0')}
@@ -155,13 +151,9 @@ export default function NewService() {
                             <h2
                                 className="text-[7vw] md:text-[4.5vw] font-bold m-0"
                                 style={{
-                                    backgroundImage: 'linear-gradient(to right, #c9a84c 50%, #ffffff 50%)',
-                                    backgroundSize: '200% 100%',
-                                    backgroundPosition: selected === index ? '0%' : '100%',
-                                    WebkitBackgroundClip: 'text',
-                                    WebkitTextFillColor: 'transparent',
-                                    backgroundClip: 'text',
-                                    transition: 'background-position 0.55s ease',
+                                    color: selected === index ? '#ffffff' : '#ffffff50',
+                                    filter: selected === index ? 'none' : 'blur(1px)',
+                                    transition: 'color 0.5s ease, filter 0.5s ease',
                                 }}
                             >
                                 {service.title}
@@ -198,7 +190,7 @@ export default function NewService() {
                             <h3 className="text-[5vw] md:text-[1.6vw] font-bold uppercase tracking-wide text-white m-0">
                                 {services[selected].title}
                             </h3>
-                            <p className="text-[3vw] md:text-[1.2vw] text-[#c9a84c] italic mt-1">
+                            <p className="text-[3vw] md:text-[1.2vw] text-[#c9a84c] mt-1">
                                 {services[selected].subtitle}
                             </p>
                         </div>
