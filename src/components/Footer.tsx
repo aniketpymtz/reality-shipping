@@ -27,7 +27,7 @@ export default function Footer() {
                 </span>
               </div>
             </a>
-            <p className="text-gold-400 text-sm font-semibold italic mb-5">
+            <p className="text-white text-sm font-semibold mb-5">
               We commit. We Deliver.
             </p>
             <p className="text-blue-300/70 text-sm leading-relaxed mb-6">

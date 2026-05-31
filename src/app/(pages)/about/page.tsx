@@ -1,18 +1,5 @@
 import type { Metadata } from "next";
 import Image from "next/image";
-import Link from "next/link";
-import {
-  Globe,
-  Shield,
-  Clock,
-  Users,
-  Heart,
-  Zap,
-  Award,
-  Handshake,
-  ArrowRight,
-  CheckCircle2,
-} from "lucide-react";
 
 export const metadata: Metadata = {
   title: "About Us | Reality Shipping & Logistics",
@@ -20,38 +7,6 @@ export const metadata: Metadata = {
     "Learn about Reality Shipping & Logistics — a modern global shipping agency with 25+ years of experience providing first-class logistics solutions worldwide.",
 };
 
-const values = [
-  {
-    icon: Heart,
-    title: "Empathy",
-    desc: "We understand our clients' needs and act with genuine care for every shipment.",
-  },
-  {
-    icon: Zap,
-    title: "Passion",
-    desc: "Our love for logistics drives us to deliver exceptional service every day.",
-  },
-  {
-    icon: Award,
-    title: "Performance",
-    desc: "We measure ourselves by results — on-time, on-budget, every time.",
-  },
-  {
-    icon: Shield,
-    title: "Reliability",
-    desc: "Consistent, dependable service our clients can count on worldwide.",
-  },
-  {
-    icon: Users,
-    title: "Unity",
-    desc: "Our global team works as one, bridging cultures and continents seamlessly.",
-  },
-  {
-    icon: Handshake,
-    title: "Respect",
-    desc: "We treat every partner, crew member, and client with equal dignity.",
-  },
-];
 
 const milestones = [
   {
@@ -302,59 +257,6 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Commitment section */}
-      <section className="py-24 bg-white">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="grid lg:grid-cols-2 gap-16 items-center">
-            <div className="relative aspect-[4/3] rounded-2xl overflow-hidden">
-              <Image
-                src="https://images.unsplash.com/photo-1559136555-9303baea8ebd?w=800&q=80"
-                alt="Global shipping network"
-                fill
-                className="object-cover"
-              />
-            </div>
-            <div>
-              <div className="flex items-center gap-3 mb-4">
-                <div className="divider-gold" />
-                <span className="text-gold-500 text-sm font-semibold uppercase tracking-[0.2em]">
-                  Our Promise
-                </span>
-              </div>
-              <h2 className="text-3xl sm:text-4xl font-bold text-slate-900 mb-6 leading-tight">
-                Our Commitment to
-                <br />
-                <span className="text-brand-blue">Excellence</span>
-              </h2>
-              <div className="space-y-4 mb-10">
-                {[
-                  "On-time delivery with reliable transit schedules",
-                  "Complete cargo visibility from origin to destination",
-                  "Competitive rates without compromising quality",
-                  "Customs compliance across all jurisdictions",
-                  "Dedicated account managers for personalized service",
-                  "Sustainable practices reducing environmental impact",
-                ].map((item) => (
-                  <div
-                    key={item}
-                    className="flex items-start gap-3 text-sm text-slate-600"
-                  >
-                    <CheckCircle2 className="w-5 h-5 text-brand-blue flex-shrink-0 mt-0.5" />
-                    <span>{item}</span>
-                  </div>
-                ))}
-              </div>
-              <Link
-                href="/port-services"
-                className="group inline-flex items-center gap-2 px-8 py-4 bg-brand-blue text-white font-semibold rounded-lg hover:bg-brand-blue/90 transition-colors shadow-lg shadow-brand-blue/20"
-              >
-                Explore Our Services
-                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-              </Link>
-            </div>
-          </div>
-        </div>
-      </section>
-    </>
+     </>
   );
 }
