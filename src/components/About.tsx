@@ -171,25 +171,25 @@ export default function About() {
             </div>
 
             {/* Card 3 */}
-            <div className="relative flex-1 overflow-hidden rounded-3xl bg-gradient-to-br from-blue-800 to-blue-950 p-8 text-white">
-              <div className="absolute -top-8 -right-8 h-36 w-36 rounded-full border border-white/10" />
-              <div className="absolute bottom-4 -left-8 h-28 w-28 rounded-full border border-white/8" />
+            <div className="relative flex-1 overflow-hidden rounded-3xl bg-gradient-to-br from-sky-50 via-blue-50 to-blue-100 border border-blue-100 p-8">
+              <div className="absolute -top-6 -right-6 h-40 w-40 rounded-full bg-brand-blue/15 blur-2xl" />
+              <div className="absolute bottom-0 -left-6 h-32 w-32 rounded-full bg-sky-300/20 blur-2xl" />
 
               <div className="relative z-10 h-full flex flex-col justify-between">
                 <div>
-                  <span className="inline-block text-[10px] uppercase tracking-[0.22em] text-blue-300 font-semibold bg-white/10 rounded-full px-3 py-1">
+                  <span className="inline-block text-[10px] uppercase tracking-[0.22em] text-brand-blue font-semibold bg-brand-blue/10 rounded-full px-3 py-1">
                     Financial Accuracy
                   </span>
-                  <div className="mt-5 text-5xl font-bold tracking-tight leading-none">
+                  <div className="mt-5 text-5xl font-bold tracking-tight leading-none text-brand-blue">
                     {inView && <CountUp end={4} suffix="%" duration={3} />}
                   </div>
-                  <p className="mt-3 text-blue-100/70 text-sm leading-relaxed">
+                  <p className="mt-3 text-slate-500 text-sm leading-relaxed">
                     PDA and FDA discrepancy maintained at minimal levels.
                   </p>
                 </div>
                 <div className="mt-6 flex items-center gap-2">
-                  <div className="h-1.5 w-1.5 rounded-full bg-emerald-300 animate-pulse" />
-                  <span className="text-xs text-blue-200/80 font-medium">High reporting precision</span>
+                  <div className="h-1.5 w-1.5 rounded-full bg-emerald-500 animate-pulse" />
+                  <span className="text-xs text-slate-500 font-medium">High reporting precision</span>
                 </div>
               </div>
             </div>
