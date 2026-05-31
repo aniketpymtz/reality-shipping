@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Image from "next/image";
+import PortsTable from "@/components/PortsTable";
 
 export const metadata: Metadata = {
   title: "About Us | Reality Shipping & Logistics",
@@ -217,6 +218,29 @@ export default function AboutPage() {
               </div>
             ))}
           </div> */}
+        </div>
+      </section>
+
+      {/* Ports coverage section */}
+      <section className="py-24 bg-white">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="text-center mb-12">
+            <div className="flex items-center justify-center gap-3 mb-4">
+              <div className="divider-gold" />
+              <span className="text-gold-500 text-sm font-semibold uppercase tracking-[0.2em]">
+                Where We Operate
+              </span>
+              <div className="divider-gold" />
+            </div>
+            <h2 className="text-3xl sm:text-4xl font-bold text-slate-900 mb-3">
+              Ports We Cover
+            </h2>
+            <p className="text-slate-500 max-w-xl mx-auto text-sm leading-relaxed">
+              From South Asia to the Americas, we maintain an active presence
+              across the world&apos;s most strategic maritime gateways.
+            </p>
+          </div>
+          <PortsTable />
         </div>
       </section>
 
