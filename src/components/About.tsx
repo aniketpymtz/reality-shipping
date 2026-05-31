@@ -118,85 +118,78 @@ export default function About() {
         </div>
 
         {/* Bottom Stats */}
-        
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 h-auto lg:h-120">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-5">
           {/* Featured Large Card */}
-          <div className="lg:col-span-2 relative overflow-hidden rounded-4xl border border-white/10 bg-slate-950 min-h-112">
-            <HeroShipCarousel/>
-
-            <div className="relative z-10 flex h-full flex-col justify-between p-8 lg:p-12 text-white">
-              <div className="flex items-center gap-3">
-                <div className="h-2 w-2 rounded-full bg-emerald-400 animate-pulse" />
-                <span className="uppercase tracking-[0.25em] text-xs text-slate-300">
+          <div className="lg:col-span-2 relative overflow-hidden rounded-3xl bg-slate-950 min-h-105">
+            <HeroShipCarousel />
+            {/* gradient overlay */}
+            
+            <div className="absolute inset-0 z-20 flex flex-col justify-between p-8 lg:p-10 text-white">
+              {/* top badge */}
+              <div className="inline-flex items-center gap-2 self-start rounded-full bg-white/10 backdrop-blur-sm border border-white/15 px-3 py-1.5">
+                <div className="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                <span className="text-[11px] uppercase tracking-[0.22em] text-slate-200 font-medium">
                   Operational Efficiency
                 </span>
               </div>
 
-              <div className="max-w-2xl">
-                <div className="text-6xl sm:text-7xl lg:text-8xl font-bold tracking-tight">
+              {/* bottom content */}
+              <div>
+                <div className="text-[5rem] lg:text-[6.5rem] font-bold tracking-tight leading-none">
                   {inView && <CountUp end={3} suffix=" hours" duration={3} />}
                 </div>
-
-                <p className="mt-4 text-xl text-slate-200 font-medium">
+                <p className="mt-3 text-base text-white/75 font-medium leading-snug max-w-xs">
                   Average inquiry response time across global port operations.
                 </p>
-
+                <div className="mt-5 h-0.5 w-12 bg-[#c9a84c] rounded-full" />
               </div>
             </div>
           </div>
 
           {/* Side Column */}
-          <div className="flex flex-col gap-4">
+          <div className="flex flex-col gap-5">
             {/* Card 2 */}
-            <div className="relative flex-1 overflow-hidden rounded-4xl border border-slate-200 bg-white p-8">
-              <div className="absolute top-0 right-0 h-32 w-32 rounded-full bg-brand-blue/10 blur-3xl" />
-
-              <div className="relative z-10 flex h-full flex-col justify-between">
+            <div className="relative flex-1 overflow-hidden rounded-3xl border border-slate-100 bg-white p-8 group">
+              <div className="absolute -top-6 -right-6 h-36 w-36 rounded-full bg-brand-blue/8 blur-2xl group-hover:bg-brand-blue/15 transition-all duration-500" />
+              <div className="relative z-10 h-full flex flex-col justify-between">
                 <div>
-                  <p className="text-xs uppercase tracking-[0.22em] text-slate-400">
+                  <span className="inline-block text-[10px] uppercase tracking-[0.22em] text-slate-400 font-semibold bg-slate-50 border border-slate-100 rounded-full px-3 py-1">
                     Vessel Operations
-                  </p>
-
-                  <div className="mt-4 text-5xl font-bold text-slate-900">
-                    {inView && <CountUp end={27} suffix=" days" duration={3} />}
+                  </span>
+                  <div className="mt-5 leading-none">
+                    <span className="text-5xl font-bold text-slate-900 tracking-tight">
+                      {inView && <CountUp end={27} duration={3} />}
+                    </span>
+                    <span className="text-xl font-semibold text-slate-400 ml-1.5">days</span>
                   </div>
-
-                  <p className="mt-3 text-slate-500 leading-relaxed">
-                    Average duration between vessel departure and FDA
-                    completion.
+                  <p className="mt-3 text-slate-500 text-sm leading-relaxed">
+                    Average duration between vessel departure and FDA completion.
                   </p>
                 </div>
-
+                <div className="mt-6 h-0.5 w-10 rounded-full bg-brand-blue" />
               </div>
             </div>
 
             {/* Card 3 */}
-            <div className="relative flex-1 overflow-hidden rounded-4xl bg-linear-to-br from-brand-blue to-blue-950 p-8 text-white">
-              <div className="absolute inset-0 opacity-20">
-                <div className="absolute -top-10 -right-10 h-40 w-40 rounded-full border border-white/20" />
-                <div className="absolute bottom-0 left-0 h-56 w-56 rounded-full border border-white/10" />
-              </div>
+            <div className="relative flex-1 overflow-hidden rounded-3xl bg-gradient-to-br from-blue-800 to-blue-950 p-8 text-white">
+              <div className="absolute -top-8 -right-8 h-36 w-36 rounded-full border border-white/10" />
+              <div className="absolute bottom-4 -left-8 h-28 w-28 rounded-full border border-white/8" />
 
-              <div className="relative z-10 flex h-full flex-col justify-between">
+              <div className="relative z-10 h-full flex flex-col justify-between">
                 <div>
-                  <p className="text-xs uppercase tracking-[0.22em] text-blue-100">
+                  <span className="inline-block text-[10px] uppercase tracking-[0.22em] text-blue-300 font-semibold bg-white/10 rounded-full px-3 py-1">
                     Financial Accuracy
-                  </p>
-
-                  <div className="mt-4 text-5xl font-bold">
+                  </span>
+                  <div className="mt-5 text-5xl font-bold tracking-tight leading-none">
                     {inView && <CountUp end={4} suffix="%" duration={3} />}
                   </div>
-
-                  <p className="mt-3 text-blue-100/80 leading-relaxed">
+                  <p className="mt-3 text-blue-100/70 text-sm leading-relaxed">
                     PDA and FDA discrepancy maintained at minimal levels.
                   </p>
                 </div>
-
                 <div className="mt-6 flex items-center gap-2">
-                  <div className="h-2 w-2 rounded-full bg-emerald-300" />
-                  <span className="text-sm text-blue-100">
-                    High reporting precision
-                  </span>
+                  <div className="h-1.5 w-1.5 rounded-full bg-emerald-300 animate-pulse" />
+                  <span className="text-xs text-blue-200/80 font-medium">High reporting precision</span>
                 </div>
               </div>
             </div>

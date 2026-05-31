@@ -35,7 +35,7 @@ export default function HeroShipCarousel() {
             transition-all duration-1000 ease-in-out
             ${
               activeIndex === index
-                ? "opacity-90 scale-100"
+                ? "opacity-100 scale-100"
                 : "opacity-0 scale-110"
             }
           `}

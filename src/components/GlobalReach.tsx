@@ -37,7 +37,7 @@ const regions = [
 
 export default function GlobalReach() {
   return (
-    <section id="global" className="py-24 bg-white">
+    <section id="global" className="py-12 bg-white">
       <div className="max-w-7xl mx-auto px-6">
         {/* Header */}
         <div className="text-center mb-16">
@@ -77,12 +77,12 @@ export default function GlobalReach() {
               <p className="text-slate-500 text-base mb-10">
                 Active ports across global trade routes
               </p>
-              <div className="grid grid-cols-2 gap-x-8 gap-y-7">
+              <div className="grid grid-cols-3 gap-x-8 gap-y-7">
                 {[
                   { number: "4", label: "Continents Covered" },
                   { number: "20+", label: "Countries Served" },
                   { number: "300+", label: "Team Members" },
-                  { number: "40+", label: "Trusted Partners" },
+                  
                 ].map((stat) => (
                   <div key={stat.label}>
                     <div className="text-3xl font-bold text-brand-blue">
