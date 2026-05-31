@@ -12,37 +12,6 @@ import HeroShipCarousel from "./StatCard";
 
 const Globe3D = dynamic(() => import("./Globe3D"), { ssr: false });
 
-const panels = [
-  {
-    end: 3,
-    suffix: " hours",
-    label: "Average Inquiry Response Time",
-    videoPos: "0% center",
-    statPlacement: "flex-col justify-end items-start",
-    statPadding: "pb-8 pl-8",
-    clipPath: "polygon(50px 0%, 100% 0%, 100% 100%, 0% 100%, 0% 50px)",
-  },
-  {
-    end: 27,
-    suffix: " days",
-    label: "Average Time between Vessel Departure and FDA",
-    videoPos: "50% center",
-    statPlacement: "flex-col justify-center items-center",
-    statPadding: "",
-    clipPath: undefined,
-  },
-  {
-    end: 4,
-    suffix: "%",
-    label: "Discrepancy between PDA and FDA amount",
-    videoPos: "100% center",
-    statPlacement: "flex-col justify-start items-end",
-    statPadding: "pt-10 pr-8",
-    clipPath:
-      "polygon(0% 0%, 100% 0%, 100% calc(100% - 50px), calc(100% - 50px) 100%, 0% 100%)",
-  },
-];
-
 export default function About() {
   const { ref, inView } = useInView({
     triggerOnce: true,
@@ -149,16 +118,11 @@ export default function About() {
         </div>
 
         {/* Bottom Stats */}
-        {/* Bottom Stats */}
+        
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 h-auto lg:h-120">
           {/* Featured Large Card */}
-          <div className="lg:col-span-2 relative overflow-hidden rounded-4xl border border-white/10 bg-slate-950 min-h-[28rem]">
+          <div className="lg:col-span-2 relative overflow-hidden rounded-4xl border border-white/10 bg-slate-950 min-h-112">
             <HeroShipCarousel/>
-
-            {/* overlays */}
-            {/* <div className="absolute inset-0 bg-linear-to-br from-blue-950/40 via-slate-950/20 to-black/10" /> */}
-
-            {/* <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:40px_40px]" /> */}
 
             <div className="relative z-10 flex h-full flex-col justify-between p-8 lg:p-12 text-white">
               <div className="flex items-center gap-3">
