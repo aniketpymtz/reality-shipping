@@ -19,13 +19,13 @@ const portServices = [
     icon: Anchor,
     title: "Port Coordination",
     desc: "Berth planning, cargo operations coordination, and authority liaison.",
-    image: "https://images.pexels.com/photos/32281093/pexels-photo-32281093.jpeg",
+    image: "/assets/port-coordination.jpeg",
   },
   {
     icon: Wrench,
     title: "Technical Support",
     desc: "Emergency repairs, dry-docking assistance, and vessel inspections.",
-    image: "https://images.pexels.com/photos/30807110/pexels-photo-30807110.jpeg",
+    image: "/assets/technical-support.jpeg",
   },
 ];
 

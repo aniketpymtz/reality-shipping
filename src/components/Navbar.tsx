@@ -92,10 +92,10 @@ export default function Navbar() {
             <a
               key={link.href}
               href={link.href}
-              className={`text-sm font-medium transition-colors duration-300 relative after:absolute after:-bottom-1 after:left-0 after:w-0 after:h-0.5 hover:after:w-full after:transition-all ${
+              className={`text-sm font-semibold transition-colors duration-300 relative after:absolute after:-bottom-1 after:left-0 after:w-0 after:h-0.5 hover:after:w-full after:transition-all ${
                 scrolled
                   ? "text-slate-600 hover:text-brand-blue after:bg-brand-blue"
-                  : "text-white/80 hover:text-white after:bg-white"
+                  : "text-white hover:text-white after:bg-white"
               }`}
             >
               {link.label}
@@ -106,8 +106,8 @@ export default function Navbar() {
           <div className="relative" ref={dropdownRef}>
             <button
               onClick={() => setServicesOpen((v) => !v)}
-              className={`flex items-center gap-1 text-sm font-medium transition-colors duration-300 ${
-                scrolled ? "text-slate-600 hover:text-brand-blue" : "text-white/80 hover:text-white"
+              className={`flex items-center gap-1 text-sm font-semibold transition-colors duration-300 ${
+                scrolled ? "text-slate-600 hover:text-brand-blue" : "text-white hover:text-white"
               }`}
             >
               Services
@@ -122,7 +122,7 @@ export default function Navbar() {
               <div className="absolute top-full left-1/2 -translate-x-1/2 mt-3 w-52 bg-white rounded-xl shadow-xl border border-slate-100 py-2 z-50">
                 <a
                   href="/services"
-                  className="block px-4 py-2 text-xs font-semibold uppercase tracking-widest text-[#c9a84c] hover:bg-slate-50 transition-colors"
+                  className="block px-4 py-2 text-xs font-semibold uppercase tracking-widest text-brand-blue hover:bg-slate-50 transition-colors"
                 >
                   All Services
                 </a>

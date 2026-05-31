@@ -24,7 +24,7 @@ const services = [
       "Surveyors",
       "Spare Parts Delivery & Clearance",
     ],
-    src: "https://images.pexels.com/photos/1554646/pexels-photo-1554646.jpeg",
+    src: "/assets/port-agency-2.jpeg",
   },
   {
     title: "Liner Agency",
@@ -133,7 +133,7 @@ const services = [
       "Marine Engineers & Technicians Arrangement",
       "Equipment Inspection Support",
     ],
-    src: "/assets/ship-3.jpg",
+    src: "/assets/technical-support.jpeg",
   },
 ];
 

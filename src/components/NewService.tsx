@@ -24,7 +24,7 @@ const services = [
             "Surveyors",
             "Spare Parts Delivery & Clearance",
         ],
-        src: "/assets/port-agency.jpeg",
+        src: "/assets/port-agency-2.jpeg",
     },
     {
         title: "Liner Agency",

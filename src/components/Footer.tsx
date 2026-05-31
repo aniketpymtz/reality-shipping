@@ -66,19 +66,20 @@ export default function Footer() {
             </h4>
             <ul className="space-y-3">
               {[
-                "Sea Freight",
-                "Air Freight",
-                "Land Transportation",
-                "Port Agency",
-                "Warehousing",
-                "Customs Brokerage",
+                { label: "Port Agency", slug: "port-agency" },
+                { label: "Liner Agency", slug: "liner-agency" },
+                { label: "Logistics", slug: "logistics" },
+                { label: "Vessel Husbandry", slug: "vessel-husbandry" },
+                { label: "Crew Management", slug: "crew-management" },
+                { label: "Port Coordination", slug: "port-coordination" },
+                { label: "Technical Support", slug: "technical-support" },
               ].map((item) => (
-                <li key={item}>
+                <li key={item.slug}>
                   <a
-                    href="#services"
+                    href="/services"
                     className="text-sm text-blue-300/70 hover:text-white transition-colors"
                   >
-                    {item}
+                    {item.label}
                   </a>
                 </li>
               ))}

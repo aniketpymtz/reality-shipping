@@ -106,7 +106,7 @@ export default function About() {
               </p>
               <h2 className="text-4xl sm:text-5xl lg:text-[3.25rem] xl:text-[3.75rem] font-bold text-slate-900 leading-none">
                 How can we elevate your{" "}
-                <span className="text-brand-blue">voyage today?</span>
+                <span>voyage today?</span>
               </h2>
             </div>
 
