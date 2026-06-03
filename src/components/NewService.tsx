@@ -103,7 +103,7 @@ export default function NewService() {
                         className="absolute inset-0"
                         style={{
                             opacity: selected === i ? 1 : 0,
-                            transition: 'opacity 0.75s ease, transform 0.75s ease',
+                            transition: 'opacity 0.65s ease, transform 0.65s ease',
                         }}
                     >
                         <Image
@@ -149,11 +149,16 @@ export default function NewService() {
                                 {String(index + 1).padStart(2, '0')}
                             </p>
                             <h2
-                                className="text-[7vw] md:text-[4.5vw] font-bold m-0"
+                               className="text-[7vw] md:text-[4vw] font-bold  m-0"
                                 style={{
-                                    color: selected === index ? '#ffffff' : '#ffffff50',
-                                    filter: selected === index ? 'none' : 'blur(1px)',
-                                    transition: 'color 0.5s ease, filter 0.5s ease',
+                                    backgroundImage: 'linear-gradient(to right, #ffffff 50%, rgba(255,255,255,0.35) 50%)',
+                                    backgroundSize: '200% 100%',
+                                    filter: selected === index ? 'none' : 'blur(0.8px)',
+                                    backgroundPosition: selected === index ? '0%' : '100%',
+                                    WebkitBackgroundClip: 'text',
+                                    WebkitTextFillColor: 'transparent',
+                                    backgroundClip: 'text',
+                                    transition: 'background-position 0.55s ease',
                                 }}
                             >
                                 {service.title}
@@ -190,7 +195,7 @@ export default function NewService() {
                             <h3 className="text-[5vw] md:text-[1.6vw] font-bold uppercase tracking-wide text-white m-0">
                                 {services[selected].title}
                             </h3>
-                            <p className="text-[3vw] md:text-[1.2vw] text-[#c9a84c] mt-1">
+                            <p className="text-[3vw] md:text-[1.2vw] text-white mt-1">
                                 {services[selected].subtitle}
                             </p>
                         </div>
@@ -200,14 +205,14 @@ export default function NewService() {
                         <ul className="flex flex-col gap-2 mt-1">
                             {services[selected].features.slice(0, 5).map((feat, i) => (
                                 <li key={i} className="flex items-start gap-2 text-[2vw] md:text-[1.1vw] text-white/80">
-                                    <span className="text-[#c9a84c] mt-[0.15em] shrink-0">✓</span>
+                                    <span className="text-brand-blue mt-[0.15em] shrink-0">✓</span>
                                     {feat}
                                 </li>
                             ))}
                         </ul>
                         <Link
                             href={`/services/#${services[selected].slug}`}
-                            className="inline-flex items-center gap-2 mt-2 text-[0.9vw] font-semibold uppercase tracking-widest text-[#c9a84c] border-b border-[#c9a84c] pb-0.5 w-fit hover:opacity-70 transition-opacity duration-200"
+                            className="inline-flex items-center gap-2 mt-2 text-[0.9vw] font-semibold uppercase tracking-widest text-white border-b border-white pb-0.5 w-fit hover:opacity-70 transition-opacity duration-200"
                         >
                             Learn More
                             <span className="text-[1.1em]">→</span>

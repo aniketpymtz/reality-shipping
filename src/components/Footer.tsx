@@ -18,11 +18,11 @@ export default function Footer() {
                   className="object-contain"
                 />
               </div>
-              <div className="flex flex-col leading-tight">
+              <div className="flex flex-col leading-[1]">
                 <span className="text-lg font-bold tracking-tight text-white">
                   Reality
                 </span>
-                <span className="text-[10px] font-semibold uppercase tracking-[0.2em] text-blue-400">
+                <span className="text-base font-bold tracking-tight text-white">
                   Shipping & Logistics
                 </span>
               </div>

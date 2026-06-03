@@ -81,29 +81,31 @@ const services = [
       "Visa Assistance",
       "Waste & Sludge Handling Coordination",
       "Local Authority Liaison",
+      "24/7 Vessel Support",
+      "Sign On / Sign Off Formalities",
     ],
     src: "/assets/ship-1.jpg",
   },
-  {
-    title: "Crew Management",
-    slug: "crew-management",
-    subtitle: "Professional crew solutions",
-    description:
-      "Professional crew management solutions focused on safe operations, efficient manpower planning, crew welfare, and full compliance with international maritime standards. Our team ensures reliable staffing and seamless crew handling to support uninterrupted vessel operations.",
-    features: [
-      "Crew Recruitment & Placement",
-      "Crew Change Coordination",
-      "Travel & Flight Arrangements",
-      "Visa & Immigration Processing",
-      "Medical Checkups & Certification",
-      "STCW & Compliance Documentation",
-      "Crew Welfare Support",
-      "Sign On / Sign Off Formalities",
-      "Hotel & Transit Arrangements",
-      "24/7 Crew Assistance",
-    ],
-    src: "/assets/crew-1.jpg",
-  },
+  // {
+  //   title: "Crew Management",
+  //   slug: "crew-management",
+  //   subtitle: "Professional crew solutions",
+  //   description:
+  //     "Professional crew management solutions focused on safe operations, efficient manpower planning, crew welfare, and full compliance with international maritime standards. Our team ensures reliable staffing and seamless crew handling to support uninterrupted vessel operations.",
+  //   features: [
+  //     "Crew Recruitment & Placement",
+  //     "Crew Change Coordination",
+  //     "Travel & Flight Arrangements",
+  //     "Visa & Immigration Processing",
+  //     "Medical Checkups & Certification",
+  //     "STCW & Compliance Documentation",
+  //     "Crew Welfare Support",
+  //     "Sign On / Sign Off Formalities",
+  //     "Hotel & Transit Arrangements",
+  //     "24/7 Crew Assistance",
+  //   ],
+  //   src: "/assets/crew-1.jpg",
+  // },
   {
     title: "Port Coordination",
     slug: "port-coordination",
@@ -167,6 +169,17 @@ export default function ServicesPage() {
     },
     []
   );
+
+  // On mount, scroll to the service matching the URL hash
+  useEffect(() => {
+    const hash = window.location.hash.slice(1);
+    if (!hash) return;
+    const idx = services.findIndex((s) => s.slug === hash);
+    if (idx < 0) return;
+    // Delay lets the page fully render before calculating sectionTop
+    const timer = setTimeout(() => goTo(idx), 400);
+    return () => clearTimeout(timer);
+  }, [goTo]);
 
   // Derive activeIndex from native scroll position
   useEffect(() => {
@@ -279,7 +292,7 @@ export default function ServicesPage() {
                 <span
                   className={`block rounded-full transition-all duration-300 ${
                     i === activeIndex
-                      ? "w-3 h-3 bg-[#c9a84c] shadow-[0_0_0_3px_rgba(201,168,76,0.25)]"
+                      ? "w-3 h-3 bg-brand-blue shadow-[0_0_0_3px_rgba(201,168,76,0.25)]"
                       : "w-2 h-2 bg-slate-300 group-hover:bg-slate-500"
                   }`}
                 />
@@ -309,8 +322,8 @@ export default function ServicesPage() {
                 <div className="w-full">
                   {/* index label */}
                   <p
-                    className="text-[0.75rem] uppercase tracking-[0.28em] font-semibold mb-6"
-                    style={{ color: "#c9a84c" }}
+                    className="text-[0.75rem] uppercase tracking-[0.28em] font-semibold mb-6 text-black"
+                    
                   >
                     {String(activeIndex + 1).padStart(2, "0")} — {service.subtitle}
                   </p>
@@ -329,16 +342,16 @@ export default function ServicesPage() {
                           alt={service.title}
                           className="object-cover"
                         />
-                        <div className="absolute bottom-0 left-0 h-1 w-24 bg-[#c9a84c]" />
+                        <div className="absolute bottom-0 left-0 h-1 w-40 bg-brand-blue" />
                       </div>
                     </div>
 
                     {/* Content */}
                     <div className="flex flex-col justify-start w-full lg:w-1/2">
-                      <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold uppercase text-black leading-tight mb-4">
+                      <h2 className="whitespace-normal text-3xl sm:text-4xl md:text-5xl font-bold uppercase text-black leading-tight mb-4">
                         {service.title}
                       </h2>
-                      <p className="text-[#c9a84c] italic text-base sm:text-lg mb-6">
+                      <p className="text-brand-blue text-base sm:text-lg mb-6">
                         {service.subtitle}
                       </p>
                       <p className="text-slate-600 leading-relaxed text-sm sm:text-base mb-8">
@@ -349,11 +362,11 @@ export default function ServicesPage() {
                       <div className="grid grid-cols-1 sm:grid-cols-2 gap-y-3 gap-x-6">
                         {service.features.map((feat) => (
                           <div key={feat} className="flex items-start gap-2.5">
-                            <span className="mt-0.5 w-4 h-4 shrink-0 rounded-full bg-[#c9a84c]/15 flex items-center justify-center">
+                            <span className="mt-0.5 w-4 h-4 shrink-0 rounded-full bg-brand-blue/25 flex items-center justify-center">
                               <svg width="9" height="9" viewBox="0 0 9 9" fill="none">
                                 <path
                                   d="M1.5 4.5L3.5 6.5L7.5 2.5"
-                                  stroke="#c9a84c"
+                                  stroke="#0675BC"
                                   strokeWidth="1.5"
                                   strokeLinecap="round"
                                   strokeLinejoin="round"
@@ -379,7 +392,7 @@ export default function ServicesPage() {
               onClick={() => goTo(activeIndex - 1)}
               disabled={activeIndex === 0}
               aria-label="Previous service"
-              className="w-9 h-9 rounded-full border border-slate-200 flex items-center justify-center text-slate-400 hover:border-[#c9a84c] hover:text-[#c9a84c] disabled:opacity-25 disabled:cursor-not-allowed transition-all duration-200"
+              className="w-9 h-9 rounded-full border border-slate-200 flex items-center justify-center text-slate-400 hover:border-brand-blue hover:text-brand-blue disabled:opacity-25 disabled:cursor-not-allowed transition-all duration-200"
             >
               <svg width="13" height="13" viewBox="0 0 13 13" fill="none">
                 <path
@@ -401,7 +414,7 @@ export default function ServicesPage() {
               onClick={() => goTo(activeIndex + 1)}
               disabled={activeIndex === services.length - 1}
               aria-label="Next service"
-              className="w-9 h-9 rounded-full border border-slate-200 flex items-center justify-center text-slate-400 hover:border-[#c9a84c] hover:text-[#c9a84c] disabled:opacity-25 disabled:cursor-not-allowed transition-all duration-200"
+              className="w-9 h-9 rounded-full border border-slate-200 flex items-center justify-center text-slate-400 hover:border-brand-blue hover:text-brand-blue disabled:opacity-25 disabled:cursor-not-allowed transition-all duration-200"
             >
               <svg width="13" height="13" viewBox="0 0 13 13" fill="none">
                 <path

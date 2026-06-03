@@ -15,7 +15,7 @@ const serviceItems = [
   { label: "Liner Agency", slug: "liner-agency" },
   { label: "Logistics", slug: "logistics" },
   { label: "Vessel Husbandry", slug: "vessel-husbandry" },
-  { label: "Crew Management", slug: "crew-management" },
+  // { label: "Crew Management", slug: "crew-management" },
   { label: "Port Coordination", slug: "port-coordination" },
   { label: "Technical Support", slug: "technical-support" },
 ];

@@ -9,38 +9,6 @@ export const metadata: Metadata = {
 };
 
 
-const milestones = [
-  {
-    year: "2000",
-    title: "Company Founded",
-    desc: "Established as a port agency in our first home port.",
-  },
-  {
-    year: "2005",
-    title: "Regional Expansion",
-    desc: "Expanded operations to cover 10 ports across the region.",
-  },
-  {
-    year: "2010",
-    title: "Logistics Division",
-    desc: "Launched sea freight, air freight, and land transportation services.",
-  },
-  {
-    year: "2015",
-    title: "Global Network",
-    desc: "Partnered with agents worldwide to cover 30+ ports across 3 continents.",
-  },
-  {
-    year: "2020",
-    title: "Digital Transformation",
-    desc: "Introduced real-time tracking and digital documentation systems.",
-  },
-  {
-    year: "2025",
-    title: "50+ Ports Worldwide",
-    desc: "Now operating across 50+ ports in 20+ countries on 4 continents.",
-  },
-];
 
 export default function AboutPage() {
   return (
@@ -111,7 +79,6 @@ export default function AboutPage() {
               <div className="grid grid-cols-3 gap-6">
                 {[
                   { number: "50+", label: "Global Ports" },
-                  { number: "300+", label: "Team Members" },
                   { number: "25+", label: "Years Experience" },
                 ].map((stat) => (
                   <div
@@ -154,73 +121,57 @@ export default function AboutPage() {
 
       {/* Vision section with full-bleed image */}
       <section className="relative py-32 overflow-hidden">
-        <div className="absolute inset-0">
-          <Image
-            src="/assets/sky.jpg"
-            alt="Port at golden hour"
-            fill
-            className="object-cover object-center"
-          />
-          <div className="absolute inset-0 bg-blue-950/85" />
-        </div>
-        <div className="relative z-10 max-w-7xl mx-auto px-6 text-center">
-          <div className="flex items-center justify-center gap-3 mb-4">
-            <div className="divider-gold" />
-            <span className="text-gold-400 text-base font-semibold uppercase tracking-[0.2em]">
-              Our Vision
-            </span>
-            <div className="divider-gold" />
-          </div>
-          <h2 className="text-lg text-blue-200/80 max-w-3xl mx-auto leading-relaxed">
-            To be the customer’s preferred shipping agency offering a firstclass
-            end-to-end quality service at international standards throughout our
-            geographical coverage.
-          </h2>
-        </div>
-      </section>
+  <div className="absolute inset-0">
+    <Image
+      src="/assets/sky.jpg"
+      alt="Port at golden hour"
+      fill
+      className="object-cover object-center"
+    />
+    <div className="absolute inset-0 bg-blue-950/85" />
+  </div>
 
-      {/* Values section */}
-      <section className="py-24 bg-white">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="text-center mb-16">
-            <div className="flex items-center justify-center gap-3 mb-4">
-              <div className="divider-gold" />
-              <span className="text-gold-500 text-sm font-semibold uppercase tracking-[0.2em]">
-                Our Values
-              </span>
-              <div className="divider-gold" />
-            </div>
-            <h2 className="text-3xl sm:text-4xl font-bold text-slate-900 mb-4">
-              What Drives Us
-            </h2>
-            <p className="text-slate-600 max-w-2xl mx-auto leading-relaxed">
-              Every commitment we make is one we stand behind. We act with
-              clarity and ownership at every step, ensuring our clients always
-              know where things stand.
-            </p>
-          </div>
+  <div className="relative z-10 max-w-7xl mx-auto px-6">
+    {/* Vision */}
+    <div className="text-center max-w-4xl mx-auto">
+      <div className="flex items-center justify-center gap-3 mb-4">
+        <div className="divider-gold" />
+        <span className="text-gold-400 text-base font-semibold uppercase tracking-[0.2em]">
+          Vision & Values
+        </span>
+        <div className="divider-gold" />
+      </div>
 
-          {/* <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
-            {values.map((value) => (
-              <div
-                key={value.title}
-                className="group bg-slate-50 rounded-xl p-8 hover:bg-brand-blue transition-all duration-300 border border-slate-100 hover:border-brand-blue"
-              >
-                <div className="w-14 h-14 rounded-xl bg-blue-100 group-hover:bg-white/20 flex items-center justify-center mb-6 transition-colors">
-                  <value.icon className="w-7 h-7 text-brand-blue group-hover:text-white transition-colors" />
-                </div>
-                <h3 className="text-xl font-bold text-slate-900 group-hover:text-white mb-3 transition-colors">
-                  {value.title}
-                </h3>
-                <p className="text-slate-500 group-hover:text-blue-100 text-sm leading-relaxed transition-colors">
-                  {value.desc}
-                </p>
-              </div>
-            ))}
-          </div> */}
-        </div>
-      </section>
+      <h2 className="text-3xl md:text-3xl font-bold text-white mb-6">
+        Guided by Purpose
+      </h2>
 
+      <p className="text-lg text-blue-200/80 max-w-3xl mx-auto leading-relaxed">
+        To be the customer’s preferred shipping agency offering a first-class
+        end-to-end quality service at international standards throughout our
+        geographical coverage.
+      </p>
+    </div>
+
+    {/* Divider */}
+    <div className="w-24 h-px bg-gold-400/40 mx-auto my-16" />
+
+    {/* Values Intro */}
+    <div className="text-center max-w-3xl mx-auto">
+      <h3 className="text-3xl font-bold text-white mb-4">
+        What Drives Us
+      </h3>
+
+      <p className="text-blue-100/80 leading-relaxed">
+        Every commitment we make is one we stand behind. We act with clarity
+        and ownership at every step, ensuring our clients always know where
+        things stand.
+      </p>
+    </div>
+
+
+  </div>
+</section>
       {/* Ports coverage section */}
       <section className="py-24 bg-white">
         <div className="max-w-7xl mx-auto px-6">
@@ -244,43 +195,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Timeline section */}
-      <section className="py-24 bg-slate-100/60">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="text-center mb-16">
-            <div className="flex items-center justify-center gap-3 mb-4">
-              <div className="divider-gold" />
-              <span className="text-gold-500 text-sm font-semibold uppercase tracking-[0.2em]">
-                Our Journey
-              </span>
-              <div className="divider-gold" />
-            </div>
-            <h2 className="text-3xl sm:text-4xl font-bold text-slate-900">
-              Milestones
-            </h2>
-          </div>
-
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {milestones.map((m, i) => (
-              <div
-                key={m.year}
-                className="bg-white rounded-xl p-8 border border-slate-200 hover:shadow-lg transition-all"
-              >
-                <span className="text-3xl font-bold text-brand-blue">
-                  {m.year}
-                </span>
-                <h3 className="text-lg font-bold text-slate-900 mt-3 mb-2">
-                  {m.title}
-                </h3>
-                <p className="text-sm text-slate-500 leading-relaxed">
-                  {m.desc}
-                </p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
+      
      </>
   );
 }

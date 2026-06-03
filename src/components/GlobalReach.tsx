@@ -81,7 +81,7 @@ export default function GlobalReach() {
                 {[
                   { number: "4", label: "Continents Covered" },
                   { number: "20+", label: "Countries Served" },
-                  { number: "300+", label: "Team Members" },
+                 
                   
                 ].map((stat) => (
                   <div key={stat.label}>
