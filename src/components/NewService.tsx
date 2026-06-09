@@ -122,9 +122,7 @@ export default function NewService() {
                 <h2 className="text-[4.5vw] text-white font-bold leading-tight">
                     Our Services
                 </h2>
-                <p className="text-[0.85vw] uppercase tracking-[0.25em] text-[#c9a84c] mb-3">
-                   [ What We Offer ]
-                </p>
+                
             </div>
 
             {/* Main layout */}

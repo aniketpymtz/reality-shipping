@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import Image from "next/image";
-import PortsTable from "@/components/PortsTable";
 
 export const metadata: Metadata = {
   title: "About Us | Reality Shipping & Logistics",
@@ -8,7 +7,14 @@ export const metadata: Metadata = {
     "Learn about Reality Shipping & Logistics — a modern global shipping agency with 25+ years of experience providing first-class logistics solutions worldwide.",
 };
 
-
+const countries = [
+  { code: "AE", name: "UAE", detail: "Jebel Ali · Abu Dhabi" },
+  { code: "IN", name: "India", detail: "Mumbai · Chennai · Mundra" },
+  { code: "US", name: "America", detail: "New York · Los Angeles · Houston" },
+  { code: "SA", name: "Saudi Arabia", detail: "Dammam · Jeddah" },
+  { code: "ID", name: "Indonesia", detail: "Tanjung Priok" },
+  { code: "SG", name: "Singapore", detail: "Port of Singapore" },
+];
 
 export default function AboutPage() {
   return (
@@ -76,24 +82,7 @@ export default function AboutPage() {
                 reliably, we set everything in motion: containers, projects,
                 vehicles, vessels — and ourselves.
               </p>
-              <div className="grid grid-cols-3 gap-6">
-                {[
-                  { number: "50+", label: "Global Ports" },
-                  { number: "25+", label: "Years Experience" },
-                ].map((stat) => (
-                  <div
-                    key={stat.label}
-                    className="text-center p-4 bg-blue-50 rounded-xl"
-                  >
-                    <div className="text-2xl font-bold text-brand-blue">
-                      {stat.number}
-                    </div>
-                    <div className="text-xs text-slate-500 mt-1">
-                      {stat.label}
-                    </div>
-                  </div>
-                ))}
-              </div>
+              
             </div>
 
             {/* Image stack */}
@@ -121,57 +110,55 @@ export default function AboutPage() {
 
       {/* Vision section with full-bleed image */}
       <section className="relative py-32 overflow-hidden">
-  <div className="absolute inset-0">
-    <Image
-      src="/assets/sky.jpg"
-      alt="Port at golden hour"
-      fill
-      className="object-cover object-center"
-    />
-    <div className="absolute inset-0 bg-blue-950/85" />
-  </div>
+        <div className="absolute inset-0">
+          <Image
+            src="/assets/sky.jpg"
+            alt="Port at golden hour"
+            fill
+            className="object-cover object-center"
+          />
+          <div className="absolute inset-0 bg-blue-950/85" />
+        </div>
 
-  <div className="relative z-10 max-w-7xl mx-auto px-6">
-    {/* Vision */}
-    <div className="text-center max-w-4xl mx-auto">
-      <div className="flex items-center justify-center gap-3 mb-4">
-        <div className="divider-gold" />
-        <span className="text-gold-400 text-base font-semibold uppercase tracking-[0.2em]">
-          Vision & Values
-        </span>
-        <div className="divider-gold" />
-      </div>
+        <div className="relative z-10 max-w-7xl mx-auto px-6">
+          {/* Vision */}
+          <div className="text-center max-w-4xl mx-auto">
+            <div className="flex items-center justify-center gap-3 mb-4">
+              <div className="divider-gold" />
+              <span className="text-gold-400 text-base font-semibold uppercase tracking-[0.2em]">
+                Vision & Values
+              </span>
+              <div className="divider-gold" />
+            </div>
 
-      <h2 className="text-3xl md:text-3xl font-bold text-white mb-6">
-        Guided by Purpose
-      </h2>
+            <h2 className="text-3xl md:text-3xl font-bold text-white mb-6">
+              Guided by Purpose
+            </h2>
 
-      <p className="text-lg text-blue-200/80 max-w-3xl mx-auto leading-relaxed">
-        To be the customer’s preferred shipping agency offering a first-class
-        end-to-end quality service at international standards throughout our
-        geographical coverage.
-      </p>
-    </div>
+            <p className="text-lg text-blue-200/80 max-w-3xl mx-auto leading-relaxed">
+              To be the customer’s preferred shipping agency offering a
+              first-class end-to-end quality service at international standards
+              throughout our geographical coverage.
+            </p>
+          </div>
 
-    {/* Divider */}
-    <div className="w-24 h-px bg-gold-400/40 mx-auto my-16" />
+          {/* Divider */}
+          <div className="w-24 h-px bg-gold-400/40 mx-auto my-16" />
 
-    {/* Values Intro */}
-    <div className="text-center max-w-3xl mx-auto">
-      <h3 className="text-3xl font-bold text-white mb-4">
-        What Drives Us
-      </h3>
+          {/* Values Intro */}
+          <div className="text-center max-w-3xl mx-auto">
+            <h3 className="text-3xl font-bold text-white mb-4">
+              What Drives Us
+            </h3>
 
-      <p className="text-blue-100/80 leading-relaxed">
-        Every commitment we make is one we stand behind. We act with clarity
-        and ownership at every step, ensuring our clients always know where
-        things stand.
-      </p>
-    </div>
-
-
-  </div>
-</section>
+            <p className="text-blue-100/80 leading-relaxed">
+              Every commitment we make is one we stand behind. We act with
+              clarity and ownership at every step, ensuring our clients always
+              know where things stand.
+            </p>
+          </div>
+        </div>
+      </section>
       {/* Ports coverage section */}
       <section className="py-24 bg-white">
         <div className="max-w-7xl mx-auto px-6">
@@ -191,11 +178,35 @@ export default function AboutPage() {
               across the world&apos;s most strategic maritime gateways.
             </p>
           </div>
-          <PortsTable />
+          {/* Countries grid */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 max-w-5xl mx-auto">
+            {countries.map((country) => (
+              <div
+                key={country.code}
+                className="flex items-center gap-4 p-5 bg-blue-50 rounded-xl"
+              >
+                <span className="relative block w-12 h-12 shrink-0 overflow-hidden rounded-full ring-2 ring-white shadow-sm">
+                  <Image
+                    src={`https://flagsapi.com/${country.code}/flat/64.png`}
+                    alt={`${country.name} flag`}
+                    fill
+                    sizes="48px"
+                    className="object-cover"
+                  />
+                </span>
+                <div className="min-w-0">
+                  <div className="text-base font-bold text-slate-900">
+                    {country.name}
+                  </div>
+                  <div className="text-xs text-slate-500 mt-0.5 truncate">
+                    {country.detail}
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
-
-      
-     </>
+    </>
   );
 }

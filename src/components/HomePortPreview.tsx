@@ -7,14 +7,10 @@ const portServices = [
     icon: Ship,
     title: "Vessel Husbandry",
     desc: "Complete vessel care including provisions, spare parts, and technical supplies.",
-    image: "https://images.pexels.com/photos/17869435/pexels-photo-17869435.jpeg",
+    image:
+      "https://images.pexels.com/photos/17869435/pexels-photo-17869435.jpeg",
   },
-  {
-    icon: Users,
-    title: "Crew Management",
-    desc: "Crew changes, visa arrangements, accommodation, and medical support.",
-    image: "https://images.pexels.com/photos/28247165/pexels-photo-28247165.jpeg",
-  },
+
   {
     icon: Anchor,
     title: "Port Coordination",
@@ -42,17 +38,18 @@ export default function HomePortPreview() {
             </span>
             <div className="divider-gold" />
           </div>
-          <h2 className="text-3xl sm:text-4xl font-bold text-slate-900 mb-4">
+          <h2 className=" text-3xl sm:text-4xl font-bold text-slate-900 mb-4">
             Comprehensive Port Services
           </h2>
           <p className="text-slate-600 max-w-2xl mx-auto leading-relaxed">
-            Integrated port agency operations available around the clock at all
-            operating ports, ensuring efficient vessel turnaround and crew welfare.
+            Providing 24/7 integrated port agency services across all
+            operational ports, ensuring efficient vessel turnaround, smooth port
+            operations, full regulatory compliance
           </p>
         </div>
 
         {/* Service cards with images */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
           {portServices.map((service) => (
             <div
               key={service.title}
@@ -65,14 +62,18 @@ export default function HomePortPreview() {
                   fill
                   className="object-cover group-hover:scale-105 transition-transform duration-500"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-blue-950/60 to-transparent" />
+                <div className="absolute inset-0 bg-linear-to-t from-blue-950/60 to-transparent" />
                 <div className="absolute bottom-4 left-4 w-10 h-10 rounded-lg bg-white/90 flex items-center justify-center">
                   <service.icon className="w-5 h-5 text-brand-blue" />
                 </div>
               </div>
               <div className="p-5">
-                <h3 className="font-bold text-slate-900 mb-2">{service.title}</h3>
-                <p className="text-sm text-slate-500 leading-relaxed">{service.desc}</p>
+                <h3 className="font-bold text-slate-900 mb-2">
+                  {service.title}
+                </h3>
+                <p className="text-sm text-slate-500 leading-relaxed">
+                  {service.desc}
+                </p>
               </div>
             </div>
           ))}

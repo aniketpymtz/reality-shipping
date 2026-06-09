@@ -202,7 +202,7 @@
 
 "use client";
 
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Clock, Ship, Percent } from "lucide-react";
 import Link from "next/link";
 import CountUp from "react-countup";
 import dynamic from "next/dynamic";
@@ -218,39 +218,49 @@ const panels = [
   {
     end: 3,
     suffix: " hours",
+    Icon: Clock,
     label: "Average Inquiry Response Time",
     videoPos: "0% center",
-    statPlacement: "flex-col justify-end items-start",
-    statPadding: "pb-8 pl-8",
+    placement: "justify-end", // bottom
     clipPath: "polygon(50px 0%, 100% 0%, 100% 100%, 0% 100%, 0% 50px)",
   },
   {
     end: 27,
     suffix: " days",
+    Icon: Ship,
     label: "Average Time between Vessel Departure and FDA",
     videoPos: "50% center",
-    statPlacement: "flex-col justify-center items-center",
-    statPadding: "",
+    placement: "justify-center", // middle
     clipPath: undefined,
   },
   {
     end: 4,
     suffix: "%",
+    Icon: Percent,
     label: "Discrepancy between PDA and FDA amount",
     videoPos: "100% center",
-    statPlacement: "flex-col justify-start items-end",
-    statPadding: "pt-10 pr-8",
+    placement: "justify-start", // top
     clipPath:
       "polygon(0% 0%, 100% 0%, 100% calc(100% - 50px), calc(100% - 50px) 100%, 0% 100%)",
   },
 ];
 
-export default function About() {
-  const { ref, inView } = useInView({
-    triggerOnce: true,
-    threshold: 0.5,
-  });
+// Each counter owns its own observer so it animates reliably the moment
+// its panel scrolls into view — instead of all three sharing one trigger.
+function StatCounter({ end, suffix }: { end: number; suffix: string }) {
+  const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.35 });
+  return (
+    <span ref={ref}>
+      {inView ? (
+        <CountUp end={end} suffix={suffix} duration={2.5} separator="," />
+      ) : (
+        <>0{suffix}</>
+      )}
+    </span>
+  );
+}
 
+export default function About() {
   const textColRef = useRef<HTMLDivElement>(null);
 
   useLayoutEffect(() => {
@@ -277,7 +287,10 @@ export default function About() {
   }, []);
 
   return (
-    <section id="about" ref={ref} className="py-18 bg-white">
+    <section
+      id="about"
+      className="py-18 bg-linear-to-b from-white via-sky-50/40 to-white"
+    >
       <div className="max-w-7xl mx-auto px-6">
         {/* Top Section */}
         <div className="grid lg:grid-cols-[1fr_2fr] gap-12 xl:gap-20 mb-16 lg:mb-20 items-start">
@@ -300,7 +313,9 @@ export default function About() {
               </p>
               <h2 className="text-4xl sm:text-5xl lg:text-[3.25rem] xl:text-[3.75rem] font-bold text-slate-900 leading-none">
                 How can we elevate your{" "}
-                voyage today?
+                <span className="bg-linear-to-r from-brand-blue to-sky-400 bg-clip-text text-transparent">
+                  voyage today?
+                </span>
               </h2>
             </div>
 
@@ -342,10 +357,10 @@ export default function About() {
 
         {/* Bottom Stats */}
         <div className="grid sm:grid-rows-3 md:grid-rows-1 md:grid-cols-3 gap-3 h-120 sm:h-135 lg:h-150">
-          {panels.map((panel) => (
+          {panels.map(({ Icon, ...panel }) => (
             <div
               key={panel.label}
-              className="relative overflow-hidden"
+              className="group relative overflow-hidden"
               style={{ clipPath: panel.clipPath }}
             >
               <Image
@@ -353,28 +368,27 @@ export default function About() {
                 fill
                 alt=""
                 aria-hidden="true"
-                className="absolute inset-0 w-full h-full object-cover"
+                className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                 style={{ objectPosition: panel.videoPos }}
               />
-              <div className="absolute inset-0 bg-blue-900/50" />
+              {/* Blue → sky-blue grade for legibility and brand tone */}
+              <div className="absolute inset-0 bg-linear-to-t from-blue-950/90 via-blue-900/55 to-sky-500/15" />
+              <div className="absolute inset-0 bg-linear-to-br from-sky-400/10 to-transparent" />
 
-              <div className={`absolute inset-0 flex ${panel.statPlacement}`}>
-                <div className={`${panel.statPadding} text-white`}>
-                  <div className="text-5xl sm:text-6xl lg:text-7xl font-semibold leading-none">
-                    {inView && (
-                      <CountUp
-                        end={panel.end}
-                        suffix={panel.suffix}
-                        duration={3}
-                        separator=","
-                      />
-                    )}
-                  </div>
+              <div
+                className={`absolute inset-0 flex flex-col ${panel.placement} p-7 lg:p-8 text-white`}
+              >
+                
 
-                  <div className="text-[14px] sm:text-base text-white mt-1 font-medium">
-                    {panel.label}
-                  </div>
+                <div className="text-5xl sm:text-6xl lg:text-7xl font-bold leading-none tracking-tight">
+                  <StatCounter end={panel.end} suffix={panel.suffix} />
                 </div>
+
+                <div className="mt-4 h-0.5 w-10 rounded-full bg-linear-to-r from-gold-400 to-gold-500" />
+
+                <p className="text-sm sm:text-base text-sky-100/90 mt-3 font-medium leading-snug max-w-[16rem]">
+                  {panel.label}
+                </p>
               </div>
             </div>
           ))}

@@ -18,7 +18,7 @@ export default function Footer() {
                   className="object-contain"
                 />
               </div>
-              <div className="flex flex-col leading-[1]">
+              <div className="flex flex-col leading-none">
                 <span className="text-lg font-bold tracking-tight text-white">
                   Reality
                 </span>
@@ -30,10 +30,7 @@ export default function Footer() {
             <p className="text-white text-sm font-semibold mb-5">
               We commit. We Deliver.
             </p>
-            <p className="text-blue-300/70 text-sm leading-relaxed mb-6">
-              A modern global shipping agency delivering first-class end-to-end
-              logistics solutions across all major ports worldwide.
-            </p>
+
             <div className="flex gap-3">
               <a
                 href="#"
@@ -70,7 +67,6 @@ export default function Footer() {
                 { label: "Liner Agency", slug: "liner-agency" },
                 { label: "Logistics", slug: "logistics" },
                 { label: "Vessel Husbandry", slug: "vessel-husbandry" },
-                { label: "Crew Management", slug: "crew-management" },
                 { label: "Port Coordination", slug: "port-coordination" },
                 { label: "Technical Support", slug: "technical-support" },
               ].map((item) => (
@@ -116,8 +112,8 @@ export default function Footer() {
               Contact
             </h4>
             <div className="space-y-3 text-sm text-blue-300/70">
-              <p>7th floor, Maithili Signet, Near Inorbit mall</p>
-              <p>Sector 30A, Vashi, Navi Mumbai</p>
+              <p>246 Macpherson Road #03-01 Betime Building,</p>
+              <p>Singapore 348578</p>
               <p className="pt-2">info@realityshipping.com</p>
               <p>+91 829 157 3141</p>
             </div>
@@ -129,17 +125,26 @@ export default function Footer() {
       <div className="border-t border-white/10">
         <div className="max-w-7xl mx-auto px-6 py-5 flex flex-col sm:flex-row items-center justify-between gap-3">
           <p className="text-xs text-blue-400/50">
-            &copy; {new Date().getFullYear()} Reality Shipping & Logistics. All rights
-            reserved.
+            &copy; {new Date().getFullYear()} Reality Shipping & Logistics. All
+            rights reserved.
           </p>
           <div className="flex gap-6">
-            <a href="#" className="text-xs text-blue-400/50 hover:text-blue-300 transition-colors">
+            <a
+              href="#"
+              className="text-xs text-blue-400/50 hover:text-blue-300 transition-colors"
+            >
               Privacy Policy
             </a>
-            <a href="#" className="text-xs text-blue-400/50 hover:text-blue-300 transition-colors">
+            <a
+              href="#"
+              className="text-xs text-blue-400/50 hover:text-blue-300 transition-colors"
+            >
               Terms & Conditions
             </a>
-            <a href="#" className="text-xs text-blue-400/50 hover:text-blue-300 transition-colors">
+            <a
+              href="#"
+              className="text-xs text-blue-400/50 hover:text-blue-300 transition-colors"
+            >
               Legal Notice
             </a>
           </div>
