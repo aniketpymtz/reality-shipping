@@ -1,6 +1,9 @@
+"use client";
+
 import Image from "next/image";
 import { ArrowRight, Anchor, Ship, Users, Wrench } from "lucide-react";
 import Link from "next/link";
+import { motion } from "framer-motion";
 
 const portServices = [
   {
@@ -49,10 +52,23 @@ export default function HomePortPreview() {
         </div>
 
         {/* Service cards with images */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+        <motion.div
+          className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.2 }}
+          variants={{
+            hidden: {},
+            visible: { transition: { staggerChildren: 0.20 } },
+          }}
+        >
           {portServices.map((service) => (
-            <div
+            <motion.div
               key={service.title}
+              variants={{
+                hidden: { opacity: 0, y: 40 },
+                visible: { opacity: 1, y: 0, transition: { duration: 1, ease: "easeOut" } },
+              }}
               className="group bg-white rounded-xl overflow-hidden border border-slate-200 hover:shadow-xl hover:shadow-blue-100/50 transition-all duration-300"
             >
               <div className="relative h-48 overflow-hidden">
@@ -75,9 +91,9 @@ export default function HomePortPreview() {
                   {service.desc}
                 </p>
               </div>
-            </div>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
 
         <div className="text-center">
           <Link

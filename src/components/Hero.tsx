@@ -1,5 +1,19 @@
+"use client";
 import { ChevronRight } from "lucide-react";
 import Link from "next/link";
+import { motion } from "framer-motion";
+
+const titleWords = ["Trusted", "Across", "Oceans"];
+
+const wordVariants = {
+  hidden: (_i: number) => ({ opacity: 0, y: 40, filter: "blur(12px)" }),
+  visible: (i: number) => ({
+    opacity: 1,
+    y: 0,
+    filter: "blur(0px)",
+    transition: { duration: 1, ease: [0.22, 1, 0.36, 1], delay: i * 0.12 },
+  }),
+};
 
 export default function Hero() {
   return (
@@ -27,8 +41,19 @@ export default function Hero() {
             </span>
           </div>
 
-          <h1 className="text-4xl sm:text-5xl lg:text-7xl xl:text-7xl font-bold leading-[1.08] tracking-tight mb-6" data-scroll data-scroll-speed="1">
-            <span className="text-white">Trusted Across Oceans</span>
+          <h1 className="text-4xl sm:text-5xl lg:text-7xl xl:text-7xl font-bold leading-[1.08] tracking-tight mb-6 flex flex-wrap gap-x-4" data-scroll data-scroll-speed="0.5">
+            {titleWords.map((word, i) => (
+              <motion.span
+                key={word}
+                className="text-white inline-block"
+                variants={wordVariants}
+                initial="hidden"
+                animate="visible"
+                custom={i}
+              >
+                {word}
+              </motion.span>
+            ))}
           </h1>
 
           {/* <p className="text-lg sm:text-xl text-blue-100/80 max-w-2xl mb-10 leading-relaxed">

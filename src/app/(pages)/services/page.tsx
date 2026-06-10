@@ -218,7 +218,7 @@ export default function ServicesPage() {
   return (
     <div className="bg-white">
       {/* ── Hero ───────────────────────────────────────────── */}
-      <section className="relative h-[75vh] min-h-90 flex items-end overflow-hidden">
+      <section className="relative h-[70vh] min-h-90 flex items-end overflow-hidden">
         <div className="absolute inset-0">
           <Image
             src="/assets/service-hero.jpeg"
@@ -227,16 +227,14 @@ export default function ServicesPage() {
             className="object-cover"
             priority
           />
-          <div className="absolute inset-0 bg-linear-to-b from-blue-950/70 via-blue-900/60 to-blue-950/90" />
+          <div className="absolute inset-0 bg-linear-to-b from-blue-750/40 via-blue-800/30 to-blue-900/30" />
         </div>
         <div className="relative z-10 px-[8%] pb-16 w-full">
-          <p className="text-[#c9a84c] text-xs sm:text-sm uppercase tracking-[0.28em] font-semibold mb-3">
-            What We Offer
-          </p>
+          
           <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-white uppercase leading-tight max-w-2xl">
             Our Services
           </h1>
-          <p className="mt-4 text-white/70 max-w-xl text-sm sm:text-base leading-relaxed">
+          <p className="mt-4 text-white max-w-xl text-sm sm:text-base leading-relaxed">
             From vessel port calls to end-to-end supply chains, Reality Shipping
             &amp; Logistics delivers expert maritime and logistics services
             across the globe.

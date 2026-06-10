@@ -20,7 +20,7 @@ export default function AboutPage() {
   return (
     <>
       {/* Hero banner */}
-      <section className="relative h-[65vh] min-h-100 flex items-center overflow-hidden">
+      <section className="relative h-[70vh] min-h-90 flex items-end overflow-hidden">
         <div className="absolute inset-0">
           <Image
             src="https://images.unsplash.com/photo-1578575437130-527eed3abbec?w=1920&q=80"
@@ -29,19 +29,16 @@ export default function AboutPage() {
             className="object-cover"
             priority
           />
-          <div className="absolute inset-0 bg-linear-to-r from-blue-950/90 to-blue-900/70" />
+          <div className="absolute inset-0 bg-linear-to-b from-blue-750/50 via-blue-800/40 to-blue-900/50" />
         </div>
-        <div className="relative z-10 max-w-7xl mx-auto px-6 w-full">
-          <div className="flex items-center gap-3 mb-4">
-            <div className="divider-gold" />
-            <span className="text-gold-400 text-sm font-semibold uppercase tracking-[0.2em]">
-              About Us
-            </span>
-          </div>
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white leading-tight mb-4">
+        <div className="relative z-10 px-[8%] pb-16 w-full">
+          <p className="text-[#c9a84c] text-xs sm:text-sm uppercase tracking-[0.28em] font-semibold mb-3">
+            About Us
+          </p>
+          <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-white uppercase leading-tight max-w-2xl">
             Who We Are
           </h1>
-          <p className="text-xl text-blue-200/80 max-w-2xl leading-relaxed">
+          <p className="mt-4 text-white/70 max-w-xl text-sm sm:text-base leading-relaxed">
             A modern global shipping agency and logistics company aiming to
             provide customers with first-class end-to-end service.
           </p>
