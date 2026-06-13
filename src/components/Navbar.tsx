@@ -3,11 +3,12 @@
 import { useEffect, useRef, useState } from "react";
 import { ChevronDown, Menu, X } from "lucide-react";
 import Image from "next/image";
+import { usePathname } from "next/navigation";
 
 const navLinks = [
   { label: "Home", href: "/" },
   { label: "About", href: "/about" },
-  { label: "Contact", href: "#contact" },
+  { label: "Contact", href: "/#contact" },
 ];
 
 const serviceItems = [
@@ -28,6 +29,12 @@ export default function Navbar() {
   const [mobileServicesOpen, setMobileServicesOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
   const lastScrollY = useRef(0);
+  const pathname = usePathname();
+
+  // Pages whose hero is light at the very top need dark navbar text before scroll.
+  const lightHero = pathname === "/about";
+  // Use dark text once scrolled (white pill) OR when sitting over a light hero.
+  const darkText = scrolled || lightHero;
 
   useEffect(() => {
     const onClickOutside = (e: MouseEvent) => {
@@ -66,7 +73,7 @@ export default function Navbar() {
     >
       <div className="max-w-7xl mx-auto flex items-center justify-between px-6 py-4">
         {/* Logo */}
-        <a href="#home" className="flex items-center gap-2.5 group">
+        <a href="/" className="flex items-center gap-2.5 group">
           <div className="w-10 h-10 rounded-lg overflow-hidden flex items-center justify-center group-hover:scale-105 transition-transform">
             <Image
               src="/rslsLogo.png"
@@ -77,10 +84,10 @@ export default function Navbar() {
             />
           </div>
           <div className="flex flex-col leading-snug">
-            <span className={`text-lg font-bold tracking-tight -mb-2 transition-colors duration-300 ${scrolled ? "text-brand-blue" : "text-white"}`}>
+            <span className={`text-lg font-bold tracking-tight -mb-2 transition-colors duration-300 ${darkText ? "text-brand-blue" : "text-white"}`}>
               Reality
             </span>
-            <span className={`text-lg font-bold tracking-tight transition-colors duration-300 ${scrolled ? "text-brand-blue" : "text-white"}`}>
+            <span className={`text-lg font-bold tracking-tight transition-colors duration-300 ${darkText ? "text-brand-blue" : "text-white"}`}>
               Shipping & Logistics
             </span>
           </div>
@@ -93,7 +100,7 @@ export default function Navbar() {
               key={link.href}
               href={link.href}
               className={`text-sm font-semibold transition-colors duration-300 relative after:absolute after:-bottom-1 after:left-0 after:w-0 after:h-0.5 hover:after:w-full after:transition-all ${
-                scrolled
+                darkText
                   ? "text-slate-600 hover:text-brand-blue after:bg-brand-blue"
                   : "text-white hover:text-white after:bg-white"
               }`}
@@ -107,7 +114,7 @@ export default function Navbar() {
             <button
               onClick={() => setServicesOpen((v) => !v)}
               className={`flex items-center gap-1 text-sm font-semibold transition-colors duration-300 ${
-                scrolled ? "text-slate-600 hover:text-brand-blue" : "text-white hover:text-white"
+                darkText ? "text-slate-600 hover:text-brand-blue" : "text-white hover:text-white"
               }`}
             >
               Services
@@ -141,9 +148,9 @@ export default function Navbar() {
           </div>
 
           <a
-            href="#contact"
+            href="/#contact"
             className={`ml-2 px-5 py-2.5 text-sm font-semibold rounded-md transition-all duration-300 ${
-              scrolled
+              darkText
                 ? "bg-brand-blue text-white hover:bg-brand-blue/90"
                 : "bg-white/15 text-white border border-white/25 hover:bg-white/25 backdrop-blur-sm"
             }`}
@@ -154,7 +161,7 @@ export default function Navbar() {
 
         {/* Mobile toggle */}
         <button
-          className={`lg:hidden p-2 transition-colors duration-300 ${scrolled ? "text-slate-700" : "text-white"}`}
+          className={`lg:hidden p-2 transition-colors duration-300 ${darkText ? "text-slate-700" : "text-white"}`}
           onClick={() => setOpen(!open)}
           aria-label="Toggle menu"
         >
@@ -212,7 +219,7 @@ export default function Navbar() {
             )}
 
             <a
-              href="#contact"
+              href="/#contact"
               onClick={() => setOpen(false)}
               className="mt-3 py-3 bg-brand-blue text-white text-sm font-semibold rounded-lg text-center hover:bg-brand-blue/90 transition-colors"
             >

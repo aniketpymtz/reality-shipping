@@ -5,51 +5,63 @@ import { motion } from "framer-motion";
 
 const titleWords = ["Trusted", "Across", "Oceans"];
 
+const EASE: [number, number, number, number] = [0.22, 1, 0.36, 1];
+
 const wordVariants = {
-  hidden: (_i: number) => ({ opacity: 0, y: 40, filter: "blur(12px)" }),
+  hidden: { opacity: 0, y: 40, filter: "blur(12px)" },
   visible: (i: number) => ({
     opacity: 1,
     y: 0,
     filter: "blur(0px)",
-    transition: {
-      duration: 1,
-      ease: [0.22, 1, 0.36, 1] as [number, number, number, number],
-      delay: i * 0.12,
-    },
+    transition: { duration: 1, ease: EASE, delay: i * 0.12 },
   }),
 };
 
 export default function Hero() {
   return (
-    <section id="home" className="relative min-h-screen flex items-center">
+    <section
+      id="home"
+      className="relative min-h-screen flex items-center overflow-hidden"
+    >
       {/* Full-bleed background video */}
       <div className="absolute inset-0">
         <video
           autoPlay
           muted
           loop
+          playsInline
+          preload="auto"
+          poster="/assets/ship-1.jpg"
           className="absolute inset-0 w-full h-full object-cover"
         >
-          <source src="./assets/hero-vid-2.mp4" />
+          <source src="/assets/hero-vid-2.mp4" type="video/mp4" />
+          Your browser does not support the video tag.
         </video>
-        <div className="absolute inset-0 bg-blue-200/20" />
-        {/* <div className="absolute inset-0 bg-linear-to-t from-blue-900/40 to-transparent" /> */}
+        {/* Light, directional scrim — keeps the footage visible. */}
+        <div className="absolute inset-0 bg-linear-to-r from-slate-950/55 via-slate-950/10 to-transparent" />
+        {/* Subtle top scrim so the white navbar stays legible. */}
+        <div className="absolute inset-x-0 top-0 h-32 bg-linear-to-b from-slate-950/40 to-transparent" />
       </div>
 
-      <div className="relative z-10 max-w-7xl mx-auto px-6 pt-32 pb-24 w-full">
+      <div className="relative z-10 max-w-7xl mx-auto px-6 w-full">
         <div className="max-w-3xl">
-          <div className="flex items-center gap-3 mb-4" data-scroll data-scroll-speed="1">
+          <motion.div
+            className="flex items-center gap-3 mb-5"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, ease: EASE }}
+          >
             <div className="divider-gold" />
-            <span className="text-white text-sm font-semibold uppercase tracking-[0.2em]">
+            <span className="text-white/80 text-sm font-semibold uppercase tracking-[0.24em]">
               Global Shipping Agency Network
             </span>
-          </div>
+          </motion.div>
 
-          <h1 className="text-4xl sm:text-5xl lg:text-7xl xl:text-7xl font-bold leading-[1.08] tracking-tight mb-6 flex flex-wrap gap-x-4" data-scroll data-scroll-speed="0.5">
+          <h1 className="text-[clamp(2.75rem,7vw,5.5rem)] font-bold leading-[1.04] tracking-tight mb-8 flex flex-wrap gap-x-5">
             {titleWords.map((word, i) => (
               <motion.span
                 key={word}
-                className="text-white inline-block"
+                className="text-white inline-block drop-shadow-sm"
                 variants={wordVariants}
                 initial="hidden"
                 animate="visible"
@@ -60,58 +72,49 @@ export default function Hero() {
             ))}
           </h1>
 
-          {/* <p className="text-lg sm:text-xl text-blue-100/80 max-w-2xl mb-10 leading-relaxed">
-            A modern global shipping agency providing end-to-end service across
-            all ports where we operate — sea freight, air freight, and land
-            transportation with innovative solutions.
-          </p> */}
-
-          <div className="flex flex-col sm:flex-row gap-4 text-sm" data-scroll data-scroll-speed="0.6">
+          <motion.div
+            className="flex flex-col sm:flex-row gap-4 text-sm"
+            initial={{ opacity: 0, y: 24 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.9, delay: 0.55, ease: EASE }}
+          >
             <Link
               href="/services"
-              className="group inline-flex items-center justify-center gap-2 px-8 py-2 bg-white text-blue-900 font-semibold rounded-lg hover:bg-blue-50 transition-all shadow-xl shadow-black/10"
+              className="group inline-flex items-center justify-center gap-2 px-8 py-3.5 bg-white text-slate-900 font-semibold rounded-lg hover:bg-slate-100 transition-all shadow-lg shadow-black/15"
             >
               Our Services
               <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
             </Link>
             <a
               href="#contact"
-              className="inline-flex items-center justify-center gap-2 px-8 py-2 border border-white/25 text-white font-semibold rounded-lg hover:bg-white/10 transition-all backdrop-blur-sm"
+              className="inline-flex items-center justify-center gap-2 px-8 py-3.5 border border-white/30 text-white font-semibold rounded-lg hover:bg-white/10 transition-all backdrop-blur-sm"
             >
               Get a Quote
             </a>
-          </div>
+          </motion.div>
         </div>
-
-        {/* Floating stats bar */}
-        {/* <div className="mt-20 grid grid-cols-2 md:grid-cols-4 gap-6 bg-white/10 backdrop-blur-md rounded-2xl p-8 border border-white/10" data-scroll data-scroll-speed="0.3">
-          {[
-            { number: "50+", label: "Global Ports" },
-            { number: "25+", label: "Years Experience" },
-            { number: "5,000+", label: "Shipments Yearly" },
-            { number: "24/7", label: "Operations Support" },
-          ].map((stat) => (
-            <div key={stat.label} className="text-center">
-              <div className="text-3xl sm:text-4xl font-bold text-white mb-1">
-                {stat.number}
-              </div>
-              <div className="text-sm text-blue-300/70 font-medium">
-                {stat.label}
-              </div>
-            </div>
-          ))}
-        </div> */}
       </div>
 
-      {/* Bottom wave */}
-      {/* <div className="absolute bottom-0 left-0 right-0">
-        <svg viewBox="0 0 1440 80" fill="none" className="w-full">
-          <path
-            d="M0,40 C360,80 720,0 1440,40 L1440,80 L0,80 Z"
-            fill="white"
+      {/* Scroll indicator */}
+      <motion.a
+        href="#about"
+        aria-label="Scroll to explore"
+        className="absolute left-1/2 -translate-x-1/2 bottom-7 z-10 hidden sm:flex flex-col items-center gap-2 text-white/60 hover:text-white transition-colors"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.8, delay: 1 }}
+      >
+        <span className="text-[10px] font-semibold uppercase tracking-[0.28em]">
+          Scroll
+        </span>
+        <span className="relative flex h-9 w-5 justify-center rounded-full border border-white/30">
+          <motion.span
+            className="mt-1.5 h-1.5 w-1 rounded-full bg-white/80"
+            animate={{ y: [0, 10, 0], opacity: [1, 0.3, 1] }}
+            transition={{ duration: 1.8, repeat: Infinity, ease: "easeInOut" }}
           />
-        </svg>
-      </div> */}
+        </span>
+      </motion.a>
     </section>
   );
 }

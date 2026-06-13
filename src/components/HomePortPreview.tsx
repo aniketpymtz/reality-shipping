@@ -1,19 +1,19 @@
 "use client";
 
 import Image from "next/image";
-import { ArrowRight, Anchor, Ship, Users, Wrench } from "lucide-react";
+import { ArrowRight, Anchor, Ship, Wrench } from "lucide-react";
 import Link from "next/link";
 import { motion } from "framer-motion";
+
+const EASE: [number, number, number, number] = [0.22, 1, 0.36, 1];
 
 const portServices = [
   {
     icon: Ship,
     title: "Vessel Husbandry",
     desc: "Complete vessel care including provisions, spare parts, and technical supplies.",
-    image:
-      "https://images.pexels.com/photos/17869435/pexels-photo-17869435.jpeg",
+    image: "/assets/ship-3.jpg",
   },
-
   {
     icon: Anchor,
     title: "Port Coordination",
@@ -28,82 +28,86 @@ const portServices = [
   },
 ];
 
+const reveal = {
+  hidden: { opacity: 0, y: 28 },
+  visible: (i: number) => ({
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.7, delay: i * 0.1, ease: EASE },
+  }),
+};
+
 export default function HomePortPreview() {
   return (
-    <section className="py-24 bg-white">
+    <section className="py-16 lg:py-20 bg-white">
       <div className="max-w-7xl mx-auto px-6">
-        {/* Section header */}
-        <div className="text-center mb-16">
-          <div className="flex items-center justify-center gap-3 mb-4">
-            <div className="divider-gold" />
-            <span className="text-gold-500 text-sm font-semibold uppercase tracking-[0.2em]">
-              Port Agency
-            </span>
-            <div className="divider-gold" />
-          </div>
-          <h2 className=" text-3xl sm:text-4xl font-bold text-slate-900 mb-4">
-            Comprehensive Port Services
-          </h2>
-          <p className="text-slate-600 max-w-2xl mx-auto leading-relaxed">
-            Providing 24/7 integrated port agency services across all
-            operational ports, ensuring efficient vessel turnaround, smooth port
-            operations, full regulatory compliance
-          </p>
-        </div>
-
-        {/* Service cards with images */}
+        {/* Compact horizontal header */}
         <motion.div
-          className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12"
+          className="flex flex-col md:flex-row md:items-end md:justify-between gap-5 mb-10"
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.5 }}
+          transition={{ duration: 0.7, ease: EASE }}
+        >
+          <div className="max-w-xl">
+            <div className="flex items-center gap-3 mb-3">
+              <div className="divider-gold" />
+              <span className="text-gold-500 text-sm font-semibold uppercase tracking-[0.2em]">
+                Port Agency
+              </span>
+            </div>
+            <h2 className="text-[clamp(1.75rem,3.5vw,2.5rem)] font-bold text-slate-900 leading-tight tracking-tight">
+              Comprehensive Port Services
+            </h2>
+          </div>
+          <Link
+            href="/services"
+            className="group inline-flex items-center gap-2 text-sm font-semibold text-brand-blue shrink-0"
+          >
+            View all port services
+            <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+          </Link>
+        </motion.div>
+
+        {/* Image-forward overlay cards */}
+        <motion.div
+          className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4"
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: 0.2 }}
-          variants={{
-            hidden: {},
-            visible: { transition: { staggerChildren: 0.20 } },
-          }}
         >
-          {portServices.map((service) => (
-            <motion.div
+          {portServices.map((service, i) => (
+            <motion.article
               key={service.title}
-              variants={{
-                hidden: { opacity: 0, y: 40 },
-                visible: { opacity: 1, y: 0, transition: { duration: 1, ease: "easeOut" } },
-              }}
-              className="group bg-white rounded-xl overflow-hidden border border-slate-200 hover:shadow-xl hover:shadow-blue-100/50 transition-all duration-300"
+              variants={reveal}
+              custom={i}
+              className="group relative aspect-4/5 overflow-hidden rounded-2xl ring-1 ring-slate-200/70"
             >
-              <div className="relative h-48 overflow-hidden">
-                <Image
-                  src={service.image}
-                  alt={service.title}
-                  fill
-                  className="object-cover group-hover:scale-105 transition-transform duration-500"
-                />
-                <div className="absolute inset-0 bg-linear-to-t from-blue-950/60 to-transparent" />
-                <div className="absolute bottom-4 left-4 w-10 h-10 rounded-lg bg-white/90 flex items-center justify-center">
-                  <service.icon className="w-5 h-5 text-brand-blue" />
-                </div>
-              </div>
-              <div className="p-5">
-                <h3 className="font-bold text-slate-900 mb-2">
+              <Image
+                src={service.image}
+                alt={service.title}
+                fill
+                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+              />
+              {/* Neutral grade for legibility */}
+              <div className="absolute inset-0 bg-linear-to-t from-slate-950/85 via-slate-950/25 to-transparent" />
+
+              <div className="absolute inset-0 flex flex-col justify-end p-6">
+                <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-white/15 border border-white/20 backdrop-blur-sm mb-4">
+                  <service.icon className="w-5 h-5 text-white" />
+                </span>
+                <h3 className="text-xl font-bold text-white tracking-tight">
                   {service.title}
                 </h3>
-                <p className="text-sm text-slate-500 leading-relaxed">
+                <p className="mt-2 text-sm text-white/75 leading-relaxed">
                   {service.desc}
                 </p>
+                <div className="mt-4 h-0.5 w-8 rounded-full bg-linear-to-r from-gold-400 to-gold-500 transition-all duration-500 group-hover:w-14" />
               </div>
-            </motion.div>
+            </motion.article>
           ))}
         </motion.div>
-
-        <div className="text-center">
-          <Link
-            href="/services"
-            className="group inline-flex items-center gap-2 px-8 py-4 bg-brand-blue text-white font-semibold rounded-lg hover:bg-brand-blue/90 transition-colors shadow-lg shadow-brand-blue/20"
-          >
-            View All Port Services
-            <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-          </Link>
-        </div>
       </div>
     </section>
   );

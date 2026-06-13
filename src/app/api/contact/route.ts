@@ -1,15 +1,15 @@
 import { NextRequest, NextResponse } from "next/server";
 import nodemailer from "nodemailer";
 
-const ADMIN_EMAIL = "aniketfcb10@gmail.com";
+const ADMIN_EMAIL = process.env.CONTACT_ADMIN_EMAIL ?? "info@realityshipping.com";
 
 const SERVICE_LABELS: Record<string, string> = {
-    sea: "Sea Freight",
-    air: "Air Freight",
-    land: "Land Transportation",
-    port: "Port Agency",
-    warehouse: "Warehousing",
-    customs: "Customs Brokerage",
+    "port-agency": "Port Agency",
+    "liner-agency": "Liner Agency",
+    logistics: "Logistics",
+    "vessel-husbandry": "Vessel Husbandry",
+    "port-coordination": "Port Coordination",
+    "technical-support": "Technical Support",
     other: "Other",
 };
 
@@ -25,7 +25,13 @@ export async function POST(req: NextRequest) {
         return NextResponse.json({ error: "Invalid request body." }, { status: 400 });
     }
 
-    const { name, email, company, service, message } = body as Record<string, string>;
+    const { name, email, company, service, message, website } = body as Record<string, string>;
+
+    // Honeypot: real users never fill this hidden field. Pretend success so
+    // bots don't learn they were filtered.
+    if (website?.trim()) {
+        return NextResponse.json({ success: true });
+    }
 
     // Server-side validation
     if (!name?.trim() || !email?.trim() || !message?.trim()) {

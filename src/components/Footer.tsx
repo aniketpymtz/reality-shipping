@@ -8,7 +8,7 @@ export default function Footer() {
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-10">
           {/* Brand */}
           <div className="lg:col-span-1">
-            <a href="#home" className="flex items-center gap-2.5 mb-3">
+            <a href="/" className="flex items-center gap-2.5 mb-3">
               <div className="w-10 h-10 rounded-lg overflow-hidden flex items-center justify-center">
                 <Image
                   src="/rslsLogo.png"
@@ -28,16 +28,24 @@ export default function Footer() {
               </div>
             </a>
             <p className="text-white text-sm font-semibold mb-5">
-              We commit. We Deliver.
+              We Commit. We Deliver.
             </p>
 
             <div className="flex gap-3">
               <a
-                href="#"
+                href="https://www.linkedin.com/company/reality-shipping-logistics"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="w-9 h-9 rounded-lg bg-white/5 hover:bg-white/10 flex items-center justify-center transition-colors"
                 aria-label="LinkedIn"
               >
-                <Mail className="w-4 h-4 text-blue-300" />
+                <svg
+                  viewBox="0 0 24 24"
+                  className="w-4 h-4 fill-blue-300"
+                  aria-hidden="true"
+                >
+                  <path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z" />
+                </svg>
               </a>
               <a
                 href="mailto:info@realityshipping.com"
@@ -47,7 +55,7 @@ export default function Footer() {
                 <Mail className="w-4 h-4 text-blue-300" />
               </a>
               <a
-                href="tel:+91 8291573141"
+                href="tel:+918291573141"
                 className="w-9 h-9 rounded-lg bg-white/5 hover:bg-white/10 flex items-center justify-center transition-colors"
                 aria-label="Phone"
               >
@@ -72,7 +80,7 @@ export default function Footer() {
               ].map((item) => (
                 <li key={item.slug}>
                   <a
-                    href="/services"
+                    href={`/services#${item.slug}`}
                     className="text-sm text-blue-300/70 hover:text-white transition-colors"
                   >
                     {item.label}
@@ -89,10 +97,10 @@ export default function Footer() {
             </h4>
             <ul className="space-y-3">
               {[
-                { label: "About Us", href: "#about" },
-                { label: "Global Network", href: "#global" },
-                { label: "Why Choose Us", href: "#why-us" },
-                { label: "Contact", href: "#contact" },
+                { label: "About Us", href: "/about" },
+                { label: "Global Network", href: "/#global" },
+                { label: "Why Choose Us", href: "/#why-us" },
+                { label: "Contact", href: "/#contact" },
               ].map((item) => (
                 <li key={item.label}>
                   <a
@@ -128,26 +136,6 @@ export default function Footer() {
             &copy; {new Date().getFullYear()} Reality Shipping & Logistics. All
             rights reserved.
           </p>
-          <div className="flex gap-6">
-            <a
-              href="#"
-              className="text-xs text-blue-400/50 hover:text-blue-300 transition-colors"
-            >
-              Privacy Policy
-            </a>
-            <a
-              href="#"
-              className="text-xs text-blue-400/50 hover:text-blue-300 transition-colors"
-            >
-              Terms & Conditions
-            </a>
-            <a
-              href="#"
-              className="text-xs text-blue-400/50 hover:text-blue-300 transition-colors"
-            >
-              Legal Notice
-            </a>
-          </div>
         </div>
       </div>
     </footer>

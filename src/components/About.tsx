@@ -219,25 +219,25 @@ const panels = [
     end: 3,
     suffix: " hours",
     Icon: Clock,
-    label: "Average Inquiry Response Time",
+    label: "Average response time to inquiries — 24/7, every port",
     videoPos: "0% center",
     placement: "justify-end", // bottom
     clipPath: "polygon(50px 0%, 100% 0%, 100% 100%, 0% 100%, 0% 50px)",
   },
   {
-    end: 27,
-    suffix: " days",
-    Icon: Ship,
-    label: "Average Time between Vessel Departure and FDA",
+    end: 4,
+    suffix: "%",
+    Icon: Percent,
+    label: "Average variance between PDA and final FDA",
     videoPos: "50% center",
     placement: "justify-center", // middle
     clipPath: undefined,
   },
   {
-    end: 4,
-    suffix: "%",
-    Icon: Percent,
-    label: "Discrepancy between PDA and FDA amount",
+    end: 27,
+    suffix: " days",
+    Icon: Ship,
+    label: "Fully documented FDA delivered after vessel departure",
     videoPos: "100% center",
     placement: "justify-start", // top
     clipPath:

@@ -21,6 +21,7 @@ const INITIAL_FIELDS = {
   company: "",
   service: "",
   message: "",
+  website: "", // honeypot — hidden from real users
 };
 
 export default function Contact() {
@@ -213,16 +214,28 @@ export default function Contact() {
                     className="w-full px-4 py-3 rounded-lg border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-brand-blue focus:border-transparent transition-all text-slate-600 disabled:opacity-60"
                   >
                     <option value="">Select a service</option>
-                    <option value="sea">Sea Freight</option>
-                    <option value="air">Air Freight</option>
-                    <option value="land">Land Transportation</option>
-                    <option value="port">Port Agency</option>
-                    <option value="warehouse">Warehousing</option>
-                    <option value="customs">Customs Brokerage</option>
+                    <option value="port-agency">Port Agency</option>
+                    <option value="liner-agency">Liner Agency</option>
+                    <option value="logistics">Logistics</option>
+                    <option value="vessel-husbandry">Vessel Husbandry</option>
+                    <option value="port-coordination">Port Coordination</option>
+                    <option value="technical-support">Technical Support</option>
                     <option value="other">Other</option>
                   </select>
                 </div>
               </div>
+              {/* Honeypot — invisible to users, bots auto-fill it */}
+              <input
+                type="text"
+                name="website"
+                value={fields.website}
+                onChange={handleChange}
+                tabIndex={-1}
+                autoComplete="off"
+                aria-hidden="true"
+                className="sr-only"
+              />
+
               <div className="mb-5">
                 <label className="block text-sm font-medium text-slate-700 mb-2">
                   Message <span className="text-red-500">*</span>
@@ -244,7 +257,12 @@ export default function Contact() {
                 <div className="flex items-center gap-3 mb-5 px-4 py-3 rounded-lg bg-green-50 border border-green-200 text-green-800">
                   <CheckCircle2 className="w-5 h-5 shrink-0 text-green-600" />
                   <p className="text-sm font-medium">
-                    Message sent! We&apos;ll get back to you shortly.
+                    Message sent! Our operations team responds within 3 hours.
+                    For urgent vessel matters, call{" "}
+                    <a href="tel:+918291573141" className="underline font-semibold">
+                      +91 829 157 3141
+                    </a>{" "}
+                    — available 24/7.
                   </p>
                 </div>
               )}

@@ -1,8 +1,12 @@
 "use client";
 
-import React, { useState, useCallback, useEffect, useRef } from "react";import Image from "next/image";
+import React, { useState, useEffect, useRef, useCallback } from "react";
+import Image from "next/image";
 import Link from "next/link";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
+import { Download, Check, ArrowRight, ArrowUpRight } from "lucide-react";
+
+const EASE: [number, number, number, number] = [0.22, 1, 0.36, 1];
 
 const services = [
   {
@@ -86,26 +90,6 @@ const services = [
     ],
     src: "/assets/ship-1.jpg",
   },
-  // {
-  //   title: "Crew Management",
-  //   slug: "crew-management",
-  //   subtitle: "Professional crew solutions",
-  //   description:
-  //     "Professional crew management solutions focused on safe operations, efficient manpower planning, crew welfare, and full compliance with international maritime standards. Our team ensures reliable staffing and seamless crew handling to support uninterrupted vessel operations.",
-  //   features: [
-  //     "Crew Recruitment & Placement",
-  //     "Crew Change Coordination",
-  //     "Travel & Flight Arrangements",
-  //     "Visa & Immigration Processing",
-  //     "Medical Checkups & Certification",
-  //     "STCW & Compliance Documentation",
-  //     "Crew Welfare Support",
-  //     "Sign On / Sign Off Formalities",
-  //     "Hotel & Transit Arrangements",
-  //     "24/7 Crew Assistance",
-  //   ],
-  //   src: "/assets/crew-1.jpg",
-  // },
   {
     title: "Port Coordination",
     slug: "port-coordination",
@@ -139,81 +123,31 @@ const services = [
   },
 ];
 
-// ── Slide variants ─────────────────────────────────────────────────────────
-const slideVariants = {
-  enter: (dir: number) => ({
-    y: dir > 0 ? "100%" : "-100%",
-    opacity: 0,
-  }),
-  center: { y: 0, opacity: 1 },
-  exit: (dir: number) => ({
-    y: dir > 0 ? "-100%" : "100%",
-    opacity: 0,
-  }),
-};
-
 export default function ServicesPage() {
-  const [activeIndex, setActiveIndex] = useState(0);
-  const [direction, setDirection] = useState(1);
-  const sectionRef = useRef<HTMLDivElement>(null);
-  const prevIndexRef = useRef(0);
+  const [active, setActive] = useState(0);
+  const sectionRefs = useRef<(HTMLElement | null)[]>([]);
 
-  // Scroll to the correct offset for slide i
-  const goTo = useCallback(
-    (i: number) => {
-      if (i < 0 || i >= services.length) return;
-      if (!sectionRef.current) return;
-      const sectionTop =
-        sectionRef.current.getBoundingClientRect().top + window.scrollY;
-      window.scrollTo({ top: sectionTop + i * window.innerHeight, behavior: "smooth" });
-    },
-    []
-  );
-
-  // On mount, scroll to the service matching the URL hash
+  // Robust scrollspy: a thin band near the top third of the viewport marks the
+  // active section. No scroll math, no scroll-jacking — plays nicely with Lenis.
   useEffect(() => {
-    const hash = window.location.hash.slice(1);
-    if (!hash) return;
-    const idx = services.findIndex((s) => s.slug === hash);
-    if (idx < 0) return;
-    // Delay lets the page fully render before calculating sectionTop
-    const timer = setTimeout(() => goTo(idx), 400);
-    return () => clearTimeout(timer);
-  }, [goTo]);
-
-  // Derive activeIndex from native scroll position
-  useEffect(() => {
-    const onScroll = () => {
-      if (!sectionRef.current) return;
-      const sectionTop =
-        sectionRef.current.getBoundingClientRect().top + window.scrollY;
-      const scrolled = window.scrollY - sectionTop;
-      const idx = Math.min(
-        services.length - 1,
-        Math.max(0, Math.round(scrolled / window.innerHeight))
-      );
-      if (idx !== prevIndexRef.current) {
-        setDirection(idx > prevIndexRef.current ? 1 : -1);
-        prevIndexRef.current = idx;
-        setActiveIndex(idx);
-      }
-    };
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const idx = Number(entry.target.getAttribute("data-index"));
+            if (!Number.isNaN(idx)) setActive(idx);
+          }
+        });
+      },
+      { rootMargin: "-40% 0px -55% 0px", threshold: 0 }
+    );
+    sectionRefs.current.forEach((el) => el && observer.observe(el));
+    return () => observer.disconnect();
   }, []);
 
-  // Keyboard navigation
-  useEffect(() => {
-    const onKey = (e: KeyboardEvent) => {
-      if (e.key === "ArrowDown") goTo(activeIndex + 1);
-      else if (e.key === "ArrowUp") goTo(activeIndex - 1);
-    };
-    window.addEventListener("keydown", onKey);
-    return () => window.removeEventListener("keydown", onKey);
-  }, [activeIndex, goTo]);
-
-  const service = services[activeIndex];
-  const isEven = activeIndex % 2 === 0;
+  const goTo = useCallback((i: number) => {
+    sectionRefs.current[i]?.scrollIntoView({ behavior: "smooth", block: "start" });
+  }, []);
 
   return (
     <div className="bg-white">
@@ -223,231 +157,207 @@ export default function ServicesPage() {
           <Image
             src="/assets/service-hero.jpeg"
             fill
-            alt="Services hero"
+            alt="Reality Shipping operations at port"
             className="object-cover"
             priority
           />
-          <div className="absolute inset-0 bg-linear-to-b from-blue-750/40 via-blue-800/30 to-blue-900/30" />
+          {/* Neutral graphite grade — legible, not a loud blue wash */}
+          <div className="absolute inset-0 bg-linear-to-t from-slate-950/80 via-slate-950/35 to-slate-900/15" />
         </div>
-        <div className="relative z-10 px-[8%] pb-16 w-full">
-          
-          <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-white uppercase leading-tight max-w-2xl">
+        <div className="relative z-10 max-w-7xl mx-auto px-6 pb-16 w-full">
+          <motion.div
+            className="flex items-center gap-3 mb-5"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, ease: EASE }}
+          >
+            <div className="divider-gold" />
+            <span className="text-white/75 text-sm font-semibold uppercase tracking-[0.24em]">
+              What We Do
+            </span>
+          </motion.div>
+          <motion.h1
+            className="text-[clamp(2.5rem,6vw,4.5rem)] font-bold text-white leading-[1.05] tracking-tight max-w-2xl"
+            initial={{ opacity: 0, y: 28 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.1, ease: EASE }}
+          >
             Our Services
-          </h1>
-          <p className="mt-4 text-white max-w-xl text-sm sm:text-base leading-relaxed">
-            From vessel port calls to end-to-end supply chains, Reality Shipping
-            &amp; Logistics delivers expert maritime and logistics services
-            across the globe.
-          </p>
-          <div className="mt-8 flex flex-wrap items-center gap-4">
+          </motion.h1>
+          <motion.div
+            className="mt-8"
+            initial={{ opacity: 0, y: 24 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.4, ease: EASE }}
+          >
             <a
               href="/assets/brochure.pdf"
               download
-              className="inline-flex items-center gap-2.5 px-6 py-3 rounded-full bg-white/10 border border-white/30 text-white text-sm font-bold uppercase tracking-widest hover:bg-[#c9a84c] hover:border-[#c9a84c] transition-all duration-200 backdrop-blur-sm"
+              className="inline-flex items-center gap-2.5 px-6 py-3 rounded-lg bg-white text-slate-900 text-sm font-semibold hover:bg-slate-100 transition-colors shadow-lg shadow-black/15"
             >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="w-4 h-4"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                strokeWidth={2}
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M4 16v2a2 2 0 002 2h12a2 2 0 002-2v-2M7 10l5 5 5-5M12 15V3"
-                />
-              </svg>
+              <Download className="w-4 h-4" />
               Download Brochure
             </a>
-          </div>
+          </motion.div>
         </div>
       </section>
 
-      {/* ── Services Carousel (sticky scroll) ─────────────── */}
-      {/*  Outer wrapper is tall enough for all slides.        */}
-      {/*  Inner div is sticky so it stays pinned in viewport. */}
-      <div
-        ref={sectionRef}
-        style={{ height: `${services.length * 100}vh` }}
-        className="relative"
+      {/* ── Sticky scrollspy rail (desktop) ──────────────────── */}
+      <nav
+        aria-label="Service navigation"
+        className="hidden xl:flex fixed left-6 top-1/2 -translate-y-1/2 z-30 flex-col gap-3.5"
       >
-        <div className="sticky top-0 h-screen overflow-hidden select-none">
-          {/* ── Left dot navigation ──────────────────────────── */}
-          <nav
-            aria-label="Service navigation"
-            className="absolute left-5 top-1/2 -translate-y-1/2 z-30 flex flex-col gap-3.5"
+        {services.map((s, i) => (
+          <button
+            key={s.slug}
+            onClick={() => goTo(i)}
+            aria-label={`Go to ${s.title}`}
+            aria-current={i === active ? "true" : undefined}
+            className="group relative flex items-center"
           >
-            {services.map((s, i) => (
-              <button
-                key={s.slug}
-                onClick={() => goTo(i)}
-                aria-label={`Go to ${s.title}`}
-                className="group relative flex items-center"
-              >
-                {/* dot */}
-                <span
-                  className={`block rounded-full transition-all duration-300 ${
-                    i === activeIndex
-                      ? "w-3 h-3 bg-brand-blue shadow-[0_0_0_3px_rgba(201,168,76,0.25)]"
-                      : "w-2 h-2 bg-slate-300 group-hover:bg-slate-500"
-                  }`}
-                />
-                {/* tooltip */}
-                <span className="absolute left-5 whitespace-nowrap text-[10px] font-bold uppercase tracking-widest text-slate-700 bg-white/95 border border-slate-100 shadow-md px-2.5 py-1.25 rounded pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-150">
-                  {s.title}
-                </span>
-              </button>
-            ))}
-          </nav>
+            <span
+              className={`block rounded-full transition-all duration-300 ${
+                i === active
+                  ? "w-3 h-3 bg-brand-blue ring-3 ring-brand-blue/15"
+                  : "w-2 h-2 bg-slate-300 group-hover:bg-slate-500"
+              }`}
+            />
+            <span className="absolute left-6 whitespace-nowrap text-[10px] font-bold uppercase tracking-widest text-slate-700 bg-white border border-slate-100 shadow-sm px-2.5 py-1.5 rounded pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-150">
+              {s.title}
+            </span>
+          </button>
+        ))}
+      </nav>
 
-          {/* ── Slides ───────────────────────────────────────── */}
-          <AnimatePresence custom={direction} initial={false}>
-            <motion.div
-              key={activeIndex}
-              custom={direction}
-              variants={slideVariants}
-              initial="enter"
-              animate="center"
-              exit="exit"
-              transition={{ duration: 0.6, ease: [0.43, 0.13, 0.23, 0.96] }}
-              onAnimationComplete={() => {}}
-              className="absolute inset-0 overflow-y-auto"
-              style={{ background: isEven ? "#ffffff" : "#f8fafc" }}
-            >
-              <div className="min-h-full flex items-center px-[8%] py-14">
-                <div className="w-full">
-                  {/* index label */}
-                  <p
-                    className="text-[0.75rem] uppercase tracking-[0.28em] font-semibold mb-6 text-black"
-                    
-                  >
-                    {String(activeIndex + 1).padStart(2, "0")} — {service.subtitle}
+      {/* ── Service sections (natural flow, never clipped) ───── */}
+      {services.map((service, i) => {
+        const flip = i % 2 === 1;
+        return (
+          <section
+            key={service.slug}
+            id={service.slug}
+            data-index={i}
+            ref={(el) => {
+              sectionRefs.current[i] = el;
+            }}
+            className={`scroll-mt-24 py-12 lg:py-16 ${
+              i % 2 === 0 ? "bg-white" : "bg-slate-50"
+            }`}
+          >
+            <div className="max-w-6xl mx-auto px-6">
+              <motion.div
+                className={`flex flex-col ${
+                  flip ? "lg:flex-row-reverse" : "lg:flex-row"
+                } gap-8 lg:gap-14 items-center`}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, amount: 0.2 }}
+              >
+                {/* Image */}
+                <motion.div
+                  variants={{
+                    hidden: { opacity: 0, y: 40 },
+                    visible: {
+                      opacity: 1,
+                      y: 0,
+                      transition: { duration: 0.9, ease: EASE },
+                    },
+                  }}
+                  className="w-full lg:w-2/5 shrink-0"
+                >
+                  <div className="group relative w-full aspect-16/10 overflow-hidden rounded-2xl ring-1 ring-slate-200/70">
+                    <Image
+                      src={service.src}
+                      fill
+                      sizes="(max-width: 1024px) 100vw, 50vw"
+                      alt={service.title}
+                      className="object-cover transition-transform duration-[1.2s] ease-out group-hover:scale-105"
+                    />
+                    <div className="absolute inset-0 bg-linear-to-t from-slate-950/30 via-transparent to-transparent" />
+                    <span className="absolute top-5 left-5 flex h-11 w-11 items-center justify-center rounded-xl bg-white/90 backdrop-blur-sm text-slate-900 font-bold text-sm">
+                      {String(i + 1).padStart(2, "0")}
+                    </span>
+                  </div>
+                </motion.div>
+
+                {/* Content */}
+                <motion.div
+                  variants={{
+                    hidden: { opacity: 0, y: 36 },
+                    visible: {
+                      opacity: 1,
+                      y: 0,
+                      transition: { duration: 0.8, delay: 0.15, ease: EASE },
+                    },
+                  }}
+                  className="flex flex-col w-full lg:w-3/5"
+                >
+                  <div className="flex items-center gap-3 mb-3">
+                    <div className="divider-gold" />
+                    <span className="text-gold-500 text-xs font-semibold uppercase tracking-[0.22em]">
+                      {String(i + 1).padStart(2, "0")} — {service.subtitle}
+                    </span>
+                  </div>
+
+                  <h2 className="text-[clamp(1.625rem,3vw,2.25rem)] font-bold text-slate-900 leading-[1.1] tracking-tight mb-3.5">
+                    {service.title}
+                  </h2>
+
+                  <p className="text-slate-500 leading-relaxed text-sm sm:text-base mb-6">
+                    {service.description}
                   </p>
 
-                  <div
-                    className={`flex flex-col ${
-                      isEven ? "lg:flex-row" : "lg:flex-row-reverse"
-                    } gap-12 lg:gap-20 items-start`}
-                  >
-                    {/* Image */}
-                    <div className="w-full lg:w-1/2 shrink-0">
-                      <div className="relative w-full aspect-4/3 overflow-hidden rounded-2xl shadow-xl">
-                        <Image
-                          src={service.src}
-                          fill
-                          alt={service.title}
-                          className="object-cover"
-                        />
-                        <div className="absolute bottom-0 left-0 h-1 w-40 bg-brand-blue" />
+                  {/* Full feature grid — no truncation */}
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-y-2.5 gap-x-6 border-t border-slate-100 pt-6">
+                    {service.features.map((feat) => (
+                      <div key={feat} className="flex items-start gap-2.5">
+                        <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-blue-50">
+                          <Check className="w-3 h-3 text-brand-blue" strokeWidth={3} />
+                        </span>
+                        <span className="text-slate-700 text-sm leading-snug">
+                          {feat}
+                        </span>
                       </div>
-                    </div>
-
-                    {/* Content */}
-                    <div className="flex flex-col justify-start w-full lg:w-1/2">
-                      <h2 className="whitespace-normal text-3xl sm:text-4xl md:text-5xl font-bold uppercase text-black leading-tight mb-4">
-                        {service.title}
-                      </h2>
-                      <p className="text-brand-blue text-base sm:text-lg mb-6">
-                        {service.subtitle}
-                      </p>
-                      <p className="text-slate-600 leading-relaxed text-sm sm:text-base mb-8">
-                        {service.description}
-                      </p>
-
-                      {/* Feature grid */}
-                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-y-3 gap-x-6">
-                        {service.features.map((feat) => (
-                          <div key={feat} className="flex items-start gap-2.5">
-                            <span className="mt-0.5 w-4 h-4 shrink-0 rounded-full bg-brand-blue/25 flex items-center justify-center">
-                              <svg width="9" height="9" viewBox="0 0 9 9" fill="none">
-                                <path
-                                  d="M1.5 4.5L3.5 6.5L7.5 2.5"
-                                  stroke="#0675BC"
-                                  strokeWidth="1.5"
-                                  strokeLinecap="round"
-                                  strokeLinejoin="round"
-                                />
-                              </svg>
-                            </span>
-                            <span className="text-slate-700 text-sm leading-snug">
-                              {feat}
-                            </span>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
+                    ))}
                   </div>
-                </div>
-              </div>
-            </motion.div>
-          </AnimatePresence>
 
-          {/* ── Prev / Next controls ─────────────────────────── */}
-          <div className="absolute bottom-6 left-1/2 -translate-x-1/2 z-30 flex items-center gap-4">
-            <button
-              onClick={() => goTo(activeIndex - 1)}
-              disabled={activeIndex === 0}
-              aria-label="Previous service"
-              className="w-9 h-9 rounded-full border border-slate-200 flex items-center justify-center text-slate-400 hover:border-brand-blue hover:text-brand-blue disabled:opacity-25 disabled:cursor-not-allowed transition-all duration-200"
-            >
-              <svg width="13" height="13" viewBox="0 0 13 13" fill="none">
-                <path
-                  d="M6.5 10.5V2.5M2.5 6.5L6.5 2.5L10.5 6.5"
-                  stroke="currentColor"
-                  strokeWidth="1.5"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-              </svg>
-            </button>
-
-            <span className="text-xs text-slate-400 font-mono tabular-nums">
-              {String(activeIndex + 1).padStart(2, "0")} /{" "}
-              {String(services.length).padStart(2, "0")}
-            </span>
-
-            <button
-              onClick={() => goTo(activeIndex + 1)}
-              disabled={activeIndex === services.length - 1}
-              aria-label="Next service"
-              className="w-9 h-9 rounded-full border border-slate-200 flex items-center justify-center text-slate-400 hover:border-brand-blue hover:text-brand-blue disabled:opacity-25 disabled:cursor-not-allowed transition-all duration-200"
-            >
-              <svg width="13" height="13" viewBox="0 0 13 13" fill="none">
-                <path
-                  d="M6.5 2.5V10.5M10.5 6.5L6.5 10.5L2.5 6.5"
-                  stroke="currentColor"
-                  strokeWidth="1.5"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-              </svg>
-            </button>
-          </div>
-        </div>
-      </div>
+                  <Link
+                    href="/#contact"
+                    className="group mt-7 inline-flex items-center gap-2 text-sm font-semibold text-brand-blue w-fit"
+                  >
+                    Enquire about {service.title}
+                    <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                  </Link>
+                </motion.div>
+              </motion.div>
+            </div>
+          </section>
+        );
+      })}
 
       {/* ── Bottom CTA banner ──────────────────────────────── */}
-      <section className="bg-blue-950 py-20 px-[8%] text-center">
-        <p className="text-[#c9a84c] text-xs uppercase tracking-[0.28em] font-semibold mb-4">
-          Ready to Get Started?
-        </p>
-        <h2 className="text-3xl sm:text-4xl font-bold text-white mb-5 leading-tight">
-          Let&apos;s Move Your Cargo, Together.
-        </h2>
-        <p className="text-white/60 max-w-xl mx-auto text-sm sm:text-base mb-8 leading-relaxed">
-          Contact our team today and discover how Reality Shipping &amp;
-          Logistics can streamline your global operations with precision and
-          care.
-        </p>
-        <Link
-          href="/#contact"
-          className="inline-flex items-center gap-2.5 px-8 py-3.5 rounded-full bg-[#c9a84c] text-blue-950 text-sm font-bold uppercase tracking-widest hover:bg-white transition-colors duration-300"
-        >
-          Contact Us
-          <span>→</span>
-        </Link>
+      <section className="relative bg-blue-950 py-20 lg:py-24 overflow-hidden">
+        <div className="absolute -top-24 left-1/4 h-72 w-72 rounded-full bg-brand-blue/20 blur-3xl pointer-events-none" />
+        <div className="relative max-w-3xl mx-auto px-6 text-center">
+          <p className="text-gold-400 text-xs uppercase tracking-[0.28em] font-semibold mb-4">
+            Ready to Get Started?
+          </p>
+          <h2 className="text-[clamp(1.875rem,4vw,3rem)] font-bold text-white mb-5 leading-tight tracking-tight">
+            Let&apos;s Move Your Cargo, Together.
+          </h2>
+          <p className="text-white/65 max-w-xl mx-auto text-base mb-9 leading-relaxed">
+            Contact our team today and discover how Reality Shipping &amp;
+            Logistics can streamline your global operations with precision and
+            care.
+          </p>
+          <Link
+            href="/#contact"
+            className="inline-flex items-center gap-2 px-8 py-3.5 rounded-lg bg-white text-slate-900 text-sm font-semibold hover:bg-slate-100 transition-colors"
+          >
+            Contact Us
+            <ArrowUpRight className="w-4 h-4" />
+          </Link>
+        </div>
       </section>
     </div>
   );
