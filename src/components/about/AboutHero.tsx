@@ -101,7 +101,7 @@ export default function AboutHero() {
             transition={{ duration: 1, delay: 0.3, ease: EASE }}
           >
             <Image
-              src="/assets/ship-2.jpg"
+              src="/assets/about_us.jpeg"
               alt="Container vessel underway in open water"
               fill
               sizes="(max-width: 1024px) 60vw, 40vw"

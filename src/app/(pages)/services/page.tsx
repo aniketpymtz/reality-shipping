@@ -64,7 +64,7 @@ const services = [
       "Offshore Oil & Gas Project Services",
       "End to End Logistics",
     ],
-    src: "/assets/container2.jpg",
+    src: "/assets/logistics.jpeg",
   },
   {
     title: "Vessel Husbandry",
@@ -88,7 +88,7 @@ const services = [
       "24/7 Vessel Support",
       "Sign On / Sign Off Formalities",
     ],
-    src: "/assets/ship-1.jpg",
+    src: "/assets/vessel_husbandary.jpeg",
   },
   {
     title: "Port Coordination",
@@ -119,7 +119,7 @@ const services = [
       "Marine Engineers & Technicians Arrangement",
       "Equipment Inspection Support",
     ],
-    src: "/assets/technical-support.jpeg",
+    src: "/assets/technical_support.jpeg",
   },
 ];
 
@@ -139,14 +139,17 @@ export default function ServicesPage() {
           }
         });
       },
-      { rootMargin: "-40% 0px -55% 0px", threshold: 0 }
+      { rootMargin: "-40% 0px -55% 0px", threshold: 0 },
     );
     sectionRefs.current.forEach((el) => el && observer.observe(el));
     return () => observer.disconnect();
   }, []);
 
   const goTo = useCallback((i: number) => {
-    sectionRefs.current[i]?.scrollIntoView({ behavior: "smooth", block: "start" });
+    sectionRefs.current[i]?.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+    });
   }, []);
 
   return (
@@ -312,7 +315,10 @@ export default function ServicesPage() {
                     {service.features.map((feat) => (
                       <div key={feat} className="flex items-start gap-2.5">
                         <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-blue-50">
-                          <Check className="w-3 h-3 text-brand-blue" strokeWidth={3} />
+                          <Check
+                            className="w-3 h-3 text-brand-blue"
+                            strokeWidth={3}
+                          />
                         </span>
                         <span className="text-slate-700 text-sm leading-snug">
                           {feat}
@@ -343,18 +349,18 @@ export default function ServicesPage() {
             Ready to Get Started?
           </p>
           <h2 className="text-[clamp(1.875rem,4vw,3rem)] font-bold text-white mb-5 leading-tight tracking-tight">
-            Let&apos;s Move Your Cargo, Together.
+            Your Next port call starts here
           </h2>
           <p className="text-white/65 max-w-xl mx-auto text-base mb-9 leading-relaxed">
-            Contact our team today and discover how Reality Shipping &amp;
-            Logistics can streamline your global operations with precision and
-            care.
+            From first notice of arrival to final departure clearance, or
+            exploring long-term operational support, our team is ready to
+            assist.
           </p>
           <Link
             href="/#contact"
             className="inline-flex items-center gap-2 px-8 py-3.5 rounded-lg bg-white text-slate-900 text-sm font-semibold hover:bg-slate-100 transition-colors"
           >
-            Contact Us
+            Request Agency Support
             <ArrowUpRight className="w-4 h-4" />
           </Link>
         </div>

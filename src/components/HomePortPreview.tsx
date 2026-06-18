@@ -12,7 +12,7 @@ const portServices = [
     icon: Ship,
     title: "Vessel Husbandry",
     desc: "Complete vessel care including provisions, spare parts, and technical supplies.",
-    image: "/assets/ship-3.jpg",
+    image: "/assets/vessel_husbandary.jpeg",
   },
   {
     icon: Anchor,
@@ -24,7 +24,7 @@ const portServices = [
     icon: Wrench,
     title: "Technical Support",
     desc: "Emergency repairs, dry-docking assistance, and vessel inspections.",
-    image: "/assets/technical-support.jpeg",
+    image: "/assets/technical_support.jpeg",
   },
 ];
 
