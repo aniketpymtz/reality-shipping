@@ -99,60 +99,7 @@ export default function GlobalPresence() {
         </div>
       </section>
 
-      {/* CTA band */}
-      <section className="relative py-20 lg:py-24 bg-linear-to-b from-sky-50 to-white overflow-hidden">
-        <motion.div
-          className="relative max-w-4xl mx-auto px-6 text-center"
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.4 }}
-        >
-          <motion.p
-            variants={reveal}
-            custom={0}
-            className="text-gold-500 text-xs font-semibold uppercase tracking-[0.28em] mb-4"
-          >
-            Your Next Port Call
-          </motion.p>
-          <motion.h2
-            variants={reveal}
-            custom={1}
-            className="text-[clamp(1.875rem,4vw,3rem)] font-bold text-slate-900 tracking-tight leading-tight mb-5"
-          >
-            Appoint Us as Your Agent
-          </motion.h2>
-          <motion.p
-            variants={reveal}
-            custom={2}
-            className="text-slate-500 max-w-xl mx-auto leading-relaxed mb-9"
-          >
-            Send your vessel details and we&apos;ll respond within three hours —
-            our operations desk is manned around the clock.
-          </motion.p>
-          <motion.div
-            variants={reveal}
-            custom={3}
-            className="flex flex-col sm:flex-row items-center justify-center gap-4"
-          >
-            <Link
-              href="/#contact"
-              className="inline-flex items-center gap-2 px-8 py-3.5 rounded-lg bg-blue-950 text-white text-sm font-semibold hover:bg-blue-900 transition-colors"
-            >
-              Start a Conversation
-              <ArrowUpRight className="w-4 h-4" />
-            </Link>
-            <a
-              href="https://wa.me/918291573141?text=Hello%20Reality%20Shipping%2C%20I%20would%20like%20to%20appoint%20you%20for%20an%20upcoming%20port%20call."
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-8 py-3.5 rounded-lg border border-slate-300 text-slate-700 text-sm font-semibold hover:bg-slate-100 transition-colors"
-            >
-              <MessageCircle className="w-4 h-4" />
-              Message Operations
-            </a>
-          </motion.div>
-        </motion.div>
-      </section>
+      
     </>
   );
 }

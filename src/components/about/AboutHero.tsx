@@ -7,10 +7,10 @@ import { useInView } from "react-intersection-observer";
 
 const EASE: [number, number, number, number] = [0.22, 1, 0.36, 1];
 
-const titleLines = ["The Agency", "Behind the Voyage"];
+const titleLines = ["The Agency", "Behind every Voyage"];
 
 const stats = [
-  { end: 25, suffix: "+", label: "Years Combined Experience" },
+  // { end: 25, suffix: "+", label: "Years Combined Experience" },
   { end: 50, suffix: "+", label: "Ports Covered" },
   { end: 6, suffix: "", label: "Continents Covered" },
   { end: null, value: "24/7", label: "Operations Desk" },
@@ -29,7 +29,11 @@ function StatValue({
   if (end === null) return <span>{value}</span>;
   return (
     <span ref={ref}>
-      {inView ? <CountUp end={end} suffix={suffix} duration={2.2} /> : <>0{suffix}</>}
+      {inView ? (
+        <CountUp end={end} suffix={suffix} duration={2.2} />
+      ) : (
+        <>0{suffix}</>
+      )}
     </span>
   );
 }
@@ -60,7 +64,11 @@ export default function AboutHero() {
                   className="block"
                   initial={{ opacity: 0, y: 32 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.8, delay: 0.15 + i * 0.12, ease: EASE }}
+                  transition={{
+                    duration: 0.8,
+                    delay: 0.15 + i * 0.12,
+                    ease: EASE,
+                  }}
                 >
                   {line}
                 </motion.span>
@@ -68,14 +76,20 @@ export default function AboutHero() {
             </h1>
 
             <motion.p
-              className="text-slate-600 text-base leading-relaxed max-w-lg"
+              className="text-slate-600 text-[14px] leading-relaxed max-w-lg"
               initial={{ opacity: 0, y: 24 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.45, ease: EASE }}
             >
-              An independent ship and port agency connecting owners, charterers
-              and operators with the ports of India, the Middle East and
-              Southeast Asia — one accountable team behind every call.
+              From port coordination and vessel services to documentation and
+              operational oversight, every port call is managed with disciplined
+              execution and end-to-end accountability. Backed by extensive
+              regional expertise and deep port knowledge, we provide transparent
+              accounting, accurate disbursement management, and efficient DA
+              turnaround—ensuring clarity at every stage of the voyage. Whether
+              managing a single port call or coordinating multi-port operations,
+              we help vessels move efficiently, confidently, and without
+              disruption. Our Operations Team is readily available 24/7
             </motion.p>
           </div>
 
@@ -100,18 +114,19 @@ export default function AboutHero() {
 
         {/* Quiet stats row */}
         <motion.div
-          className="mt-14 grid grid-cols-2 lg:grid-cols-4 border-y border-slate-200 divide-x divide-slate-200"
+          className="mt-14 grid grid-cols-3 justify-center items-center  border-y border-slate-200 divide-x divide-slate-200"
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.6, ease: EASE }}
         >
-          {stats.map((stat, i) => (
-            <div
-              key={stat.label}
-              className={`px-5 py-6 ${i >= 2 ? "border-t border-slate-200 lg:border-t-0" : ""}`}
-            >
+          {stats.map((stat) => (
+            <div key={stat.label} className="px-5 py-6">
               <div className="text-3xl sm:text-4xl font-bold text-slate-900 tracking-tight">
-                <StatValue end={stat.end} suffix={stat.suffix} value={stat.value} />
+                <StatValue
+                  end={stat.end}
+                  suffix={stat.suffix}
+                  value={stat.value}
+                />
               </div>
               <div className="mt-1.5 text-xs sm:text-sm text-slate-500 font-medium">
                 {stat.label}

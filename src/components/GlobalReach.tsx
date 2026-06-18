@@ -49,7 +49,7 @@ export default function GlobalReach() {
             <div className="divider-gold" />
           </div>
           <h2 className="text-3xl sm:text-4xl font-bold text-slate-900 mb-4">
-            A Truly Global Presence
+            Our Global Network
           </h2>
           <p className="text-slate-600 max-w-2xl mx-auto leading-relaxed">
             From the ports of Hamburg to the harbours of Singapore, Reality
@@ -79,7 +79,7 @@ export default function GlobalReach() {
               </p>
               <div className="grid grid-cols-3 gap-x-8 gap-y-7">
                 {[
-                  { number: "4", label: "Continents Covered" },
+                  { number: "6", label: "Continents Covered" },
                   { number: "20+", label: "Countries Served" },
                  
                   

@@ -9,7 +9,11 @@ const reveal = {
   visible: (i: number) => ({
     opacity: 1,
     y: 0,
-    transition: { duration: 0.8, delay: i * 0.12, ease: [0.22, 1, 0.36, 1] as const },
+    transition: {
+      duration: 0.8,
+      delay: i * 0.12,
+      ease: [0.22, 1, 0.36, 1] as const,
+    },
   }),
 };
 
@@ -17,7 +21,7 @@ export default function StorySection() {
   return (
     <section className="relative py-24 lg:py-32 bg-white overflow-hidden">
       {/* Oversized watermark */}
-      
+
       <div className="relative max-w-7xl mx-auto px-6">
         <div className="grid lg:grid-cols-2 gap-16 lg:gap-20 items-center">
           {/* Image collage */}
@@ -55,7 +59,7 @@ export default function StorySection() {
             </motion.div>
 
             {/* Floating badge */}
-            </motion.div>
+          </motion.div>
 
           {/* Copy */}
           <motion.div
@@ -64,7 +68,11 @@ export default function StorySection() {
             viewport={{ once: true, amount: 0.25 }}
             className="flex flex-col gap-6"
           >
-            <motion.div variants={reveal} custom={0} className="flex items-center gap-3">
+            <motion.div
+              variants={reveal}
+              custom={0}
+              className="flex items-center gap-3"
+            >
               <div className="divider-gold" />
               <span className="text-gold-500 text-sm font-semibold uppercase tracking-[0.2em]">
                 Our Story
@@ -82,27 +90,43 @@ export default function StorySection() {
               </span>
             </motion.h2>
 
-            <motion.p variants={reveal} custom={2} className="text-slate-600 leading-relaxed">
-              Reality Shipping &amp; Logistics is one of the leading independent
-              service providers in shipping, transport, and logistics. We
-              pro-actively create connections — thinking and acting across
-              borders and continents.
+            <motion.p
+              variants={reveal}
+              custom={2}
+              className="text-slate-600 leading-relaxed"
+            >
+              Inspired by the need for a more reliable, responsive and
+              future-ready Logistics Partner so RSL - Reality Shipping and
+              Logistics Services took a shape.
             </motion.p>
 
-            <motion.p variants={reveal} custom={3} className="text-slate-600 leading-relaxed">
+            <motion.p
+              variants={reveal}
+              custom={3}
+              className="text-slate-600 leading-relaxed"
+            >
               Our team of seasoned professionals brings decades of combined
               experience in international shipping, customs brokerage, and
               multimodal transportation — ensuring every vessel call and every
-              consignment is handled safely, on time, and cost-effectively.
+              consignment is handled safely, on time, and cost-effectively. We
+              deliver end-to-end Port Agency, Shipping and Logistics solutions
+              designed for today’s dynamic global trade.
             </motion.p>
-
+            <motion.p
+              variants={reveal}
+              custom={4}
+              className="text-slate-600 leading-relaxed"
+            >
+              Driven by precision, transparency and operational excellence, we
+              support ship owners, operators and supply chain partners at every
+              port call — across oceans and continents
+            </motion.p>
             <motion.blockquote
               variants={reveal}
               custom={4}
               className="border-l-2 border-gold-400 pl-5 py-1 text-lg font-medium text-blue-900 leading-snug"
             >
-              Cooperatively, personally, and reliably, we set everything in
-              motion: containers, projects, vessels — and ourselves.
+             Built for the moments when execution matters most.
             </motion.blockquote>
           </motion.div>
         </div>

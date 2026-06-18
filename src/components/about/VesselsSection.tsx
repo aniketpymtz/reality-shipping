@@ -88,8 +88,7 @@ export default function VesselsSection() {
             </h2>
           </div>
           <p className="text-slate-500 max-w-md leading-relaxed lg:text-right">
-            From geared bulkers to product tankers, our boarding officers know
-            the requirements of each vessel type — before she arrives.
+            Different vessels. Different requirements. One standard of excellence.
           </p>
         </motion.div>
 

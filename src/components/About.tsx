@@ -123,7 +123,7 @@
 //           <div className="lg:col-span-2 relative overflow-hidden rounded-3xl bg-slate-950 min-h-105">
 //             <HeroShipCarousel />
 //             {/* gradient overlay */}
-            
+
 //             <div className="absolute inset-0 z-20 flex flex-col justify-between p-8 lg:p-10 text-white">
 //               {/* top badge */}
 //               <div className="inline-flex items-center gap-2 self-start rounded-full bg-white/10 backdrop-blur-sm border border-white/15 px-3 py-1.5">
@@ -280,7 +280,7 @@ export default function About() {
             start: "top 80%",
             once: true,
           },
-        }
+        },
       );
     }, textColRef);
     return () => ctx.revert();
@@ -294,7 +294,11 @@ export default function About() {
       <div className="max-w-7xl mx-auto px-6">
         {/* Top Section */}
         <div className="grid lg:grid-cols-[1fr_2fr] gap-12 xl:gap-20 mb-16 lg:mb-20 items-start">
-          <div className="flex flex-col gap-6 pt-2" data-scroll data-scroll-speed="0.2">
+          <div
+            className="flex flex-col gap-6 pt-2"
+            data-scroll
+            data-scroll-speed="0.2"
+          >
             <div className="flex items-center gap-3">
               <div className="divider-gold" />
               <span className="text-gold-500 text-sm font-semibold uppercase tracking-[0.2em]">
@@ -304,8 +308,12 @@ export default function About() {
             <Globe3D />
           </div>
 
-          <div ref={textColRef} className="flex flex-col gap-8" data-scroll data-scroll-speed="0.2">
-
+          <div
+            ref={textColRef}
+            className="flex flex-col gap-8"
+            data-scroll
+            data-scroll-speed="0.2"
+          >
             {/* Main headline */}
             <div data-reveal className="flex flex-col gap-3">
               <p className="text-slate-400 text-sm font-medium uppercase tracking-[0.18em]">
@@ -336,10 +344,13 @@ export default function About() {
             </div>
 
             {/* Description */}
-            <p data-reveal className="text-slate-500 leading-relaxed text-base max-w-2xl">
-              Reality Shipping is a cornerstone of the maritime industry,
-              connecting ship owners, charterers and operators with port
-              authorities and stakeholders worldwide.
+            <p
+              data-reveal
+              className="text-slate-500 leading-relaxed text-base max-w-2xl"
+            >
+              Reality Shipping and Logistics serve as the operational link
+              between vessels, ports, and stakeholders—transforming complex
+              maritime requirements into smooth, efficient port experiences.
             </p>
 
             {/* CTA */}
@@ -351,7 +362,6 @@ export default function About() {
               Learn more about us
               <ArrowRight className="w-4 h-4" />
             </Link>
-
           </div>
         </div>
 
@@ -378,8 +388,6 @@ export default function About() {
               <div
                 className={`absolute inset-0 flex flex-col ${panel.placement} p-7 lg:p-8 text-white`}
               >
-                
-
                 <div className="text-5xl sm:text-6xl lg:text-7xl font-bold leading-none tracking-tight">
                   <StatCounter end={panel.end} suffix={panel.suffix} />
                 </div>
