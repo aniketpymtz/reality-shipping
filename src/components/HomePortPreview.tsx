@@ -81,7 +81,7 @@ export default function HomePortPreview() {
               key={service.title}
               variants={reveal}
               custom={i}
-              className="group relative aspect-4/5 overflow-hidden rounded-2xl ring-1 ring-slate-200/70"
+              className="group relative aspect-4/3 overflow-hidden rounded-2xl ring-1 ring-slate-200/70"
             >
               <Image
                 src={service.image}
@@ -91,12 +91,10 @@ export default function HomePortPreview() {
                 className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
               />
               {/* Neutral grade for legibility */}
-              <div className="absolute inset-0 bg-linear-to-t from-slate-950/85 via-slate-950/25 to-transparent" />
+              <div className="absolute inset-0 bg-linear-to-t from-slate-950/70 via-slate-950/25 to-transparent" />
 
               <div className="absolute inset-0 flex flex-col justify-end p-6">
-                <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-white/15 border border-white/20 backdrop-blur-sm mb-4">
-                  <service.icon className="w-5 h-5 text-white" />
-                </span>
+                
                 <h3 className="text-xl font-bold text-white tracking-tight">
                   {service.title}
                 </h3>

@@ -24,7 +24,7 @@ const services = [
             "Surveyors",
             "Spare Parts Delivery & Clearance",
         ],
-        src: "/assets/port-agency-2.jpeg",
+        src: "/assets/port_agency.jpeg",
     },
     {
         title: "Liner Agency",
@@ -58,7 +58,7 @@ const services = [
             "Offshore Oil & Gas Project Services",
             "End to End Logistics",
         ],
-        src: "/assets/container2.jpg",
+        src: "/assets/logistics.jpeg",
     },
 ]
 
