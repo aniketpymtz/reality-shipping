@@ -18,7 +18,7 @@ const portServices = [
     icon: Anchor,
     title: "Port Coordination",
     desc: "Berth planning, cargo operations coordination, and authority liaison.",
-    image: "/assets/port-coordination.jpeg",
+    image: "/assets/port_coordination_03.jpeg",
   },
   {
     icon: Wrench,
