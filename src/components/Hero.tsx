@@ -34,11 +34,11 @@ export default function Hero() {
           poster="/assets/ship-1.jpg"
           className="absolute inset-0 w-full h-full object-cover"
         >
-          <source src="/assets/hero-vid-2.mp4" type="video/mp4" />
+          <source src="/assets/hero-vid-3.mp4" type="video/mp4" />
           Your browser does not support the video tag.
         </video>
         {/* Light, directional scrim — keeps the footage visible. */}
-        <div className="absolute inset-0 bg-linear-to-r from-slate-950/55 via-slate-950/10 to-transparent" />
+        <div className="absolute inset-0 bg-linear-to-r from-slate-800/30 via-slate-800/10 to-transparent" />
         {/* Subtle top scrim so the white navbar stays legible. */}
         <div className="absolute inset-x-0 top-0 h-32 bg-linear-to-b from-slate-950/40 to-transparent" />
       </div>
