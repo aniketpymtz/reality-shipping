@@ -2,16 +2,24 @@
 
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { MapPin, ArrowUpRight, MessageCircle } from "lucide-react";
-import Link from "next/link";
+import { MapPin, ArrowUpRight } from "lucide-react";
 
 const countries = [
-  { code: "IN", name: "India", detail: "Mumbai · Chennai · Mundra" },
-  { code: "SG", name: "Singapore", detail: "Port of Singapore" },
-  { code: "AE", name: "UAE", detail: "Jebel Ali · Abu Dhabi" },
-  { code: "SA", name: "Saudi Arabia", detail: "Dammam · Jeddah" },
-  { code: "ID", name: "Indonesia", detail: "Tanjung Priok" },
-  { code: "US", name: "America", detail: "New York · Los Angeles · Houston" },
+  { code: "IN", name: "India", detail: "All Ports" },
+  { code: "SG", name: "Singapore", detail: "All Ports" },
+  { code: "AE", name: "UAE", detail: "All Ports" },
+  { code: "SA", name: "Saudi Arabia", detail: "All Ports" },
+  { code: "ID", name: "Indonesia", detail: "All Ports" },
+  { code: "US", name: "America", detail: "All Ports" },
+  { code: "MY", name: "Malaysia", detail: "All Ports" },
+  { code: "TH", name: "Thailand", detail: "Laem Chabang" },
+  { code: "VN", name: "Vietnam", detail: "Ho Chi Minh City" },
+  { code: "KR", name: "South Korea", detail: "All Ports" },
+  { code: "CN", name: "China", detail: "All Ports" },
+  { code: "BD", name: "Bangladesh", detail: "Chittagong . Mongla . Payra" },
+  { code: "MV", name: "Maldives", detail: "All Ports" },
+  { code: "LK", name: "Sri Lanka", detail: "All Ports" },
+  { code: "ZA", name: "Africa", detail: "All Ports" },
 ];
 
 const reveal = {
@@ -19,7 +27,11 @@ const reveal = {
   visible: (i: number) => ({
     opacity: 1,
     y: 0,
-    transition: { duration: 0.7, delay: i * 0.08, ease: [0.22, 1, 0.36, 1] as const },
+    transition: {
+      duration: 0.7,
+      delay: i * 0.08,
+      ease: [0.22, 1, 0.36, 1] as const,
+    },
   }),
 };
 
@@ -64,7 +76,7 @@ export default function GlobalPresence() {
           </motion.div>
 
           <motion.div
-            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5"
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5"
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, amount: 0.15 }}
@@ -86,20 +98,20 @@ export default function GlobalPresence() {
                   />
                 </span>
                 <div className="min-w-0">
-                  <div className="text-base font-bold text-slate-900">{country.name}</div>
+                  <div className="text-base font-bold text-slate-900">
+                    {country.name}
+                  </div>
                   <div className="flex items-center gap-1.5 text-xs text-slate-500 mt-1">
                     <MapPin className="w-3 h-3 shrink-0 text-brand-blue" />
                     <span className="truncate">{country.detail}</span>
                   </div>
                 </div>
-                <ArrowUpRight className="ml-auto w-4 h-4 text-slate-300 transition-colors duration-300 group-hover:text-brand-blue" />
+                {/* <ArrowUpRight className="ml-auto w-4 h-4 text-slate-300 transition-colors duration-300 group-hover:text-brand-blue" /> */}
               </motion.div>
             ))}
           </motion.div>
         </div>
       </section>
-
-      
     </>
   );
 }
