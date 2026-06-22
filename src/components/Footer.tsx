@@ -1,5 +1,6 @@
 import { Mail, Phone } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 
 export default function Footer() {
   return (
@@ -8,7 +9,7 @@ export default function Footer() {
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-10">
           {/* Brand */}
           <div className="lg:col-span-1">
-            <a href="/" className="flex items-center gap-2.5 mb-3">
+            <Link href="/" className="flex items-center gap-2.5 mb-3">
               <div className="w-10 h-10 rounded-lg overflow-hidden flex items-center justify-center">
                 <Image
                   src="/rslsLogo.png"
@@ -26,7 +27,7 @@ export default function Footer() {
                   Shipping & Logistics
                 </span>
               </div>
-            </a>
+            </Link>
             
             <div className="flex gap-3">
               <a
