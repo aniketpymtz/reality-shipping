@@ -87,7 +87,7 @@ export default function VesselsSection() {
               Every Trade.
             </h2>
           </div>
-          <p className="text-slate-500 max-w-md leading-relaxed lg:text-right">
+          <p className="text-slate-500 max-w-lg leading-relaxed lg:text-right whitespace-nowrap">
             Different vessels. Different requirements. One standard of excellence.
           </p>
         </motion.div>

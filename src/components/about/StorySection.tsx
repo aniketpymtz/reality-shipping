@@ -84,16 +84,16 @@ export default function StorySection() {
               custom={1}
               className="text-[clamp(2rem,4.5vw,3.25rem)] font-bold text-slate-900 leading-[1.08] tracking-tight"
             >
-              Independent. Connected.{" "}
-              <span className="bg-linear-to-r from-brand-blue to-sky-400 bg-clip-text text-transparent">
-                Accountable.
+              Shipping Solutions{" "}<br />
+              <span >
+               That Moves With You
               </span>
             </motion.h2>
 
             <motion.p
               variants={reveal}
               custom={2}
-              className="text-slate-600 leading-relaxed"
+              className="text-slate-600 leading-relaxed text-justify"
             >
               Inspired by the need for a more reliable, responsive and
               future-ready Logistics Partner so RSL - Reality Shipping and
@@ -103,7 +103,7 @@ export default function StorySection() {
             <motion.p
               variants={reveal}
               custom={3}
-              className="text-slate-600 leading-relaxed"
+              className="text-slate-600 leading-relaxed text-justify "
             >
               Our team of seasoned professionals brings decades of combined
               experience in international shipping, customs brokerage, and
@@ -115,7 +115,7 @@ export default function StorySection() {
             <motion.p
               variants={reveal}
               custom={4}
-              className="text-slate-600 leading-relaxed"
+              className="text-slate-600 leading-relaxed text-justify"
             >
               Driven by precision, transparency and operational excellence, we
               support ship owners, operators and supply chain partners at every

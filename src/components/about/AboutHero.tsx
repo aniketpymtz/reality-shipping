@@ -57,26 +57,12 @@ export default function AboutHero() {
               </span>
             </motion.div>
 
-            <h1 className="text-[clamp(2rem,4.5vw,3.5rem)] font-bold text-slate-900 leading-[1.04] tracking-tight mb-5">
-              {titleLines.map((line, i) => (
-                <motion.span
-                  key={line}
-                  className="block"
-                  initial={{ opacity: 0, y: 32 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{
-                    duration: 0.8,
-                    delay: 0.15 + i * 0.12,
-                    ease: EASE,
-                  }}
-                >
-                  {line}
-                </motion.span>
-              ))}
+            <h1 className="text-[clamp(2rem,4.5vw,3rem)] font-bold text-slate-900 leading-[1.04] tracking-tight mb-5">
+              The Agency, Behind every Voyage
             </h1>
 
             <motion.p
-              className="text-slate-600 text-[14px] leading-relaxed max-w-lg"
+              className="text-slate-600 text-[14px] leading-relaxed max-w-lg text-justify"
               initial={{ opacity: 0, y: 24 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.45, ease: EASE }}

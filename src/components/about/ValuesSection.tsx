@@ -62,10 +62,8 @@ export default function ValuesSection() {
             custom={1}
             className="text-[clamp(1.5rem,3vw,2.25rem)] font-bold text-slate-900 leading-snug tracking-tight"
           >
-            To be the customer&apos;s preferred shipping agency — first-class,
-            end-to-end service at{" "}
-            <span className="text-brand-blue">international standards</span>, across
-            our entire coverage.
+            To be the trusted shipping and logistics partner{" "}
+            that delivers, certainty in an uncertain world.
           </motion.p>
         </motion.div>
 

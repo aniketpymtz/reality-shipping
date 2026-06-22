@@ -27,10 +27,7 @@ export default function Footer() {
                 </span>
               </div>
             </a>
-            <p className="text-white text-sm font-semibold mb-5">
-              We Commit. We Deliver.
-            </p>
-
+            
             <div className="flex gap-3">
               <a
                 href="https://www.linkedin.com/company/reality-shipping-logistics"
