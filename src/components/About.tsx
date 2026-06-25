@@ -211,6 +211,7 @@ import { useLayoutEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Image from "next/image";
+import AboutVideo from "./AboutVideo";
 
 const Globe3D = dynamic(() => import("./Globe3D"), { ssr: false });
 
@@ -401,6 +402,9 @@ export default function About() {
             </div>
           ))}
         </div>
+
+        {/* Interactive corporate video experience */}
+        <AboutVideo />
       </div>
     </section>
   );
