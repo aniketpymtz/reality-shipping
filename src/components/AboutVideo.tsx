@@ -111,7 +111,7 @@ export default function AboutVideo() {
           poster="/assets/about-img.jpg"
           className="absolute inset-0 h-[80vh] w-[80vw] object-cover"
         >
-          <source src="/assets/ship_1.mp4" type="video/mp4" />
+          <source src="/assets/reality_shipping_lowres.mp4" type="video/mp4" />
           Your browser does not support the video tag.
         </video>
 
