@@ -102,7 +102,7 @@ export default function AboutVideo() {
         onMouseEnter={handleMouseEnter}
         onMouseLeave={() => setIsHovering(false)}
         onClick={togglePlay}
-        className="group relative aspect-video h-[79vh] w-[80vw] overflow-hidden rounded-3xl bg-slate-950 shadow-2xl shadow-slate-900/20 cursor-none"
+        className="group relative aspect-video h-[80vh] w-[80vw] overflow-hidden rounded-3xl bg-slate-950 shadow-2xl shadow-slate-900/20 cursor-none"
       >
         <video
           ref={videoRef}
