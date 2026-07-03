@@ -259,8 +259,8 @@ export default function Contact() {
                   <p className="text-sm font-medium">
                     Message sent! Our operations team responds within 3 hours.
                     For urgent vessel matters, call{" "}
-                    <a href="tel:+918291573141" className="underline font-semibold">
-                      +91 829 157 3141
+                    <a href="tel:+6597727802" className="underline font-semibold">
+                       +65 9772 7802
                     </a>{" "}
                     — available 24/7.
                   </p>

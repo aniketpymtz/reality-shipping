@@ -96,37 +96,6 @@ export default function GlobalReach() {
           </div>
         </div>
 
-        {/* Regions grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {regions.map((region) => (
-            <div
-              key={region.name}
-              className="relative bg-white rounded-xl p-6 border border-slate-200 hover:border-brand-blue/20 hover:shadow-xl hover:shadow-blue-100/40 transition-all overflow-hidden group"
-            >
-              {/* Watermark */}
-              <region.Icon
-                className="absolute -right-6 -bottom-1 w-40 h-40 opacity-20 group-hover:opacity-[0.08] transition-opacity text-brand-blue"
-                fill="currentColor"
-              />
-              {/* <region.Icon
-                className="w-16 h-16 mb-5 text-brand-blue"
-                fill="currentColor"
-              /> */}
-              <h4 className="font-bold text-slate-900 mb-3">{region.name}</h4>
-              <ul className="space-y-1.5">
-                {region.ports.map((port) => (
-                  <li
-                    key={port}
-                    className="text-sm text-slate-500 flex items-center gap-2"
-                  >
-                    <div className="w-1 h-1 rounded-full bg-blue-400" />
-                    {port}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
-        </div>
       </div>
     </section>
   );

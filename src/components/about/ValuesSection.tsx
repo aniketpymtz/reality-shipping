@@ -17,7 +17,7 @@ const values = [
   {
     Icon: Handshake,
     title: "Ownership",
-    text: "One accountable point of contact who acts for your vessel as if she were our own.",
+    text: "One accountable point of contact who acts for your vessel as it's our own.",
   },
   {
     Icon: Clock,

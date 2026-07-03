@@ -44,20 +44,7 @@ const vessels = [
       "Fresh water & provisions",
       "Sludge disposal coordination",
     ],
-  },
-  {
-    name: "General Cargo & Project",
-    tag: "Breakbulk, OOG & heavy lift",
-    Icon: Package,
-    image: "/assets/Liner.jpg",
-    position: "center 35%",
-    services: [
-      "Pre-arrival documentation",
-      "Special cargo handling",
-      "Spare parts delivery & clearance",
-      "Port clearance formalities",
-    ],
-  },
+  }
 ];
 
 export default function VesselsSection() {
@@ -81,15 +68,11 @@ export default function VesselsSection() {
                 Vessels We Serve
               </span>
             </div>
-            <h2 className="text-[clamp(2rem,4.5vw,3.25rem)] font-bold text-slate-900 leading-[1.08] tracking-tight">
-              Every Hull.
-              <br />
-              Every Trade.
-            </h2>
-          </div>
-          <p className="text-slate-500 max-w-lg leading-relaxed lg:text-right whitespace-nowrap">
+            
+          <p className="text-black/80 text-xl max-w-lg leading-relaxed lg:text-right whitespace-nowrap">
             Different vessels. Different requirements. One standard of excellence.
           </p>
+          </div>
         </motion.div>
 
         {/* Expanding panels */}

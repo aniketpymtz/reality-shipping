@@ -53,7 +53,7 @@ export default function Hero() {
           >
             <div className="divider-gold" />
             <span className="text-white/80 text-sm font-semibold uppercase tracking-[0.24em]">
-              Global Shipping Agency Network
+              Global Port Agency Network
             </span>
           </motion.div>
 

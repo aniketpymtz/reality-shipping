@@ -45,19 +45,7 @@ export default function StorySection() {
               <div className="absolute inset-0 bg-linear-to-t from-blue-950/40 to-transparent" />
             </motion.div>
 
-            <motion.div
-              variants={reveal}
-              custom={1}
-              className="absolute -bottom-10 -right-2 sm:right-6 lg:-right-8 w-56 sm:w-72 aspect-4/3 rounded-2xl overflow-hidden border-4 border-white shadow-xl hidden sm:block"
-            >
-              <Image
-                src="/assets/crew-1.jpg"
-                alt="Vessel working cargo alongside at night, seen from above"
-                fill
-                className="object-cover"
-              />
-            </motion.div>
-
+           
             {/* Floating badge */}
           </motion.div>
 
@@ -95,9 +83,9 @@ export default function StorySection() {
               custom={2}
               className="text-slate-600 leading-relaxed text-justify"
             >
-              Inspired by the need for a more reliable, responsive and
-              future-ready Logistics Partner so RSL - Reality Shipping and
-              Logistics Services took a shape.
+              Inspired by the need for a more reliable, responsive and 
+              future-ready Port agency Partner, RSL — Reality Shipping and
+              Logistics Services — was born.
             </motion.p>
 
             <motion.p
@@ -106,8 +94,7 @@ export default function StorySection() {
               className="text-slate-600 leading-relaxed text-justify "
             >
               Our team of seasoned professionals brings decades of combined
-              experience in international shipping, customs brokerage, and
-              multimodal transportation — ensuring every vessel call and every
+              experience in international shipping — ensuring every vessel call and every
               consignment is handled safely, on time, and cost-effectively. We
               deliver end-to-end Port Agency, Shipping and Logistics solutions
               designed for today’s dynamic global trade.
@@ -118,7 +105,7 @@ export default function StorySection() {
               className="text-slate-600 leading-relaxed text-justify"
             >
               Driven by precision, transparency and operational excellence, we
-              support ship owners, operators and supply chain partners at every
+              support ship owners, operators, ship management and charterers at every
               port call — across oceans and continents
             </motion.p>
             <motion.blockquote

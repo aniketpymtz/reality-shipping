@@ -10,9 +10,8 @@ const countries = [
   { code: "AE", name: "UAE", detail: "All Ports" },
   { code: "SA", name: "Saudi Arabia", detail: "All Ports" },
   { code: "ID", name: "Indonesia", detail: "All Ports" },
-  { code: "US", name: "America", detail: "All Ports" },
+  { code: "US", name: "USA", detail: "All Ports" },
   { code: "MY", name: "Malaysia", detail: "All Ports" },
-  { code: "TH", name: "Thailand", detail: "Laem Chabang" },
   { code: "VN", name: "Vietnam", detail: "Ho Chi Minh City" },
   { code: "KR", name: "South Korea", detail: "All Ports" },
   { code: "CN", name: "China", detail: "All Ports" },
@@ -65,15 +64,7 @@ export default function GlobalPresence() {
             >
               Six Continents. One Standard.
             </motion.h2>
-            <motion.p
-              variants={reveal}
-              custom={2}
-              className="text-slate-500 max-w-xl mx-auto leading-relaxed"
-            >
-              From South Asia to the Americas, we maintain an active presence
-              across the world&apos;s most strategic maritime gateways.
-            </motion.p>
-          </motion.div>
+            </motion.div>
 
           <motion.div
             className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5"

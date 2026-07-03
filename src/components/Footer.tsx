@@ -121,7 +121,7 @@ export default function Footer() {
               <p>246 Macpherson Road #03-01 Betime Building,</p>
               <p>Singapore 348578</p>
               <p className="pt-2">info@realityshipping.com</p>
-              <p>+91 829 157 3141</p>
+              <p>+65 9772 7802</p>
             </div>
           </div>
         </div>
