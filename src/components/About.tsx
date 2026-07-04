@@ -349,7 +349,7 @@ export default function About() {
               data-reveal
               className="text-slate-500 leading-relaxed text-base max-w-2xl"
             >
-              Reality Shipping and Logistics serve as the operational link
+              Reality Shipping and Logistics global Port Agency Serve as the operational link
               between vessels, ports, and stakeholders—transforming complex
               maritime requirements into smooth, efficient port experiences.
             </p>
