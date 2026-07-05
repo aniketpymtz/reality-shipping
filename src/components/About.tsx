@@ -238,7 +238,7 @@ const panels = [
     end: 27,
     suffix: " days",
     Icon: Ship,
-    label: "Fully documented FDA delivered after vessel departure",
+    label: "f",
     videoPos: "100% center",
     placement: "justify-start", // top
     clipPath:

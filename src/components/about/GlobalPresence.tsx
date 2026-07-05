@@ -2,25 +2,85 @@
 
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { MapPin, ArrowUpRight } from "lucide-react";
+import { MapPin } from "lucide-react";
 
 const countries = [
-  { code: "IN", name: "India", detail: "All Ports" },
-  { code: "SG", name: "Singapore", detail: "All Ports" },
-  { code: "AE", name: "UAE", detail: "All Ports" },
-  { code: "SA", name: "Saudi Arabia", detail: "All Ports" },
-  { code: "ID", name: "Indonesia", detail: "All Ports" },
-  { code: "US", name: "USA", detail: "All Ports" },
-  { code: "MY", name: "Malaysia", detail: "All Ports" },
-  { code: "VN", name: "Vietnam", detail: "Ho Chi Minh City" },
-  { code: "KR", name: "South Korea", detail: "All Ports" },
-  { code: "CN", name: "China", detail: "All Ports" },
-  { code: "BD", name: "Bangladesh", detail: "Chittagong . Mongla . Payra" },
-  { code: "MV", name: "Maldives", detail: "All Ports" },
-  { code: "LK", name: "Sri Lanka", detail: "All Ports" },
-  { code: "ZA", name: "Africa", detail: "All Ports" },
+  {
+    flag: "https://flagcdn.com/in.svg",
+    name: "India",
+    detail: "All Ports",
+  },
+  {
+    flag: "https://flagcdn.com/sg.svg",
+    name: "Singapore",
+    detail: "All Ports",
+  },
+  {
+    flag: "https://flagcdn.com/my.svg",
+    name: "Malaysia",
+    detail: "All Ports",
+  },
+  {
+    flag: "https://flagcdn.com/vn.svg",
+    name: "Vietnam",
+    detail: "Ho Chi Minh City",
+  },
+  {
+    flag: "https://flagcdn.com/cn.svg",
+    name: "China",
+    detail: "All Ports",
+  },
+  {
+    flag: "https://flagcdn.com/kr.svg",
+    name: "South Korea",
+    detail: "All Ports",
+  },
+  {
+    flag: "https://flagcdn.com/id.svg",
+    name: "Indonesia",
+    detail: "All Ports",
+  },
+  {
+    flag: "https://flagcdn.com/bd.svg",
+    name: "Bangladesh",
+    detail: "Chittagong . Mongla . Payra",
+  },
+  {
+    flag: "https://flagcdn.com/mv.svg",
+    name: "Maldives",
+    detail: "All Ports",
+  },
+  {
+    flag: "https://flagcdn.com/lk.svg",
+    name: "Sri Lanka",
+    detail: "All Ports",
+  },
+  {
+    flag: "https://flagcdn.com/ae.svg",
+    name: "UAE",
+    detail: "All Ports",
+  },
+  {
+    flag: "https://flagcdn.com/sa.svg",
+    name: "Saudi Arabia",
+    detail: "All Ports",
+  },
+  {
+    flag: "https://flagcdn.com/us.svg",
+    name: "USA",
+    detail: "All Ports",
+  },
+  {
+    flag: "https://flagcdn.com/eu.svg",
+    name: "Europe",
+    detail: "All Ports",
+  },
+  {
+    flag: "https://flagcdn.com/za.svg",
+    name: "Africa",
+    detail: "All Ports",
+  },
 ];
-
 const reveal = {
   hidden: { opacity: 0, y: 32 },
   visible: (i: number) => ({
@@ -64,7 +124,7 @@ export default function GlobalPresence() {
             >
               Six Continents. One Standard.
             </motion.h2>
-            </motion.div>
+          </motion.div>
 
           <motion.div
             className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5"
@@ -74,14 +134,14 @@ export default function GlobalPresence() {
           >
             {countries.map((country, i) => (
               <motion.div
-                key={country.code}
+                key={country.name}
                 variants={reveal}
                 custom={i}
                 className="group relative flex items-center gap-4 p-6 bg-white rounded-2xl border border-blue-100 shadow-sm transition-all duration-300 hover:shadow-xl hover:shadow-blue-100/60 hover:border-brand-blue/30 hover:-translate-y-1"
               >
-                <span className="relative block w-12 h-12 shrink-0 overflow-hidden rounded-full ring-2 ring-blue-50 shadow-sm">
+                <span className="relative block w-18 h-12 shrink-0 rounded-xl overflow-hidden ring-2 ring-blue-50 shadow-sm">
                   <Image
-                    src={`https://flagsapi.com/${country.code}/flat/64.png`}
+                    src={country.flag}
                     alt={`${country.name} flag`}
                     fill
                     sizes="48px"

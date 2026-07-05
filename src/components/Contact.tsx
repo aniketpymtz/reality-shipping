@@ -109,7 +109,7 @@ export default function Contact() {
                   </div>
                   <div>
                     <p className="text-sm text-blue-300 mb-0.5">Phone</p>
-                    <p className="font-medium">+91 829 157 3141</p>
+                    <p className="font-medium">+65 9772 7802</p>
                   </div>
                 </div>
                 <div className="flex items-start gap-4">

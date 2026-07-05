@@ -294,7 +294,7 @@ export default function ServicesPage() {
                   <div className="flex items-center gap-3 mb-3">
                     <div className="divider-gold" />
                     <span className="text-gold-500 text-xs font-semibold uppercase tracking-[0.22em]">
-                      {String(i + 1).padStart(2, "0")} — {service.subtitle}
+                      {service.subtitle}
                     </span>
                   </div>
 
