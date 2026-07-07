@@ -1,7 +1,8 @@
 "use client";
-import { ChevronRight } from "lucide-react";
+import { ChevronRight, Volume2, VolumeX } from "lucide-react";
 import Link from "next/link";
 import { motion } from "framer-motion";
+import { useEffect, useRef, useState } from "react";
 
 const titleWords = ["Trusted", "Across", "Oceans"];
 
@@ -18,6 +19,34 @@ const wordVariants = {
 };
 
 export default function Hero() {
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const [muted, setMuted] = useState(false);
+
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+    // Try to autoplay with sound. Browsers block unmuted autoplay unless the
+    // user has interacted with the site, so fall back to muted playback.
+    video.muted = false;
+    video.play().catch(() => {
+      video.muted = true;
+      setMuted(true);
+      video.play().catch(() => {});
+    });
+  }, []);
+
+  const toggleSound = () => {
+    const video = videoRef.current;
+    if (!video) return;
+    const next = !muted;
+    video.muted = next;
+    if (!next) {
+      // Ensure playback resumes when the user opts into sound.
+      video.play().catch(() => {});
+    }
+    setMuted(next);
+  };
+
   return (
     <section
       id="home"
@@ -26,8 +55,8 @@ export default function Hero() {
       {/* Full-bleed background video */}
       <div className="absolute inset-0">
         <video
+          ref={videoRef}
           autoPlay
-          muted
           loop
           playsInline
           preload="auto"
@@ -94,6 +123,20 @@ export default function Hero() {
           </motion.div>
         </div>
       </div>
+
+      {/* Sound toggle */}
+      <button
+        type="button"
+        onClick={toggleSound}
+        aria-label={muted ? "Unmute video" : "Mute video"}
+        className="absolute bottom-7 right-6 z-10 flex h-11 w-11 items-center justify-center rounded-full border border-white/30 bg-slate-950/30 text-white/80 backdrop-blur-sm hover:bg-white/10 hover:text-white transition-colors"
+      >
+        {muted ? (
+          <VolumeX className="w-5 h-5" />
+        ) : (
+          <Volume2 className="w-5 h-5" />
+        )}
+      </button>
 
       {/* Scroll indicator */}
       <motion.a
