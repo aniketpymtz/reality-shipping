@@ -14,7 +14,7 @@ const services = [
     slug: "port-agency",
     subtitle: "Full / Protective / Husbandry",
     description:
-      "Comprehensive port agency services ensuring seamless vessel calls, crew welfare, and full regulatory compliance — available 24/7 at all operating ports. Our experienced team manages every aspect of a vessel's port call, from pre-arrival documentation through final departure, giving owners and operators complete peace of mind.",
+      "Comprehensive port agency services ensuring seamless vessel calls, crew welfare, and full regulatory compliance — available 24/7 at all operating ports. Our experienced team manages every aspect of a vessel's port call, from pre-arrival documentation through final departure, delivering reliable support and operational excellence at every stage.",
     features: [
       "Crew Change",
       "Cargo Supervision",
@@ -41,12 +41,11 @@ const services = [
       "Sales Import / Exports",
       "Documentation Imports / Exports / Transshipments",
       "Special Cargo Handling (OOG / Dangerous Goods / Reefer)",
-      "Transportation Rail and Trucking",
       "Transshipment Arrangements",
       "Feedering Arrangements",
       "Equipment Control",
     ],
-    src: "/assets/Liner.jpg",
+    src: "/assets/liner-agency.webp",
   },
   {
     title: "Logistics",
@@ -63,6 +62,7 @@ const services = [
       "Chartering & Broking",
       "Offshore Oil & Gas Project Services",
       "End to End Logistics",
+      "Ships Spare part handling & clearance"
     ],
     src: "/assets/logistics.jpeg",
   },
@@ -71,7 +71,7 @@ const services = [
     slug: "vessel-husbandry",
     subtitle: "24/7 vessel support & coordination",
     description:
-      "24/7 vessel husbandry support designed to ensure smooth port operations, crew comfort, regulatory compliance, and timely coordination with all local authorities and service providers. We act as a single point of contact for all vessel-related requirements during port stay, minimizing delays and operational stress for owners and operators.",
+      "24/7 vessel husbandry support designed to ensure smooth port operations, crew change, regulatory compliance, and timely coordination with all local authorities and service providers. We act as a single point of contact for all vessel-related requirements during port stay, minimizing delays and operational stress for owners and operators.",
     features: [
       "Port & Customs Coordination",
       "Immigration & Documentation Assistance",
@@ -276,10 +276,6 @@ export default function ServicesPage() {
                       alt={service.title}
                       className="object-cover transition-transform duration-[1.2s] ease-out group-hover:scale-105"
                     />
-                    <div className="absolute inset-0 bg-linear-to-t from-slate-950/30 via-transparent to-transparent" />
-                    <span className="absolute top-5 left-5 flex h-11 w-11 items-center justify-center rounded-xl bg-white/90 backdrop-blur-sm text-slate-900 font-bold text-sm">
-                      {String(i + 1).padStart(2, "0")}
-                    </span>
                   </div>
                 </motion.div>
 
@@ -298,7 +294,7 @@ export default function ServicesPage() {
                   <div className="flex items-center gap-3 mb-3">
                     <div className="divider-gold" />
                     <span className="text-gold-500 text-xs font-semibold uppercase tracking-[0.22em]">
-                      {String(i + 1).padStart(2, "0")} — {service.subtitle}
+                      {service.subtitle}
                     </span>
                   </div>
 

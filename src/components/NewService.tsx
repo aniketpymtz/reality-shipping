@@ -36,12 +36,11 @@ const services = [
             "Sales Import / Exports",
             "Documentation Imports / Exports / Transshipments",
             "Special Cargo Handling (OOG / Dangerous Goods / Reefer)",
-            "Transportation Rail and Trucking",
             "Transshipment Arrangements",
             "Feedering Arrangements",
             "Equipment Control",
         ],
-        src: "/assets/Liner.jpg",
+        src: "/assets/liner-agency.webp",
     },
     {
         title: "Logistics",
@@ -57,6 +56,7 @@ const services = [
             "Chartering & Broking",
             "Offshore Oil & Gas Project Services",
             "End to End Logistics",
+            "Ships Spare part handling & clearance"
         ],
         src: "/assets/logistics.jpeg",
     },

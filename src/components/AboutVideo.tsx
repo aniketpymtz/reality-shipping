@@ -92,7 +92,7 @@ export default function AboutVideo() {
       <div className="flex items-center gap-3 self-start">
         <div className="divider-gold" />
         <span className="text-gold-500 text-sm font-semibold uppercase tracking-[0.2em]">
-          Watch Our Story
+          Discover Who We Are
         </span>
       </div>
 

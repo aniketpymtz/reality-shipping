@@ -238,7 +238,7 @@ const panels = [
     end: 27,
     suffix: " days",
     Icon: Ship,
-    label: "Fully documented FDA delivered after vessel departure",
+    label: "f",
     videoPos: "100% center",
     placement: "justify-start", // top
     clipPath:
@@ -349,7 +349,7 @@ export default function About() {
               data-reveal
               className="text-slate-500 leading-relaxed text-base max-w-2xl"
             >
-              Reality Shipping and Logistics serve as the operational link
+              Reality Shipping and Logistics global Port Agency Serve as the operational link
               between vessels, ports, and stakeholders—transforming complex
               maritime requirements into smooth, efficient port experiences.
             </p>

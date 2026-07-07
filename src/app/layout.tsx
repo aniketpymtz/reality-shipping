@@ -45,7 +45,7 @@ const organizationJsonLd = {
   url: SITE_URL,
   logo: `${SITE_URL}/rslsLogo.png`,
   email: "info@realityshipping.com",
-  telephone: "+918291573141",
+  telephone: "+65 9772 7802",
   address: {
     "@type": "PostalAddress",
     streetAddress: "246 Macpherson Road #03-01 Betime Building",
