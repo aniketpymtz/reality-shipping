@@ -125,7 +125,7 @@ export default function Hero() {
       </div>
 
       {/* Sound toggle */}
-      <button
+      {/* <button
         type="button"
         onClick={toggleSound}
         aria-label={muted ? "Unmute video" : "Mute video"}
@@ -136,7 +136,7 @@ export default function Hero() {
         ) : (
           <Volume2 className="w-5 h-5" />
         )}
-      </button>
+      </button> */}
 
       {/* Scroll indicator */}
       <motion.a

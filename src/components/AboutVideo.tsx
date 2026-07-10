@@ -98,7 +98,7 @@ export default function AboutVideo() {
 
       <div
         ref={containerRef}
-        onMouseMove={handleMouseMove}
+        onMouseMove={handleMouseMove} 
         onMouseEnter={handleMouseEnter}
         onMouseLeave={() => setIsHovering(false)}
         onClick={togglePlay}
