@@ -84,7 +84,7 @@ export default function WhyUs() {
             custom={1}
             className="text-[clamp(2rem,4.5vw,3.25rem)] font-bold text-slate-900 leading-[1.08] tracking-tight mb-6"
           >
-            Your Reliable Partner in Global Logistics
+            Your Reliable Partner in Global Port Agency & Logistics
           </motion.h2>
           <motion.p
             variants={reveal}
