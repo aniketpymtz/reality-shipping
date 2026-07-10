@@ -8,33 +8,6 @@ import AmericasSvg from "./SVGs/Americas";
 
 const RotatingGlobe = dynamic(() => import("./RotatingGlobe"), { ssr: false });
 
-const regions = [
-  {
-    name: "Europe",
-    ports: ["Hamburg", "Rotterdam", "Antwerp", "Piraeus", "Felixstowe"],
-    color: "bg-brand-blue",
-    Icon: EuropeSvg,
-  },
-  {
-    name: "Asia Pacific",
-    ports: ["Singapore", "Shanghai", "Busan", "Tokyo", "Mumbai"],
-    color: "bg-brand-blue",
-    Icon: AsiaSvg,
-  },
-  {
-    name: "Middle East & Africa",
-    ports: ["Dubai", "Jeddah", "Durban", "Lagos", "Djibouti"],
-    color: "bg-brand-blue",
-    Icon: MiddleEastSvg,
-  },
-  {
-    name: "Americas",
-    ports: ["New York", "Houston", "Santos", "Cartagena", "Vancouver"],
-    color: "bg-brand-blue",
-    Icon: AmericasSvg,
-  },
-];
-
 export default function GlobalReach() {
   return (
     <section id="global" className="py-12 bg-white">
@@ -51,12 +24,12 @@ export default function GlobalReach() {
           <h2 className="text-3xl sm:text-4xl font-bold text-slate-900 mb-4">
             Our Global Network
           </h2>
-          <p className="text-slate-600 max-w-2xl mx-auto leading-relaxed">
+          {/* <p className="text-slate-600 max-w-2xl mx-auto leading-relaxed">
             From the ports of Hamburg to the harbours of Singapore, Reality
             Shipping & Logistics operates across major trade lanes on every
             inhabited continent — delivering reliability wherever your cargo
             needs to go.
-          </p>
+          </p> */}
         </div>
 
         {/* Rotating Globe */}
