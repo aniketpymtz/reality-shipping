@@ -21,7 +21,7 @@ export default function Hero() {
   return (
     <section
       id="home"
-      className="relative min-h-screen flex items-center overflow-hidden"
+      className="relative min-h-[80vh] md:min-h-screen flex items-center overflow-hidden"
     >
       {/* Full-bleed background video */}
       <div className="absolute inset-0">
