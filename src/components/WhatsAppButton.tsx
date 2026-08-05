@@ -1,4 +1,4 @@
-const WHATSAPP_NUMBER = "918291573141";
+const WHATSAPP_NUMBER = "6597727802";
 const PREFILLED_MESSAGE = encodeURIComponent(
   "Hello Reality Shipping & Logistics, I would like to enquire about your services.",
 );
