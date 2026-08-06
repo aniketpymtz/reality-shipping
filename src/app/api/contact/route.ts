@@ -147,7 +147,7 @@ ${message.trim()}
 
     try {
         await transporter.sendMail({
-            from: `"Reality Shipping Website" <${gmailUser}>`,
+            from: `"Reality Shipping Website"`,
             to: ADMIN_EMAIL,
             replyTo: email.trim(),
             subject: `New Enquiry from ${name.trim()} — Reality Shipping`,
