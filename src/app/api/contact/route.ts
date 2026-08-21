@@ -47,11 +47,11 @@ export async function POST(req: NextRequest) {
         );
     }
 
-    const gmailUser = process.env.GMAIL_USER;
-    const gmailAppPassword = process.env.GMAIL_APP_PASSWORD;
+    const smtpUser = process.env.SMTP_USER;
+    const smtpPassword = process.env.SMTP_PASSWORD;
 
-    if (!gmailUser || !gmailAppPassword) {
-        console.error("Missing GMAIL_USER or GMAIL_APP_PASSWORD environment variables.");
+    if (!smtpUser || !smtpPassword) {
+        console.error("Missing SMTP_USER or SMTP_PASSWORD environment variables.");
         return NextResponse.json(
             { error: "Email service is not configured." },
             { status: 500 }
@@ -59,12 +59,13 @@ export async function POST(req: NextRequest) {
     }
 
     const transporter = nodemailer.createTransport({
-        host: "smtp.gmail.com",
-        port: 587,
+        host: process.env.SMTP_HOST ?? "smtp.office365.com",
+        port: Number(process.env.SMTP_PORT ?? 587),
         secure: false, // STARTTLS
+        requireTLS: true, // Microsoft 365 rejects unencrypted sessions
         auth: {
-            user: gmailUser,
-            pass: gmailAppPassword,
+            user: smtpUser,
+            pass: smtpPassword,
         },
     });
 
@@ -147,7 +148,8 @@ ${message.trim()}
 
     try {
         await transporter.sendMail({
-            from: `"Reality Shipping Website"`,
+            // Microsoft 365 requires the From address to be the authenticated mailbox
+            from: `"Reality Shipping Website" <${smtpUser}>`,
             to: ADMIN_EMAIL,
             replyTo: email.trim(),
             subject: `New Enquiry from ${name.trim()} — Reality Shipping`,

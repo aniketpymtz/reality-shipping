@@ -20,6 +20,29 @@ You can start editing the page by modifying `app/page.tsx`. The page auto-update
 
 This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
+## Contact form email (Outlook / Microsoft 365)
+
+The `/api/contact` route sends enquiries over SMTP. Set these in `.env` (and in your
+hosting provider's environment settings):
+
+| Variable | Purpose | Default |
+| --- | --- | --- |
+| `SMTP_USER` | Mailbox used to authenticate and send from | — (required) |
+| `SMTP_PASSWORD` | Mailbox password or app password | — (required) |
+| `SMTP_HOST` | SMTP server | `smtp.office365.com` |
+| `SMTP_PORT` | SMTP port (STARTTLS) | `587` |
+| `CONTACT_ADMIN_EMAIL` | Inbox that receives enquiries | `info@realityshipping.com` |
+
+Notes for Microsoft 365:
+
+- **SMTP AUTH must be enabled** for the mailbox (Microsoft 365 admin center → Users →
+  the mailbox → Mail → Manage email apps → Authenticated SMTP), and tenant-wide in
+  Exchange admin center if the org default is off.
+- If MFA is enforced on the mailbox, use an **app password** rather than the account
+  password.
+- The `From` header is forced to `SMTP_USER`; Microsoft 365 rejects mail sent from an
+  address the authenticated mailbox has no Send As rights to.
+
 ## Learn More
 
 To learn more about Next.js, take a look at the following resources:
