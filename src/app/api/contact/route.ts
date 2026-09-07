@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import nodemailer from "nodemailer";
 
-const ADMIN_EMAIL = process.env.CONTACT_ADMIN_EMAIL ?? "info@realityshipping.com";
+const ADMIN_EMAIL = process.env.CONTACT_ADMIN_EMAIL ?? "opsteam@realityshipping.com";
 
 const SERVICE_LABELS: Record<string, string> = {
     "port-agency": "Port Agency",
@@ -17,11 +17,37 @@ function isValidEmail(email: string): boolean {
     return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 }
 
+function getSmtpErrorDetails(error: unknown) {
+    if (!(error instanceof Error)) {
+        return { error: String(error) };
+    }
+
+    const smtpError = error as Error & {
+        code?: string;
+        command?: string;
+        responseCode?: number;
+    };
+
+    return {
+        name: smtpError.name,
+        message: smtpError.message,
+        code: smtpError.code,
+        command: smtpError.command,
+        responseCode: smtpError.responseCode,
+    };
+}
+
 export async function POST(req: NextRequest) {
+    const requestId = crypto.randomUUID();
+    const startedAt = Date.now();
+
+    console.info(`[contact/route] [${requestId}] Contact request received.`);
+
     let body: unknown;
     try {
         body = await req.json();
     } catch {
+        console.warn(`[contact/route] [${requestId}] Invalid JSON request body.`);
         return NextResponse.json({ error: "Invalid request body." }, { status: 400 });
     }
 
@@ -30,49 +56,76 @@ export async function POST(req: NextRequest) {
     // Honeypot: real users never fill this hidden field. Pretend success so
     // bots don't learn they were filtered.
     if (website?.trim()) {
+        console.info(`[contact/route] [${requestId}] Honeypot submission ignored.`);
         return NextResponse.json({ success: true });
     }
 
     // Server-side validation
     if (!name?.trim() || !email?.trim() || !message?.trim()) {
+        console.warn(`[contact/route] [${requestId}] Required contact fields are missing.`);
         return NextResponse.json(
             { error: "Name, email, and message are required." },
             { status: 400 }
         );
     }
     if (!isValidEmail(email.trim())) {
+        console.warn(`[contact/route] [${requestId}] Contact email has an invalid format.`);
         return NextResponse.json(
             { error: "Please provide a valid email address." },
             { status: 400 }
         );
     }
 
-    const gmailUser = process.env.GMAIL_USER;
-    const gmailAppPassword = process.env.GMAIL_APP_PASSWORD;
+    const smtpUser = process.env.SMTP_USER;
+    const smtpPassword = process.env.SMTP_PASSWORD;
+    const smtpHost = process.env.SMTP_HOST ?? "smtp.office365.com";
+    const smtpPort = Number(process.env.SMTP_PORT ?? 587);
 
-    if (!gmailUser || !gmailAppPassword) {
-        console.error("Missing GMAIL_USER or GMAIL_APP_PASSWORD environment variables.");
+    if (!smtpUser || !smtpPassword) {
+        console.error(`[contact/route] [${requestId}] Missing SMTP credentials.`, {
+            hasSmtpUser: Boolean(smtpUser),
+            hasSmtpPassword: Boolean(smtpPassword),
+        });
         return NextResponse.json(
             { error: "Email service is not configured." },
             { status: 500 }
         );
     }
 
+    console.info(`[contact/route] [${requestId}] SMTP configuration resolved.`, {
+        host: smtpHost,
+        port: smtpPort,
+        secure: false,
+        requireTLS: true,
+        smtpUserDomain: smtpUser.split("@")[1] ?? "invalid-email",
+        hasSmtpPassword: true,
+    });
+
     const transporter = nodemailer.createTransport({
-        host: "smtp.gmail.com",
-        port: 587,
+        host: smtpHost,
+        port: smtpPort,
         secure: false, // STARTTLS
+        requireTLS: true, // Microsoft 365 rejects unencrypted sessions
         auth: {
-            user: gmailUser,
-            pass: gmailAppPassword,
+            user: smtpUser,
+            pass: smtpPassword,
         },
     });
 
     // Verify SMTP credentials before attempting to send
     try {
+        console.info(`[contact/route] [${requestId}] Verifying SMTP connection.`);
         await transporter.verify();
+        console.info(`[contact/route] [${requestId}] SMTP verification succeeded.`, {
+            durationMs: Date.now() - startedAt,
+        });
     } catch (verifyErr) {
-        console.error("[contact/route] SMTP verify failed:", verifyErr);
+        console.error(`[contact/route] [${requestId}] SMTP verification failed.`, {
+            ...getSmtpErrorDetails(verifyErr),
+            host: smtpHost,
+            port: smtpPort,
+            durationMs: Date.now() - startedAt,
+        });
         return NextResponse.json(
             { error: "Email service authentication failed. Please check server configuration." },
             { status: 500 }
@@ -146,17 +199,28 @@ ${message.trim()}
     `.trim();
 
     try {
+        console.info(`[contact/route] [${requestId}] Sending contact email.`, {
+            recipientDomain: ADMIN_EMAIL.split("@")[1] ?? "invalid-email",
+            service: serviceLabel,
+        });
         await transporter.sendMail({
-            from: `"Reality Shipping Website" <${gmailUser}>`,
+            // Microsoft 365 requires the From address to be the authenticated mailbox
+            from: `"Reality Shipping Website" <${smtpUser}>`,
             to: ADMIN_EMAIL,
             replyTo: email.trim(),
             subject: `New Enquiry from ${name.trim()} — Reality Shipping`,
             text: textBody,
             html: htmlBody,
         });
+        console.info(`[contact/route] [${requestId}] Contact email sent.`, {
+            durationMs: Date.now() - startedAt,
+        });
         return NextResponse.json({ success: true });
     } catch (err) {
-        console.error("Failed to send contact form email:", err);
+        console.error(`[contact/route] [${requestId}] Failed to send contact email.`, {
+            ...getSmtpErrorDetails(err),
+            durationMs: Date.now() - startedAt,
+        });
         return NextResponse.json(
             { error: "Failed to send your message. Please try again later." },
             { status: 500 }
