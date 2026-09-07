@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import nodemailer from "nodemailer";
 
-const ADMIN_EMAIL = process.env.CONTACT_ADMIN_EMAIL ?? "opsteam@realityshipping.com";
+const ADMIN_EMAIL = process.env.CONTACT_ADMIN_EMAIL ?? "hr@realityshipping.com";
 
 const SERVICE_LABELS: Record<string, string> = {
     "port-agency": "Port Agency",
@@ -76,10 +76,17 @@ export async function POST(req: NextRequest) {
         );
     }
 
-    const smtpUser = process.env.SMTP_USER;
-    const smtpPassword = process.env.SMTP_PASSWORD;
-    const smtpHost = process.env.SMTP_HOST ?? "smtp.office365.com";
-    const smtpPort = Number(process.env.SMTP_PORT ?? 587);
+    const mailProvider = process.env.MAIL_PROVIDER ?? "microsoft365";
+    const isGmail = mailProvider === "gmail";
+    const smtpUser = isGmail
+        ? process.env.GMAIL_USER ?? process.env.SMTP_USER
+        : process.env.SMTP_USER;
+    const smtpPassword = isGmail
+        ? process.env.GMAIL_APP_PASSWORD ?? process.env.SMTP_PASSWORD
+        : process.env.SMTP_PASSWORD;
+    const smtpHost = isGmail ? "smtp.gmail.com" : process.env.SMTP_HOST ?? "smtp.office365.com";
+    const smtpPort = isGmail ? 465 : Number(process.env.SMTP_PORT ?? 587);
+    const smtpSecure = isGmail;
 
     if (!smtpUser || !smtpPassword) {
         console.error(`[contact/route] [${requestId}] Missing SMTP credentials.`, {
@@ -95,8 +102,9 @@ export async function POST(req: NextRequest) {
     console.info(`[contact/route] [${requestId}] SMTP configuration resolved.`, {
         host: smtpHost,
         port: smtpPort,
-        secure: false,
-        requireTLS: true,
+        secure: smtpSecure,
+        requireTLS: !smtpSecure,
+        provider: mailProvider,
         smtpUserDomain: smtpUser.split("@")[1] ?? "invalid-email",
         hasSmtpPassword: true,
     });
@@ -104,8 +112,8 @@ export async function POST(req: NextRequest) {
     const transporter = nodemailer.createTransport({
         host: smtpHost,
         port: smtpPort,
-        secure: false, // STARTTLS
-        requireTLS: true, // Microsoft 365 rejects unencrypted sessions
+        secure: smtpSecure,
+        requireTLS: !smtpSecure,
         auth: {
             user: smtpUser,
             pass: smtpPassword,

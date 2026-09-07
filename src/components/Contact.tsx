@@ -21,7 +21,6 @@ const INITIAL_FIELDS = {
   company: "",
   service: "",
   message: "",
-  website: "", // honeypot — hidden from real users
 };
 
 export default function Contact() {
@@ -224,18 +223,6 @@ export default function Contact() {
                   </select>
                 </div>
               </div>
-              {/* Honeypot — invisible to users, bots auto-fill it */}
-              <input
-                type="text"
-                name="website"
-                value={fields.website}
-                onChange={handleChange}
-                tabIndex={-1}
-                autoComplete="off"
-                aria-hidden="true"
-                className="sr-only"
-              />
-
               <div className="mb-5">
                 <label className="block text-sm font-medium text-slate-700 mb-2">
                   Message <span className="text-red-500">*</span>

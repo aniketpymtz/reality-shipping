@@ -109,6 +109,7 @@ export default function NewService() {
                         <Image
                             src={service.src}
                             fill
+                            sizes="100vw"
                             alt=""
                             aria-hidden
                             className="object-cover blur-md brightness-[0.3] scale-[1.05]"
@@ -181,6 +182,7 @@ export default function NewService() {
                                 <Image
                                     src={service.src}
                                     fill
+                                    sizes="(max-width: 768px) 100vw, 50vw"
                                     alt={service.title}
                                     className="object-cover"
                                     priority={i === 0}
