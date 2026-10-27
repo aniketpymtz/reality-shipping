@@ -4,6 +4,8 @@ import Image from 'next/image';
 import Link from 'next/link';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { ArrowRight, CheckCircle2 } from 'lucide-react';
+import SectionHeader from './ui/SectionHeader';
 
 const services = [
     {
@@ -93,10 +95,10 @@ export default function NewService() {
     }, [selected]);
 
     return (
-        <div ref={container} className="relative text-white mt-[5vh] md:mt-[25vh] px-[8%] py-[5%]">
+        <section id="services" ref={container} className="relative isolate overflow-hidden bg-blue-950 text-white section-y">
 
             {/* Background image layer */}
-            <div className="absolute inset-0 overflow-hidden -z-10 pointer-events-none">
+            <div className="absolute inset-0 -z-10 pointer-events-none">
                 {services.map((service, i) => (
                     <div
                         key={i}
@@ -111,114 +113,112 @@ export default function NewService() {
                             fill
                             alt=""
                             aria-hidden
+                            sizes="100vw"
                             className="object-cover blur-md brightness-[0.3] scale-[1.05]"
                         />
                     </div>
                 ))}
             </div>
 
-            {/* Section header */}
-            <div className="w-full justify-between flex flex-row mb-16">
-                <h2 className="text-[4.5vw] text-white font-bold leading-tight">
-                    Our Services
-                </h2>
-                
-            </div>
+            <div className="page-container">
+                <SectionHeader tone="dark" eyebrow="What We Do" title="Our Services" />
 
-            {/* Main layout */}
-            <div className="flex flex-col-reverse md:flex-row gap-5 md:gap-16">
+                {/* Main layout */}
+                <div className="flex flex-col-reverse md:flex-row gap-10 md:gap-16">
 
-                {/* Left — service list */}
-                <div className="w-full md:w-1/2 flex flex-col">
-                    {services.map((service, index) => (
-                        <div
-                            key={index}
-                            onMouseOver={() => setSelected(index)}
-                            className="border-b border-white/20 py-1 md:py-8 cursor-default"
-                        >
-                            <p
-                                className="text-[0.75vw] uppercase tracking-widest mb-2"
-                                style={{
-                                    color: selected === index ? '#ffffff' : '#9ca3af',
-                                    filter: selected === index ? 'none' : 'blur(1.5px)',
-                                    transition: 'color 0.5s ease, filter 0.5s ease',
-                                }}
+                    {/* Left — service list (hover, focus or tap to select) */}
+                    <div className="w-full md:w-1/2 flex flex-col">
+                        {services.map((service, index) => (
+                            <button
+                                key={index}
+                                type="button"
+                                onMouseEnter={() => setSelected(index)}
+                                onFocus={() => setSelected(index)}
+                                onClick={() => setSelected(index)}
+                                aria-pressed={selected === index}
+                                className="w-full text-left border-b border-white/20 py-5 md:py-8 cursor-pointer"
                             >
-                                {String(index + 1).padStart(2, '0')}
-                            </p>
-                            <h2
-                               className="text-[7vw] md:text-[4vw] font-bold  m-0"
-                                style={{
-                                    backgroundImage: 'linear-gradient(to right, #ffffff 50%, rgba(255,255,255,0.35) 50%)',
-                                    backgroundSize: '200% 100%',
-                                    filter: selected === index ? 'none' : 'blur(0.8px)',
-                                    backgroundPosition: selected === index ? '0%' : '100%',
-                                    WebkitBackgroundClip: 'text',
-                                    WebkitTextFillColor: 'transparent',
-                                    backgroundClip: 'text',
-                                    transition: 'background-position 0.55s ease',
-                                }}
-                            >
-                                {service.title}
-                            </h2>
-                        </div>
-                    ))}
-                </div>
-
-                {/* Right — pinned image + description */}
-                <div ref={imageContainer} className="w-full md:w-1/2 flex flex-col gap-3">
-                    <div className="relative h-62.5 w-full overflow-hidden">
-                        {services.map((service, i) => (
-                            <div
-                                key={i}
-                                className="absolute inset-0"
-                                style={{
-                                    opacity: selected === i ? 1 : 0,
-                                    transform: selected === i ? 'scale(1)' : 'scale(1.04)',
-                                    transition: 'opacity 0.65s ease, transform 0.65s ease',
-                                }}
-                            >
-                                <Image
-                                    src={service.src}
-                                    fill
-                                    alt={service.title}
-                                    className="object-cover"
-                                    priority={i === 0}
-                                />
-                            </div>
+                                <span
+                                    className={`block eyebrow mb-2 transition-colors duration-300 ${
+                                        selected === index ? 'text-gold-400' : 'text-white/50'
+                                    }`}
+                                >
+                                    {String(index + 1).padStart(2, '0')}
+                                </span>
+                                <span
+                                    className="block text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight"
+                                    style={{
+                                        backgroundImage: 'linear-gradient(to right, #ffffff 50%, rgba(255,255,255,0.45) 50%)',
+                                        backgroundSize: '200% 100%',
+                                        backgroundPosition: selected === index ? '0%' : '100%',
+                                        WebkitBackgroundClip: 'text',
+                                        WebkitTextFillColor: 'transparent',
+                                        backgroundClip: 'text',
+                                        transition: 'background-position 0.55s ease',
+                                    }}
+                                >
+                                    {service.title}
+                                </span>
+                            </button>
                         ))}
                     </div>
-                    <div ref={descRef} className="flex flex-col gap-4">
-                        <div>
-                            <h3 className="text-[5vw] md:text-[1.6vw] font-bold uppercase tracking-wide text-white m-0">
-                                {services[selected].title}
-                            </h3>
-                            <p className="text-[3vw] md:text-[1.2vw] text-white mt-1">
-                                {services[selected].subtitle}
-                            </p>
-                        </div>
-                        <p className="tet-[1.8vw] md:text-[1vw] text-white/60 leading-relaxed">
-                            {services[selected].description}
-                        </p>
-                        <ul className="flex flex-col gap-2 mt-1">
-                            {services[selected].features.slice(0, 5).map((feat, i) => (
-                                <li key={i} className="flex items-start gap-2 text-[2vw] md:text-[1.1vw] text-white/80">
-                                    <span className="text-brand-blue mt-[0.15em] shrink-0">✓</span>
-                                    {feat}
-                                </li>
-                            ))}
-                        </ul>
-                        <Link
-                            href={`/services/#${services[selected].slug}`}
-                            className="inline-flex items-center gap-2 mt-2 text-[0.9vw] font-semibold uppercase tracking-widest text-white border-b border-white pb-0.5 w-fit hover:opacity-70 transition-opacity duration-200"
-                        >
-                            Learn More
-                            <span className="text-[1.1em]">→</span>
-                        </Link>
-                    </div>
-                </div>
 
+                    {/* Right — image + description */}
+                    <div ref={imageContainer} className="w-full md:w-1/2 flex flex-col gap-6">
+                        <div className="relative aspect-16/10 w-full overflow-hidden rounded-2xl">
+                            {services.map((service, i) => (
+                                <div
+                                    key={i}
+                                    className="absolute inset-0"
+                                    style={{
+                                        opacity: selected === i ? 1 : 0,
+                                        transform: selected === i ? 'scale(1)' : 'scale(1.04)',
+                                        transition: 'opacity 0.65s ease, transform 0.65s ease',
+                                    }}
+                                >
+                                    <Image
+                                        src={service.src}
+                                        fill
+                                        alt={service.title}
+                                        sizes="(max-width: 768px) 100vw, 50vw"
+                                        className="object-cover"
+                                        priority={i === 0}
+                                    />
+                                </div>
+                            ))}
+                        </div>
+                        <div ref={descRef} className="flex flex-col gap-4">
+                            <div>
+                                <h3 className="heading-card text-white">
+                                    {services[selected].title}
+                                </h3>
+                                <p className="mt-1 eyebrow text-gold-400">
+                                    {services[selected].subtitle}
+                                </p>
+                            </div>
+                            <p className="text-base text-white/75 leading-relaxed">
+                                {services[selected].description}
+                            </p>
+                            <ul className="flex flex-col gap-2.5">
+                                {services[selected].features.slice(0, 5).map((feat, i) => (
+                                    <li key={i} className="flex items-start gap-3 text-base text-white/85">
+                                        <CheckCircle2 className="w-5 h-5 mt-0.5 shrink-0 text-blue-300" aria-hidden="true" />
+                                        {feat}
+                                    </li>
+                                ))}
+                            </ul>
+                            <Link
+                                href={`/services/#${services[selected].slug}`}
+                                className="group link-arrow mt-2 text-white hover:text-gold-400"
+                            >
+                                Learn more about {services[selected].title}
+                                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                            </Link>
+                        </div>
+                    </div>
+
+                </div>
             </div>
-        </div>
+        </section>
     )
 }

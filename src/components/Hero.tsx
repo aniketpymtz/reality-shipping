@@ -2,10 +2,10 @@
 import { ChevronRight } from "lucide-react";
 import Link from "next/link";
 import { motion } from "framer-motion";
+import { EASE } from "@/lib/motion";
+import { Eyebrow } from "./ui/SectionHeader";
 
 const titleWords = ["Trusted", "Across", "Oceans"];
-
-const EASE: [number, number, number, number] = [0.22, 1, 0.36, 1];
 
 const wordVariants = {
   hidden: { opacity: 0, y: 40, filter: "blur(12px)" },
@@ -43,21 +43,18 @@ export default function Hero() {
         <div className="absolute inset-x-0 top-0 h-32 bg-linear-to-b from-slate-950/40 to-transparent" />
       </div>
 
-      <div className="relative z-10 max-w-7xl mx-auto px-6 w-full">
+      <div className="relative z-10 page-container">
         <div className="max-w-3xl">
           <motion.div
-            className="flex items-center gap-3 mb-5"
+            className="mb-5"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, ease: EASE }}
           >
-            <div className="divider-gold" />
-            <span className="text-white/80 text-sm font-semibold uppercase tracking-[0.24em]">
-              Global Port Agency Network
-            </span>
+            <Eyebrow tone="dark">Global Port Agency Network</Eyebrow>
           </motion.div>
 
-          <h1 className="text-[clamp(2.75rem,7vw,5.5rem)] font-bold leading-[1.04] tracking-tight mb-8 flex flex-wrap gap-x-5">
+          <h1 className="heading-display mb-8 flex flex-wrap gap-x-5">
             {titleWords.map((word, i) => (
               <motion.span
                 key={word}
@@ -73,22 +70,16 @@ export default function Hero() {
           </h1>
 
           <motion.div
-            className="flex flex-col sm:flex-row gap-4 text-sm"
+            className="flex flex-col sm:flex-row gap-4"
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.9, delay: 0.55, ease: EASE }}
           >
-            <Link
-              href="/services"
-              className="group inline-flex items-center justify-center gap-2 px-8 py-3.5 bg-white text-slate-900 font-semibold rounded-lg hover:bg-slate-100 transition-all shadow-lg shadow-black/15"
-            >
+            <Link href="/services" className="group btn btn-light">
               Our Services
               <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
             </Link>
-            <a
-              href="#contact"
-              className="inline-flex items-center justify-center gap-2 px-8 py-3.5 border border-white/30 text-white font-semibold rounded-lg hover:bg-white/10 transition-all backdrop-blur-sm"
-            >
+            <a href="#contact" className="btn btn-outline-light">
               Get a Quote
             </a>
           </motion.div>

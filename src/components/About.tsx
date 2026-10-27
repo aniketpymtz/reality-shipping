@@ -10,6 +10,7 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Image from "next/image";
 import AboutVideo from "./AboutVideo";
+import { Eyebrow } from "./ui/SectionHeader";
 
 const Globe3D = dynamic(() => import("./Globe3D"), { ssr: false });
 
@@ -21,7 +22,6 @@ const panels = [
     label: "Average response time to inquiries — 24/7, every port",
     videoPos: "0% center",
     placement: "justify-end", // bottom
-    clipPath: "polygon(50px 0%, 100% 0%, 100% 100%, 0% 100%, 0% 50px)",
   },
   {
     end: 4,
@@ -30,7 +30,6 @@ const panels = [
     label: "Average variance between PDA and final FDA",
     videoPos: "50% center",
     placement: "justify-center", // middle
-    clipPath: undefined,
   },
   {
     end: 27,
@@ -39,8 +38,6 @@ const panels = [
     label: "f",
     videoPos: "100% center",
     placement: "justify-start", // top
-    clipPath:
-      "polygon(0% 0%, 100% 0%, 100% calc(100% - 50px), calc(100% - 50px) 100%, 0% 100%)",
   },
 ];
 
@@ -63,6 +60,7 @@ export default function About() {
   const textColRef = useRef<HTMLDivElement>(null);
 
   useLayoutEffect(() => {
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
     gsap.registerPlugin(ScrollTrigger);
     const ctx = gsap.context(() => {
       gsap.fromTo(
@@ -88,9 +86,9 @@ export default function About() {
   return (
     <section
       id="about"
-      className="py-18 bg-linear-to-b from-white via-sky-50/40 to-white"
+      className="section-y bg-white"
     >
-      <div className="max-w-7xl mx-auto px-6">
+      <div className="page-container">
         {/* Top Section */}
         <div className="grid lg:grid-cols-[1fr_2fr] gap-12 xl:gap-20 mb-16 lg:mb-20 items-start">
           <div
@@ -98,12 +96,7 @@ export default function About() {
             data-scroll
             data-scroll-speed="0.2"
           >
-            <div className="flex items-center gap-3">
-              <div className="divider-gold" />
-              <span className="text-gold-500 text-sm font-semibold uppercase tracking-[0.2em]">
-                About Us
-              </span>
-            </div>
+            <Eyebrow>About Us</Eyebrow>
             <Globe3D />
           </div>
 
@@ -115,14 +108,12 @@ export default function About() {
           >
             {/* Main headline */}
             <div data-reveal className="flex flex-col gap-3">
-              <p className="text-slate-400 text-sm font-medium uppercase tracking-[0.18em]">
+              <p className="text-slate-500 text-sm font-medium uppercase tracking-[0.18em]">
                 Across oceans and operations, one question drives us:
               </p>
-              <h2 className="text-4xl sm:text-5xl lg:text-[3.25rem] xl:text-[3.75rem] font-bold text-slate-900 leading-none">
+              <h2 className="heading-section text-slate-900">
                 How can we elevate your{" "}
-                <span className="bg-linear-to-r from-brand-blue to-sky-400 bg-clip-text text-transparent">
-                  voyage today?
-                </span>
+                <span className="text-brand-blue">voyage today?</span>
               </h2>
             </div>
 
@@ -130,7 +121,7 @@ export default function About() {
             <div data-reveal className="flex gap-4 items-stretch">
               <div className="w-1 rounded-full bg-brand-blue shrink-0" />
               <div className="flex flex-col gap-1">
-                <p className="text-[0.7rem] font-bold uppercase tracking-[0.22em] text-brand-blue">
+                <p className="text-xs font-bold uppercase tracking-[0.2em] text-brand-blue">
                   Our Promise
                 </p>
                 <p className="text-slate-700 font-medium text-base leading-snug">
@@ -145,7 +136,7 @@ export default function About() {
             {/* Description */}
             <p
               data-reveal
-              className="text-slate-500 leading-relaxed text-base max-w-2xl"
+              className="lead-text text-slate-600 max-w-2xl"
             >
               Reality Shipping and Logistics global Port Agency Serve as the operational link
               between vessels, ports, and stakeholders—transforming complex
@@ -156,10 +147,10 @@ export default function About() {
             <Link
               data-reveal
               href="/about"
-              className="inline-flex items-center gap-2 text-brand-blue font-semibold text-sm hover:gap-3 transition-all w-fit"
+              className="group link-arrow text-brand-blue hover:text-brand-blue-dark"
             >
               Learn more about us
-              <ArrowRight className="w-4 h-4" />
+              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
             </Link>
           </div>
         </div>
@@ -169,8 +160,7 @@ export default function About() {
           {panels.map(({ Icon, ...panel }) => (
             <div
               key={panel.label}
-              className="group relative overflow-hidden"
-              style={{ clipPath: panel.clipPath }}
+              className="group relative overflow-hidden rounded-2xl"
             >
               <Image
                 src="/assets/about-img.jpg"

@@ -12,6 +12,7 @@ import {
   AlertCircle,
   Building2,
 } from "lucide-react";
+import SectionHeader from "./ui/SectionHeader";
 
 type Status = "idle" | "loading" | "success" | "error";
 
@@ -69,30 +70,19 @@ export default function Contact() {
   const isLoading = status === "loading";
 
   return (
-    <section id="contact" className="py-24 bg-white">
-      <div className="max-w-7xl mx-auto px-6">
-        {/* Header */}
-        <div className="text-center mb-16">
-          <div className="flex items-center justify-center gap-3 mb-2">
-            <div className="divider-gold" />
-            <span className="text-gold-500 text-sm font-semibold uppercase tracking-[0.2em]">
-              Contact Us
-            </span>
-            <div className="divider-gold" />
-          </div>
-          <h2 className="text-3xl sm:text-4xl font-bold text-slate-900">
-            Let&apos;s Talk
-          </h2>
-          <p className="text-slate-600 max-w-2xl mx-auto leading-relaxed">
-            Turn every port call into an advantage.
-          </p>
-        </div>
+    <section id="contact" className="section-y bg-white">
+      <div className="page-container">
+        <SectionHeader
+          eyebrow="Contact Us"
+          title="Let's Talk"
+          lead="Turn every port call into an advantage."
+        />
 
         <div className="grid lg:grid-cols-5 gap-10">
           {/* Contact info */}
           <div className="lg:col-span-2 space-y-6">
             <div className="bg-linear-to-br from-blue-950 to-blue-800 rounded-2xl p-8 text-white">
-              <h3 className="text-lg font-bold mb-6">Contact Information</h3>
+              <h3 className="heading-card mb-6">Contact Information</h3>
               <div className="space-y-5">
                 <div className="flex items-start gap-4">
                   <div className="w-10 h-10 rounded-lg bg-white/10 flex items-center justify-center shrink-0">
@@ -153,16 +143,18 @@ export default function Contact() {
           <div className="lg:col-span-3">
             <form
               onSubmit={handleSubmit}
-              className="bg-white rounded-2xl border border-slate-200 p-8"
+              className="bg-white rounded-2xl border border-slate-200 p-8 lg:p-10"
             >
               <div className="grid sm:grid-cols-2 gap-5 mb-5">
                 <div>
-                  <label className="block text-sm font-medium text-slate-700 mb-2">
-                    Full Name <span className="text-red-500">*</span>
+                  <label htmlFor="contact-name" className="block text-sm font-medium text-slate-700 mb-2">
+                    Full Name <span className="text-red-600" aria-hidden="true">*</span>
                   </label>
                   <input
+                    id="contact-name"
                     type="text"
                     name="name"
+                    autoComplete="name"
                     value={fields.name}
                     onChange={handleChange}
                     placeholder="John Smith"
@@ -172,12 +164,14 @@ export default function Contact() {
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-slate-700 mb-2">
-                    Email Address <span className="text-red-500">*</span>
+                  <label htmlFor="contact-email" className="block text-sm font-medium text-slate-700 mb-2">
+                    Email Address <span className="text-red-600" aria-hidden="true">*</span>
                   </label>
                   <input
+                    id="contact-email"
                     type="email"
                     name="email"
+                    autoComplete="email"
                     value={fields.email}
                     onChange={handleChange}
                     placeholder="john@company.com"
@@ -189,12 +183,14 @@ export default function Contact() {
               </div>
               <div className="grid sm:grid-cols-2 gap-5 mb-5">
                 <div>
-                  <label className="block text-sm font-medium text-slate-700 mb-2">
+                  <label htmlFor="contact-company" className="block text-sm font-medium text-slate-700 mb-2">
                     Company
                   </label>
                   <input
+                    id="contact-company"
                     type="text"
                     name="company"
+                    autoComplete="organization"
                     value={fields.company}
                     onChange={handleChange}
                     placeholder="Your Company"
@@ -203,10 +199,11 @@ export default function Contact() {
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-slate-700 mb-2">
+                  <label htmlFor="contact-service" className="block text-sm font-medium text-slate-700 mb-2">
                     Service Required
                   </label>
                   <select
+                    id="contact-service"
                     name="service"
                     value={fields.service}
                     onChange={handleChange}
@@ -237,10 +234,11 @@ export default function Contact() {
               />
 
               <div className="mb-5">
-                <label className="block text-sm font-medium text-slate-700 mb-2">
-                  Message <span className="text-red-500">*</span>
+                <label htmlFor="contact-message" className="block text-sm font-medium text-slate-700 mb-2">
+                  Message <span className="text-red-600" aria-hidden="true">*</span>
                 </label>
                 <textarea
+                  id="contact-message"
                   name="message"
                   value={fields.message}
                   onChange={handleChange}
@@ -276,7 +274,7 @@ export default function Contact() {
               <button
                 type="submit"
                 disabled={isLoading}
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 bg-brand-blue text-white font-semibold rounded-lg hover:bg-brand-blue/90 transition-colors shadow-lg shadow-brand-blue/20 disabled:opacity-70 disabled:cursor-not-allowed"
+                className="btn btn-primary w-full sm:w-auto"
               >
                 {isLoading ? (
                   <>

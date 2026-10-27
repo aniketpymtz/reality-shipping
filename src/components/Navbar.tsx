@@ -112,8 +112,11 @@ export default function Navbar() {
           {/* Services dropdown */}
           <div className="relative" ref={dropdownRef}>
             <button
+              type="button"
               onClick={() => setServicesOpen((v) => !v)}
-              className={`flex items-center gap-1 text-sm font-semibold transition-colors duration-300 ${
+              aria-expanded={servicesOpen}
+              aria-haspopup="true"
+              className={`flex cursor-pointer items-center gap-1 text-sm font-semibold transition-colors duration-300 ${
                 darkText ? "text-slate-600 hover:text-brand-blue" : "text-white hover:text-white"
               }`}
             >
@@ -149,11 +152,7 @@ export default function Navbar() {
 
           <a
             href="/#contact"
-            className={`ml-2 px-5 py-2.5 text-sm font-semibold rounded-md transition-all duration-300 ${
-              darkText
-                ? "bg-brand-blue text-white hover:bg-brand-blue/90"
-                : "bg-white/15 text-white border border-white/25 hover:bg-white/25 backdrop-blur-sm"
-            }`}
+            className={`ml-2 btn min-h-11 px-5 py-2.5 ${darkText ? "btn-primary" : "btn-outline-light"}`}
           >
             Get a Quote
           </a>
@@ -164,6 +163,7 @@ export default function Navbar() {
           className={`lg:hidden p-2 transition-colors duration-300 ${darkText ? "text-slate-700" : "text-white"}`}
           onClick={() => setOpen(!open)}
           aria-label="Toggle menu"
+          aria-expanded={open}
         >
           {open ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
         </button>
@@ -186,7 +186,9 @@ export default function Navbar() {
 
             {/* Mobile Services accordion */}
             <button
+              type="button"
               onClick={() => setMobileServicesOpen((v) => !v)}
+              aria-expanded={mobileServicesOpen}
               className="flex items-center justify-between py-3 text-sm font-medium text-slate-600 hover:text-brand-blue border-b border-slate-100 transition-colors w-full"
             >
               Services
@@ -201,7 +203,7 @@ export default function Navbar() {
                 <a
                   href="/services"
                   onClick={() => { setOpen(false); setMobileServicesOpen(false); }}
-                  className="py-2.5 text-xs font-semibold uppercase tracking-widest text-[#c9a84c] hover:text-brand-blue transition-colors"
+                  className="py-2.5 text-xs font-semibold uppercase tracking-widest text-brand-blue hover:text-brand-blue-dark transition-colors"
                 >
                   All Services
                 </a>
@@ -221,7 +223,7 @@ export default function Navbar() {
             <a
               href="/#contact"
               onClick={() => setOpen(false)}
-              className="mt-3 py-3 bg-brand-blue text-white text-sm font-semibold rounded-lg text-center hover:bg-brand-blue/90 transition-colors"
+              className="mt-3 btn btn-primary"
             >
               Get a Quote
             </a>

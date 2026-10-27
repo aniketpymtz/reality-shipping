@@ -5,35 +5,21 @@ import EuropeSvg from "./SVGs/Europe";
 import AsiaSvg from "./SVGs/Asia";
 import MiddleEastSvg from "./SVGs/MiddleEast";
 import AmericasSvg from "./SVGs/Americas";
+import SectionHeader from "./ui/SectionHeader";
 
 const RotatingGlobe = dynamic(() => import("./RotatingGlobe"), { ssr: false });
 
 export default function GlobalReach() {
   return (
-    <section id="global" className="py-12 bg-white">
-      <div className="max-w-7xl mx-auto px-6">
-        {/* Header */}
-        <div className="text-center mb-16">
-          <div className="flex items-center justify-center gap-3 mb-4">
-            <div className="divider-gold" />
-            <span className="text-gold-500 text-sm font-semibold uppercase tracking-[0.2em]">
-              Global Network
-            </span>
-            <div className="divider-gold" />
-          </div>
-          <h2 className="text-3xl sm:text-4xl font-bold text-slate-900 mb-4">
-            Our Global Network
-          </h2>
-          {/* <p className="text-slate-600 max-w-2xl mx-auto leading-relaxed">
-            From the ports of Hamburg to the harbours of Singapore, Reality
-            Shipping & Logistics operates across major trade lanes on every
-            inhabited continent — delivering reliability wherever your cargo
-            needs to go.
-          </p> */}
-        </div>
+    <section id="global" className="section-y bg-white">
+      <div className="page-container">
+        {/* Lead copy, if wanted: "From the ports of Hamburg to the harbours of Singapore, Reality
+            Shipping & Logistics operates across major trade lanes on every inhabited continent —
+            delivering reliability wherever your cargo needs to go." */}
+        <SectionHeader eyebrow="Global Network" title="Our Global Network" />
 
         {/* Rotating Globe */}
-        <div className="relative bg-blue-50 border border-blue-100 rounded-2xl overflow-hidden mb-12">
+        <div className="relative bg-blue-50 border border-blue-100 rounded-2xl overflow-hidden">
           <div className="grid lg:grid-cols-2 gap-0 items-center">
             {/* Globe */}
             <div className="relative h-100 md:h-125">
@@ -41,16 +27,16 @@ export default function GlobalReach() {
             </div>
             {/* Stats overlay */}
             <div className="relative z-10 p-10 md:p-16">
-              <p className="text-brand-blue text-xs font-semibold uppercase tracking-widest mb-2">
+              <p className="eyebrow text-brand-blue mb-3">
                 Our Reach, By the Numbers
               </p>
-              <h3 className="text-5xl sm:text-6xl font-bold text-brand-blue mb-1">
+              <p className="text-5xl sm:text-6xl font-bold tracking-tight text-brand-blue mb-1">
                 50+
-              </h3>
-              <p className="text-slate-500 text-base mb-10">
+              </p>
+              <p className="text-slate-600 text-base mb-10">
                 Active ports across global trade routes
               </p>
-              <div className="grid grid-cols-3 gap-x-8 gap-y-7">
+              <div className="grid grid-cols-2 gap-x-8 gap-y-7 max-w-sm">
                 {[
                   { number: "6", label: "Continents Covered" },
                   { number: "20+", label: "Countries Served" },
@@ -58,10 +44,10 @@ export default function GlobalReach() {
                   
                 ].map((stat) => (
                   <div key={stat.label}>
-                    <div className="text-3xl font-bold text-brand-blue">
+                    <div className="text-3xl font-bold tracking-tight text-brand-blue">
                       {stat.number}
                     </div>
-                    <div className="text-sm text-slate-500 mt-0.5">{stat.label}</div>
+                    <div className="text-sm text-slate-600 mt-0.5">{stat.label}</div>
                   </div>
                 ))}
               </div>

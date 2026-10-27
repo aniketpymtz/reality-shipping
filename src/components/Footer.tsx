@@ -5,7 +5,7 @@ import Link from "next/link";
 export default function Footer() {
   return (
     <footer className="bg-blue-950 text-white">
-      <div className="max-w-7xl mx-auto px-6 py-16">
+      <div className="page-container py-16">
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-10">
           {/* Brand */}
           <div className="lg:col-span-1">
@@ -53,7 +53,7 @@ export default function Footer() {
                 <Mail className="w-4 h-4 text-blue-300" />
               </a>
               <a
-                href="tel:+65 9772 7802"
+                href="tel:+6597727802"
                 className="w-9 h-9 rounded-lg bg-white/5 hover:bg-white/10 flex items-center justify-center transition-colors"
                 aria-label="Phone"
               >
@@ -129,8 +129,8 @@ export default function Footer() {
 
       {/* Bottom bar */}
       <div className="border-t border-white/10">
-        <div className="max-w-7xl mx-auto px-6 py-5 flex flex-col sm:flex-row items-center justify-between gap-3">
-          <p className="text-xs text-blue-400/50">
+        <div className="page-container py-5 flex flex-col sm:flex-row items-center justify-between gap-3">
+          <p className="text-xs text-white/60">
             &copy; {new Date().getFullYear()} Reality Shipping & Logistics. All
             rights reserved.
           </p>

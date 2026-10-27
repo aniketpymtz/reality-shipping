@@ -16,6 +16,8 @@
   --brand-blue: #0675BC;
   --gold-400: #c9a84c;
   --gold-500: #b8941f;
+  /* Gold that passes 4.5:1 as text on white — gold-400/500 are decorative only on light surfaces. */
+  --gold-600: #8a6a12;
   --slate-100: #f1f5f9;
   --slate-200: #e2e8f0;
   --slate-300: #cbd5e1;
@@ -41,8 +43,10 @@
   --color-blue-900: var(--blue-900);
   --color-blue-950: var(--blue-950);
   --color-brand-blue: #0675BC;
+  --color-brand-blue-dark: #055a91;
   --color-gold-400: var(--gold-400);
   --color-gold-500: var(--gold-500);
+  --color-gold-600: var(--gold-600);
   --color-slate-100: var(--slate-100);
   --color-slate-200: var(--slate-200);
   --color-slate-300: var(--slate-300);
@@ -169,4 +173,80 @@ html {
   height: 3px;
   background: linear-gradient(90deg, var(--gold-400), var(--gold-500));
   border-radius: 2px;
+}
+
+/* ─────────────────────────────────────────────────────────────
+   Design system primitives — see design-system/reality-shipping/MASTER.md
+   ───────────────────────────────────────────────────────────── */
+
+/* Layout rhythm */
+@utility page-container {
+  @apply mx-auto w-full max-w-7xl px-6;
+}
+
+@utility section-y {
+  @apply py-20 lg:py-28;
+}
+
+/* Type scale */
+@utility eyebrow {
+  @apply text-sm font-semibold uppercase tracking-[0.2em];
+}
+
+@utility heading-display {
+  @apply text-[clamp(2.75rem,7vw,5.5rem)] font-bold leading-[1.04] tracking-tight;
+}
+
+@utility heading-section {
+  @apply text-[clamp(2rem,4.5vw,3.25rem)] font-bold leading-[1.1] tracking-tight text-balance;
+}
+
+@utility heading-card {
+  @apply text-xl font-bold tracking-tight;
+}
+
+@utility lead-text {
+  @apply text-lg leading-relaxed;
+}
+
+/* Buttons — one shape, one size, three tones */
+@utility btn {
+  @apply inline-flex min-h-12 cursor-pointer items-center justify-center gap-2 rounded-lg px-7 py-3 text-sm font-semibold transition-colors duration-200 disabled:cursor-not-allowed disabled:opacity-70;
+}
+
+@utility btn-primary {
+  @apply bg-brand-blue text-white shadow-lg shadow-brand-blue/20 hover:bg-brand-blue-dark;
+}
+
+@utility btn-light {
+  @apply bg-white text-slate-900 shadow-lg shadow-black/15 hover:bg-slate-100;
+}
+
+@utility btn-outline-light {
+  @apply border border-white/40 text-white backdrop-blur-sm hover:bg-white/10;
+}
+
+/* Inline text link with trailing arrow */
+@utility link-arrow {
+  @apply inline-flex w-fit cursor-pointer items-center gap-2 text-sm font-semibold transition-colors duration-200;
+}
+
+/* Visible keyboard focus everywhere */
+:focus-visible {
+  outline: 3px solid var(--brand-blue);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }

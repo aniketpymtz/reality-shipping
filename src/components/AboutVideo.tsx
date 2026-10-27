@@ -3,8 +3,8 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { Play } from "lucide-react";
-
-const EASE: [number, number, number, number] = [0.22, 1, 0.36, 1];
+import { EASE } from "@/lib/motion";
+import { Eyebrow } from "./ui/SectionHeader";
 
 export default function AboutVideo() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -87,14 +87,9 @@ export default function AboutVideo() {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.2 }}
       transition={{ duration: 0.9, ease: EASE }}
-      className="mt-16 lg:mt-20 flex flex-col items-center gap-6"
+      className="mt-16 lg:mt-24 flex flex-col gap-6"
     >
-      <div className="flex items-center gap-3 self-start">
-        <div className="divider-gold" />
-        <span className="text-gold-500 text-sm font-semibold uppercase tracking-[0.2em]">
-          Discover Who We Are
-        </span>
-      </div>
+      <Eyebrow>Discover Who We Are</Eyebrow>
 
       <div
         ref={containerRef}
@@ -102,7 +97,17 @@ export default function AboutVideo() {
         onMouseEnter={handleMouseEnter}
         onMouseLeave={() => setIsHovering(false)}
         onClick={togglePlay}
-        className="group relative aspect-video h-[50vh] md:h-[95vh] w-[95vw] overflow-hidden bg-slate-950 shadow-2xl shadow-slate-900/20 cursor-none"
+        onKeyDown={(e) => {
+          if (e.key === "Enter" || e.key === " ") {
+            e.preventDefault();
+            togglePlay();
+          }
+        }}
+        role="button"
+        tabIndex={0}
+        aria-label={isPlaying ? "Pause company video" : "Play company video"}
+        aria-pressed={isPlaying}
+        className="group relative aspect-video w-full overflow-hidden rounded-2xl bg-slate-950 shadow-2xl shadow-slate-900/20 cursor-none"
       >
         <video
           ref={videoRef}
