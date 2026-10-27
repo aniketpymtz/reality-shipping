@@ -111,6 +111,7 @@ export default function NewService() {
                         <Image
                             src={service.src}
                             fill
+                            sizes="100vw"
                             alt=""
                             aria-hidden
                             sizes="100vw"
