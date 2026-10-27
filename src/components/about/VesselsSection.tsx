@@ -3,7 +3,8 @@
 import { useState } from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { Ship, Container, Droplets, Package, Check } from "lucide-react";
+import { Ship, Container, Droplets, CheckCircle2 } from "lucide-react";
+import SectionHeader from "../ui/SectionHeader";
 
 const vessels = [
   {
@@ -51,29 +52,13 @@ export default function VesselsSection() {
   const [active, setActive] = useState(0);
 
   return (
-    <section className="relative py-24 lg:py-32 bg-white overflow-hidden">
-      <div className="relative max-w-7xl mx-auto px-6">
-        {/* Header */}
-        <motion.div
-          className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 mb-14"
-          initial={{ opacity: 0, y: 32 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.4 }}
-          transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-        >
-          <div>
-            <div className="flex items-center gap-3 mb-4">
-              <div className="divider-gold" />
-              <span className="text-gold-500 text-sm font-semibold uppercase tracking-[0.2em]">
-                Vessels We Serve
-              </span>
-            </div>
-            
-          <p className="text-black/80 text-xl max-w-lg leading-relaxed lg:text-right whitespace-nowrap">
-            Different vessels. Different requirements. One standard of excellence.
-          </p>
-          </div>
-        </motion.div>
+    <section className="relative section-y bg-white overflow-hidden">
+      <div className="page-container">
+        <SectionHeader
+          eyebrow="Vessels We Serve"
+          title="One standard of excellence."
+          lead="Different vessels. Different requirements."
+        />
 
         {/* Expanding panels */}
         <motion.div
@@ -92,9 +77,9 @@ export default function VesselsSection() {
                 onMouseEnter={() => setActive(i)}
                 onFocus={() => setActive(i)}
                 onClick={() => setActive(i)}
-                aria-expanded={isActive}
+                aria-pressed={isActive}
                 style={{ flexGrow: isActive ? 2.6 : 1 }}
-                className="group relative basis-0 min-h-80 md:min-h-0 overflow-hidden rounded-2xl text-left transition-[flex-grow] duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] focus:outline-none focus-visible:ring-2 focus-visible:ring-sky-300"
+                className="group relative basis-0 min-h-80 md:min-h-0 cursor-pointer overflow-hidden rounded-2xl text-left transition-[flex-grow] duration-700 ease-[cubic-bezier(0.22,1,0.36,1)]"
               >
                 <Image
                   src={vessel.image}
@@ -108,12 +93,12 @@ export default function VesselsSection() {
                 />
                 {/* Legibility grades */}
                 <div
-                  className={`absolute inset-0 bg-linear-to-t from-slate-950/90 via-slate-950/35 to-transparent transition-opacity duration-500 ${
+                  className={`absolute inset-0 bg-linear-to-t from-blue-950/90 via-blue-950/35 to-transparent transition-opacity duration-500 ${
                     isActive ? "opacity-100" : "opacity-80"
                   }`}
                 />
                 <div
-                  className={`absolute inset-0 bg-slate-950/35 transition-opacity duration-500 ${
+                  className={`absolute inset-0 bg-blue-950/35 transition-opacity duration-500 ${
                     isActive ? "opacity-0" : "opacity-100"
                   }`}
                 />
@@ -121,17 +106,17 @@ export default function VesselsSection() {
                 {/* Content */}
                 <div className="absolute inset-0 flex flex-col justify-between p-6 lg:p-8">
                   <div className="flex items-center justify-between">
-                    <span className="text-xs font-bold uppercase tracking-[0.24em] text-sky-200/80">
+                    <span className={`eyebrow transition-colors duration-300 ${isActive ? "text-gold-400" : "text-white/70"}`}>
                       {String(i + 1).padStart(2, "0")}
                     </span>
                     <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-white/10 border border-white/15 backdrop-blur-sm">
-                      <vessel.Icon className="w-5 h-5 text-sky-200" />
+                      <vessel.Icon className="w-5 h-5 text-blue-300" aria-hidden="true" />
                     </span>
                   </div>
 
                   <div>
                     <p
-                      className={`text-xs font-semibold uppercase tracking-[0.2em] text-gold-400 mb-2 transition-opacity duration-500 ${
+                      className={`eyebrow text-gold-400 mb-2 transition-opacity duration-500 ${
                         isActive ? "opacity-100" : "opacity-0 md:opacity-0"
                       }`}
                     >
@@ -152,11 +137,9 @@ export default function VesselsSection() {
                       {vessel.services.map((service) => (
                         <li
                           key={service}
-                          className="flex items-center gap-2.5 text-sm text-sky-100/90"
+                          className="flex items-center gap-2.5 text-sm text-white/85"
                         >
-                          <span className="flex h-4.5 w-4.5 shrink-0 items-center justify-center rounded-full bg-brand-blue/40">
-                            <Check className="w-3 h-3 text-sky-200" />
-                          </span>
+                          <CheckCircle2 className="w-4.5 h-4.5 shrink-0 text-blue-300" aria-hidden="true" />
                           {service}
                         </li>
                       ))}

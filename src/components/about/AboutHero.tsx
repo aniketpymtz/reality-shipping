@@ -4,8 +4,8 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import CountUp from "react-countup";
 import { useInView } from "react-intersection-observer";
-
-const EASE: [number, number, number, number] = [0.22, 1, 0.36, 1];
+import { EASE } from "@/lib/motion";
+import { Eyebrow } from "../ui/SectionHeader";
 
 const titleLines = ["The Agency", "Behind every Voyage"];
 
@@ -40,29 +40,26 @@ function StatValue({
 
 export default function AboutHero() {
   return (
-    <section className="relative overflow-hidden bg-linear-to-b from-sky-50 via-white to-white">
-      <div className="max-w-6xl mx-auto w-full px-6 pt-32 pb-12 lg:pt-36 lg:pb-16">
+    <section className="relative overflow-hidden bg-white">
+      <div className="page-container pt-32 pb-20 lg:pt-40 lg:pb-28">
         <div className="grid lg:grid-cols-2 gap-10 lg:gap-14 items-center">
           {/* Copy */}
           <div>
             <motion.div
-              className="flex items-center gap-3 mb-5"
+              className="mb-5"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, ease: EASE }}
             >
-              <div className="divider-gold" />
-              <span className="text-gold-500 text-sm font-semibold uppercase tracking-[0.22em]">
-                About Reality Shipping &amp; Logistics
-              </span>
+              <Eyebrow>About Reality Shipping &amp; Logistics</Eyebrow>
             </motion.div>
 
-            <h1 className="text-[clamp(2rem,4.5vw,3rem)] font-bold text-slate-900 leading-[1.04] tracking-tight mb-5">
+            <h1 className="heading-page text-slate-900 mb-6">
               The Agency, Behind every Voyage
             </h1>
 
             <motion.p
-              className="text-slate-600 text-[14px] leading-relaxed max-w-lg text-justify"
+              className="lead-text text-slate-600 max-w-xl"
               initial={{ opacity: 0, y: 24 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.45, ease: EASE }}
@@ -81,7 +78,7 @@ export default function AboutHero() {
 
           {/* Subtle vessel image */}
           <motion.div
-            className="relative aspect-4/3 lg:aspect-square max-w-md lg:ml-auto w-full rounded-3xl overflow-hidden ring-1 ring-slate-200/70"
+            className="relative aspect-4/3 lg:aspect-square max-w-md lg:ml-auto w-full rounded-2xl overflow-hidden"
             initial={{ opacity: 0, scale: 0.97 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 1, delay: 0.3, ease: EASE }}
@@ -100,21 +97,21 @@ export default function AboutHero() {
 
         {/* Quiet stats row */}
         <motion.div
-          className="mt-14 grid grid-cols-3 justify-center items-center  border-y border-slate-200 divide-x divide-slate-200"
+          className="mt-16 grid grid-cols-3 items-center border-y border-slate-200 divide-x divide-slate-200"
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.6, ease: EASE }}
         >
           {stats.map((stat) => (
             <div key={stat.label} className="px-5 py-6">
-              <div className="text-3xl sm:text-4xl font-bold text-slate-900 tracking-tight">
+              <div className="text-3xl sm:text-4xl font-bold text-brand-blue tracking-tight">
                 <StatValue
                   end={stat.end}
                   suffix={stat.suffix}
                   value={stat.value}
                 />
               </div>
-              <div className="mt-1.5 text-xs sm:text-sm text-slate-500 font-medium">
+              <div className="mt-1.5 text-sm text-slate-600 font-medium">
                 {stat.label}
               </div>
             </div>

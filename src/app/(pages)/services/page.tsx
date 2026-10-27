@@ -4,9 +4,9 @@ import React, { useState, useEffect, useRef, useCallback } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { Download, Check, ArrowRight, ArrowUpRight } from "lucide-react";
-
-const EASE: [number, number, number, number] = [0.22, 1, 0.36, 1];
+import { Download, CheckCircle2, ArrowRight, ArrowUpRight } from "lucide-react";
+import { EASE } from "@/lib/motion";
+import { Eyebrow } from "@/components/ui/SectionHeader";
 
 const services = [
   {
@@ -165,22 +165,19 @@ export default function ServicesPage() {
             priority
           />
           {/* Neutral graphite grade — legible, not a loud blue wash */}
-          <div className="absolute inset-0 bg-linear-to-t from-slate-950/80 via-slate-950/35 to-slate-900/15" />
+          <div className="absolute inset-0 bg-linear-to-t from-blue-950/85 via-blue-950/35 to-slate-900/15" />
         </div>
-        <div className="relative z-10 max-w-7xl mx-auto px-6 pb-16 w-full">
+        <div className="relative z-10 page-container pb-16 lg:pb-20">
           <motion.div
-            className="flex items-center gap-3 mb-5"
+            className="mb-5"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, ease: EASE }}
           >
-            <div className="divider-gold" />
-            <span className="text-white/75 text-sm font-semibold uppercase tracking-[0.24em]">
-              What We Do
-            </span>
+            <Eyebrow tone="dark">What We Do</Eyebrow>
           </motion.div>
           <motion.h1
-            className="text-[clamp(2.5rem,6vw,4.5rem)] font-bold text-white leading-[1.05] tracking-tight max-w-2xl"
+            className="heading-page text-white max-w-2xl"
             initial={{ opacity: 0, y: 28 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.1, ease: EASE }}
@@ -196,7 +193,7 @@ export default function ServicesPage() {
             <a
               href="/assets/brochure.pdf"
               download
-              className="inline-flex items-center gap-2.5 px-6 py-3 rounded-lg bg-white text-slate-900 text-sm font-semibold hover:bg-slate-100 transition-colors shadow-lg shadow-black/15"
+              className="btn btn-light"
             >
               <Download className="w-4 h-4" />
               Download Brochure
@@ -216,7 +213,7 @@ export default function ServicesPage() {
             onClick={() => goTo(i)}
             aria-label={`Go to ${s.title}`}
             aria-current={i === active ? "true" : undefined}
-            className="group relative flex items-center"
+            className="group relative flex cursor-pointer items-center p-1.5"
           >
             <span
               className={`block rounded-full transition-all duration-300 ${
@@ -225,7 +222,7 @@ export default function ServicesPage() {
                   : "w-2 h-2 bg-slate-300 group-hover:bg-slate-500"
               }`}
             />
-            <span className="absolute left-6 whitespace-nowrap text-[10px] font-bold uppercase tracking-widest text-slate-700 bg-white border border-slate-100 shadow-sm px-2.5 py-1.5 rounded pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-150">
+            <span className="absolute left-7 whitespace-nowrap text-xs font-semibold uppercase tracking-[0.2em] text-slate-700 bg-white border border-slate-200 shadow-sm px-2.5 py-1.5 rounded-lg pointer-events-none opacity-0 group-hover:opacity-100 group-focus-visible:opacity-100 transition-opacity duration-150">
               {s.title}
             </span>
           </button>
@@ -243,15 +240,15 @@ export default function ServicesPage() {
             ref={(el) => {
               sectionRefs.current[i] = el;
             }}
-            className={`scroll-mt-24 py-12 lg:py-16 ${
+            className={`scroll-mt-24 section-y ${
               i % 2 === 0 ? "bg-white" : "bg-slate-50"
             }`}
           >
-            <div className="max-w-6xl mx-auto px-6">
+            <div className="page-container">
               <motion.div
                 className={`flex flex-col ${
                   flip ? "lg:flex-row-reverse" : "lg:flex-row"
-                } gap-8 lg:gap-14 items-center`}
+                } gap-10 lg:gap-16 items-center`}
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true, amount: 0.2 }}
@@ -268,7 +265,7 @@ export default function ServicesPage() {
                   }}
                   className="w-full lg:w-2/5 shrink-0"
                 >
-                  <div className="group relative w-full aspect-16/10 overflow-hidden rounded-2xl ring-1 ring-slate-200/70">
+                  <div className="group relative w-full aspect-16/10 overflow-hidden rounded-2xl">
                     <Image
                       src={service.src}
                       fill
@@ -291,31 +288,23 @@ export default function ServicesPage() {
                   }}
                   className="flex flex-col w-full lg:w-3/5"
                 >
-                  <div className="flex items-center gap-3 mb-3">
-                    <div className="divider-gold" />
-                    <span className="text-gold-500 text-xs font-semibold uppercase tracking-[0.22em]">
-                      {service.subtitle}
-                    </span>
+                  <div className="mb-4">
+                    <Eyebrow>{service.subtitle}</Eyebrow>
                   </div>
 
-                  <h2 className="text-[clamp(1.625rem,3vw,2.25rem)] font-bold text-slate-900 leading-[1.1] tracking-tight mb-3.5">
+                  <h2 className="heading-section text-slate-900 mb-4">
                     {service.title}
                   </h2>
 
-                  <p className="text-slate-500 leading-relaxed text-sm sm:text-base mb-6">
+                  <p className="text-base text-slate-600 leading-relaxed mb-6">
                     {service.description}
                   </p>
 
                   {/* Full feature grid — no truncation */}
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-y-2.5 gap-x-6 border-t border-slate-100 pt-6">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-y-3 gap-x-6 border-t border-slate-200 pt-6">
                     {service.features.map((feat) => (
-                      <div key={feat} className="flex items-start gap-2.5">
-                        <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-blue-50">
-                          <Check
-                            className="w-3 h-3 text-brand-blue"
-                            strokeWidth={3}
-                          />
-                        </span>
+                      <div key={feat} className="flex items-start gap-3">
+                        <CheckCircle2 className="w-5 h-5 mt-px shrink-0 text-brand-blue" aria-hidden="true" />
                         <span className="text-slate-700 text-sm leading-snug">
                           {feat}
                         </span>
@@ -325,7 +314,7 @@ export default function ServicesPage() {
 
                   <Link
                     href="/#contact"
-                    className="group mt-7 inline-flex items-center gap-2 text-sm font-semibold text-brand-blue w-fit"
+                    className="group link-arrow mt-8 text-brand-blue hover:text-brand-blue-dark"
                   >
                     Enquire about {service.title}
                     <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
@@ -338,23 +327,23 @@ export default function ServicesPage() {
       })}
 
       {/* ── Bottom CTA banner ──────────────────────────────── */}
-      <section className="relative bg-blue-950 py-20 lg:py-24 overflow-hidden">
+      <section className="relative bg-blue-950 section-y overflow-hidden">
         <div className="absolute -top-24 left-1/4 h-72 w-72 rounded-full bg-brand-blue/20 blur-3xl pointer-events-none" />
         <div className="relative max-w-3xl mx-auto px-6 text-center">
-          <p className="text-gold-400 text-xs uppercase tracking-[0.28em] font-semibold mb-4">
-            Ready to Get Started?
-          </p>
-          <h2 className="text-[clamp(1.875rem,4vw,3rem)] font-bold text-white mb-5 leading-tight tracking-tight">
-            Your Next port call starts here
+          <div className="flex justify-center mb-5">
+            <Eyebrow tone="dark">Ready to Get Started?</Eyebrow>
+          </div>
+          <h2 className="heading-section text-white mb-5">
+            Your next port call starts here
           </h2>
-          <p className="text-white/65 max-w-xl mx-auto text-base mb-9 leading-relaxed">
+          <p className="lead-text text-white/75 max-w-xl mx-auto mb-9">
             From first notice of arrival to final departure clearance, or
             exploring long-term operational support, our team is ready to
             assist.
           </p>
           <Link
             href="/#contact"
-            className="inline-flex items-center gap-2 px-8 py-3.5 rounded-lg bg-white text-slate-900 text-sm font-semibold hover:bg-slate-100 transition-colors"
+            className="btn btn-light"
           >
             Request Agency Support
             <ArrowUpRight className="w-4 h-4" />

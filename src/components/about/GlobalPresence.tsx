@@ -3,6 +3,8 @@
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { MapPin } from "lucide-react";
+import { reveal } from "@/lib/motion";
+import SectionHeader from "../ui/SectionHeader";
 
 const countries = [
   {
@@ -81,53 +83,17 @@ const countries = [
     detail: "All Ports",
   },
 ];
-const reveal = {
-  hidden: { opacity: 0, y: 32 },
-  visible: (i: number) => ({
-    opacity: 1,
-    y: 0,
-    transition: {
-      duration: 0.7,
-      delay: i * 0.08,
-      ease: [0.22, 1, 0.36, 1] as const,
-    },
-  }),
-};
 
 export default function GlobalPresence() {
   return (
     <>
       {/* Coverage */}
-      <section className="py-24 lg:py-28 bg-linear-to-b from-white via-sky-50/60 to-white">
-        <div className="max-w-7xl mx-auto px-6">
-          <motion.div
-            className="text-center mb-14"
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.4 }}
-          >
-            <motion.div
-              variants={reveal}
-              custom={0}
-              className="flex items-center justify-center gap-3 mb-4"
-            >
-              <div className="divider-gold" />
-              <span className="text-gold-500 text-sm font-semibold uppercase tracking-[0.2em]">
-                Where We Operate
-              </span>
-              <div className="divider-gold" />
-            </motion.div>
-            <motion.h2
-              variants={reveal}
-              custom={1}
-              className="text-[clamp(2rem,4vw,3rem)] font-bold text-slate-900 tracking-tight mb-4"
-            >
-              Six Continents. One Standard.
-            </motion.h2>
-          </motion.div>
+      <section className="section-y bg-white">
+        <div className="page-container">
+          <SectionHeader eyebrow="Where We Operate" title="Six Continents. One Standard." />
 
           <motion.div
-            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5"
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6"
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, amount: 0.15 }}
@@ -137,9 +103,9 @@ export default function GlobalPresence() {
                 key={country.name}
                 variants={reveal}
                 custom={i}
-                className="group relative flex items-center gap-4 p-6 bg-white rounded-2xl border border-blue-100 shadow-sm transition-all duration-300 hover:shadow-xl hover:shadow-blue-100/60 hover:border-brand-blue/30 hover:-translate-y-1"
+                className="group relative flex items-center gap-4 p-6 bg-white rounded-2xl border border-slate-200 transition-all duration-300 hover:border-slate-300 hover:shadow-lg hover:shadow-slate-200/60"
               >
-                <span className="relative block w-18 h-12 shrink-0 rounded-xl overflow-hidden ring-2 ring-blue-50 shadow-sm">
+                <span className="relative block w-18 h-12 shrink-0 rounded-lg overflow-hidden ring-1 ring-slate-200">
                   <Image
                     src={country.flag}
                     alt={`${country.name} flag`}
@@ -149,11 +115,11 @@ export default function GlobalPresence() {
                   />
                 </span>
                 <div className="min-w-0">
-                  <div className="text-base font-bold text-slate-900">
+                  <div className="text-base font-bold tracking-tight text-slate-900">
                     {country.name}
                   </div>
-                  <div className="flex items-center gap-1.5 text-xs text-slate-500 mt-1">
-                    <MapPin className="w-3 h-3 shrink-0 text-brand-blue" />
+                  <div className="flex items-center gap-1.5 text-sm text-slate-600 mt-1">
+                    <MapPin className="w-3.5 h-3.5 shrink-0 text-brand-blue" aria-hidden="true" />
                     <span className="truncate">{country.detail}</span>
                   </div>
                 </div>

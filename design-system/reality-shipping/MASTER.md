@@ -44,7 +44,8 @@ The generator suggested navy `#0F172A` + CTA blue `#0369A1`. We keep the client'
 
 | Class | Use |
 |-------|-----|
-| `heading-display` | Hero `h1` only |
+| `heading-display` | Home hero `h1` only |
+| `heading-page` | Inner-page hero `h1` (About, Services) |
 | `heading-section` | Every section `h2` (rendered by `SectionHeader`) |
 | `heading-card` | Card / panel `h3` |
 | `eyebrow` | Uppercase label above headings, list numbers |
@@ -73,6 +74,10 @@ Body copy is 16px min (`text-base`); `text-sm` only for card descriptions and me
 ### Section header
 
 Always use `<SectionHeader eyebrow title lead? action? tone? />`. Left-aligned, gold rule + eyebrow, optional right-hand action link. `tone="dark"` on navy/image backgrounds.
+
+The one centred exception is a closing **CTA band** (navy, `section-y`, centred `Eyebrow` + `heading-section` + `lead-text` + one `btn btn-light`), as at the foot of /services.
+
+Inside two-column content blocks (About story, Services detail rows) use `<Eyebrow>` + `heading-section` directly instead of `SectionHeader`.
 
 ### Buttons
 

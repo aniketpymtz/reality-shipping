@@ -197,6 +197,11 @@ html {
   @apply text-[clamp(2.75rem,7vw,5.5rem)] font-bold leading-[1.04] tracking-tight;
 }
 
+/* Inner-page hero h1 (About, Services) — one step below the home hero */
+@utility heading-page {
+  @apply text-[clamp(2.5rem,5.5vw,4rem)] font-bold leading-[1.05] tracking-tight text-balance;
+}
+
 @utility heading-section {
   @apply text-[clamp(2rem,4.5vw,3.25rem)] font-bold leading-[1.1] tracking-tight text-balance;
 }
