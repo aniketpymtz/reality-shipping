@@ -114,7 +114,6 @@ export default function NewService() {
                             sizes="100vw"
                             alt=""
                             aria-hidden
-                            sizes="100vw"
                             className="object-cover blur-md brightness-[0.3] scale-[1.05]"
                         />
                     </div>
